@@ -14,17 +14,14 @@ discussion into the code that makes up this repository, see the
 
 ## Setup
 
-To use this as boilerplate, you'll need to take the following steps:
+Run npm install
+Run npm run start-dev
 
-* Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
-* Run the following commands:
+Create databases:
 
 ```
-git remote add boilermaker https://github.com/FullstackAcademy/boilermaker.git
-git fetch boilermaker
-git merge boilermaker/master
+createdb mixtape-4-u
+createdb mixtape-4-u-test
 ```
 
 Why did we do that? Because every once in a while, `boilermaker` may
