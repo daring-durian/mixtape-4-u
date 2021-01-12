@@ -26,6 +26,17 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  //all feilds above this point were in our original Boilerplate
+  userName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  mixtapeCart: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
+  pastOrders: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
