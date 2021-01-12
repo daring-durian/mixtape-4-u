@@ -1,7 +1,6 @@
 const User = require('./user')
-
+const Mixtape = require('./mixtape')
 const Inventory = require('./inventory')
-
 const Song = require('./song')
 
 /**
@@ -19,9 +18,7 @@ const Song = require('./song')
  */
 module.exports = {
   User,
-
+  Mixtape,
   Inventory,
-
   Song
-
 }
