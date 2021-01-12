@@ -1,4 +1,7 @@
 const User = require('./user')
+
+const Inventory = require('./inventory')
+
 const Song = require('./song')
 
 /**
@@ -16,5 +19,9 @@ const Song = require('./song')
  */
 module.exports = {
   User,
+
+  Inventory,
+
   Song
+
 }
