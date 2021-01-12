@@ -13,9 +13,6 @@ const Mixtape = db.define('mixtape', {
   name: {
     type: Sequelize.STRING,
     defaultValue: 'untitled mixtape'
-  },
-  songs: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
