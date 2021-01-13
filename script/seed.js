@@ -8,21 +8,21 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'Kathy@email.com', password: '123', userName: 'Kathy'}),
+    User.create({email: 'Kathy@email.com', password: '123', name: 'Kathy'}),
     User.create({
       email: 'Desiree@email.com',
       password: '456',
-      userName: 'Desiree'
+      name: 'Desiree'
     }),
     User.create({
       email: 'Allyson@email.com',
       password: '789',
-      userName: 'Allyson'
+      name: 'Allyson'
     }),
     User.create({
       email: 'Yuliya@email.com',
       password: '012',
-      userName: 'Yulia'
+      name: 'Yulia'
     })
   ])
 
@@ -139,6 +139,20 @@ async function seed() {
     Mixtape.create({medium: 'vinyl', name: 'Sad Mixtape'}),
     Mixtape.create({medium: 'vinyl', name: 'Romantic Mixtape'})
   ])
+
+  await mixtapes[0].setUser(users[0])
+  await mixtapes[1].setUser(users[1])
+  await mixtapes[2].setUser(users[2])
+  await mixtapes[3].setUser(users[3])
+
+  await mixtapes[0].addSong(songs[3])
+  await mixtapes[0].addSong(songs[6])
+  await mixtapes[1].addSong(songs[9])
+  await mixtapes[1].addSong(songs[0])
+  await mixtapes[2].addSong(songs[7])
+  await mixtapes[2].addSong(songs[8])
+  await mixtapes[3].addSong(songs[5])
+  await mixtapes[3].addSong(songs[2])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${songs.length} songs`)
