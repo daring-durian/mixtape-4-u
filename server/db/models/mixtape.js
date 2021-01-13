@@ -9,6 +9,10 @@ const Mixtape = db.define('mixtape', {
   name: {
     type: Sequelize.STRING,
     defaultValue: 'untitled mixtape'
+  },
+  fulfilled: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
