@@ -5,18 +5,18 @@ module.exports = router
 // /api/cart
 router.get('/', async (req, res, next) => {
   try {
-    let order
     if (req.user) {
-      order = await Mixtape.findOne({
+      let order = await Mixtape.findOne({
         where: {
-          userId: req.user.userId
-          //we need to add a 'active' column in our mixtapes database. Once users have multiple mixtapes, we can use that column to determine which one will appear in their cart
+          userId: req.user.id,
+          fulfilled: false
         }
       })
+      res.send(order)
     } else if (!req.user) {
       res.send('Please, log in first')
+      //once we have a login page, we should update this so user
     }
-    res.send(order)
   } catch (err) {
     next(err)
   }

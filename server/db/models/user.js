@@ -28,7 +28,7 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   //all feilds above this point were in our original Boilerplate
-  userName: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false
   },
