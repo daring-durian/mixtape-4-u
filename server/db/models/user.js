@@ -27,8 +27,8 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-  //all feilds above this point were in our original Boilerplate
-  userName: {
+  // all feilds above this point were in our original Boilerplate
+  name: {
     type: Sequelize.STRING,
     allowNull: false
   },
