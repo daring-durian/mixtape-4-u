@@ -24,6 +24,14 @@ createdb mixtape-4-u
 createdb mixtape-4-u-test
 ```
 
+Set up Bootstrap:
+
+```
+npm install --save-dev babel-core babel-loader babel-plugin-transform-class-properties babel-preset-es2015 babel-preset-react css-loader style-loader url-loader file-loader webpack
+
+npm install --save react react-dom bootstrap react-bootstrap
+```
+
 Why did we do that? Because every once in a while, `boilermaker` may
 be updated with additional features or bug fixes, and you can easily
 get those changes from now on by entering:

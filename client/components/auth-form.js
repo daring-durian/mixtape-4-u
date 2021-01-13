@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Button, Card, Container, Form, InputGroup} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -9,28 +10,61 @@ import {auth} from '../store'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
+  //     {error && error.response && <div> {error.response.data} </div>}
+  //   </form>
+  //   <a href="/auth/google" id='google-login'>{displayName} with Google <i className="fas fa-chevron-right"></i></a>
+  // </div>
+
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
+    <Container className="align-items-center d-flex" style={{height: '80vh'}}>
+      <Form onSubmit={handleSubmit} name={name} className="w-100">
+        <InputGroup className="m-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>
+              <i className="fas fa-at" />
+            </InputGroup.Text>
+          </InputGroup.Prepend>
+
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="enter your email"
+            required
+          />
+        </InputGroup>
+
+        <InputGroup className="m-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>
+              <i className="fas fa-lock" />
+            </InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="enter your password"
+            required
+          />
+        </InputGroup>
+
+        <Button
+          variant="primary"
+          type="submit"
+          className="m-2 w-80"
+          size="lg"
+          block
+        >
+          {displayName}
+        </Button>
+        <Card className="m-2">
+          <Card.Body>
+            <a href="/auth/google" id="google-login">
+              {displayName} with Google <i className="fas fa-chevron-right" />
+            </a>
+          </Card.Body>
+        </Card>
+      </Form>
+    </Container>
   )
 }
 
