@@ -10,4 +10,13 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:songid', async (req, res, next) => {
+  try {
+    const song = await Song.findByPk(req.params.songid)
+    res.json(song)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
