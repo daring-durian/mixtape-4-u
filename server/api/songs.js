@@ -1,6 +1,13 @@
 const router = require('express').Router()
-// const { Song } = require('../db');
-router.get('/', (req, res, next) => {
-  res.send('got here: GET /api/songs')
+const {Song} = require('../db')
+
+router.get('/', async (req, res, next) => {
+  try {
+    const songs = await Song.findAll()
+    res.json(songs)
+  } catch (error) {
+    next(error)
+  }
 })
+
 module.exports = router
