@@ -134,10 +134,10 @@ async function seed() {
   ])
 
   const mixtapes = await Promise.all([
-    Mixtape.create({id: , medium: 'vinyl', name: 'Dance Mixtape'}),
-    Mixtape.create({id: , medium: 'vinyl', name: 'Work Mixtape'}),
-    Mixtape.create({id: , medium: 'vinyl', name: 'Sad Mixtape'}),
-    Mixtape.create({id: , medium: 'vinyl', name: 'Romantic Mixtape'})
+    Mixtape.create({medium: 'vinyl', name: 'Dance Mixtape'}),
+    Mixtape.create({medium: 'vinyl', name: 'Work Mixtape'}),
+    Mixtape.create({medium: 'vinyl', name: 'Sad Mixtape'}),
+    Mixtape.create({medium: 'vinyl', name: 'Romantic Mixtape'})
   ])
 
   console.log(`seeded ${users.length} users`)
