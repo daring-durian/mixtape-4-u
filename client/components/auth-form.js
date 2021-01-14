@@ -8,10 +8,27 @@ import {Button, Card, Container, Form, InputGroup} from 'react-bootstrap'
  * COMPONENT
  */
 const AuthForm = props => {
+  // name in this case is the name of the form
   const {name, displayName, handleSubmit, error} = props
 
+  const nameField = (
+    <InputGroup className="m-2">
+      <InputGroup.Prepend>
+        <InputGroup.Text>
+          <i className="fas fa-portrait" />
+        </InputGroup.Text>
+      </InputGroup.Prepend>
+
+      <Form.Control
+        type="name"
+        name="fullName"
+        placeholder="enter your name"
+        required
+      />
+    </InputGroup>
+  )
+
   //     {error && error.response && <div> {error.response.data} </div>}
-  //   </form>
   //   <a href="/auth/google" id='google-login'>{displayName} with Google <i className="fas fa-chevron-right"></i></a>
   // </div>
 
@@ -45,7 +62,13 @@ const AuthForm = props => {
             placeholder="enter your password"
             required
           />
+
+          <Form.Text muted>
+            {error && error.response ? error.response.data : null}
+          </Form.Text>
         </InputGroup>
+
+        {displayName === 'Sign Up' ? nameField : null}
 
         <Button
           variant="primary"
@@ -56,6 +79,7 @@ const AuthForm = props => {
         >
           {displayName}
         </Button>
+
         <Card className="m-2">
           <Card.Body>
             <a href="/auth/google" id="google-login">
@@ -98,7 +122,9 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const fullName = evt.target.fullName.value
+
+      dispatch(auth(email, password, fullName, formName))
     }
   }
 }
