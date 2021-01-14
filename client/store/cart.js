@@ -34,7 +34,6 @@ export const getCart = cart => ({
 export const fetchCart = () => {
   return async dispatch => {
     const {data} = await axios.get('/api/cart')
-    console.log(data)
     dispatch(getCart(data))
   }
 }
@@ -56,7 +55,7 @@ const initialState = []
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
-      return [action.cart]
+      return action.cart
     default:
       return state
   }
