@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Songs} from './components'
+
+import {Login, Signup, UserHome, Single_Song, Songs} from './components'
+
 import {me} from './store'
 
 /**
@@ -20,6 +22,7 @@ class Routes extends Component {
       <Switch>
         <Route path="/songs" component={Songs} />
         {/* Routes placed here are available to all visitors */}
+        <Route path="/songs/:songId" component={Single_Song} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
