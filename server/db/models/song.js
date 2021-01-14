@@ -23,13 +23,22 @@ const Song = db.define('song', {
   },
 
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.ENUM({
+      values: [
+        'rock',
+        'pop',
+        'r&b',
+        'hip hop',
+        'electronic',
+        'classical',
+        'disco'
+      ]
+    })
   },
 
   imageUrl: {
     type: Sequelize.TEXT,
-    defaultValue:
-      'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg'
+    defaultValue: '/album-art/AKAA.png'
   },
 
   songUrl: {

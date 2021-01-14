@@ -1,16 +1,20 @@
 const User = require('./user')
 const Mixtape = require('./mixtape')
-const Inventory = require('./inventory')
 const Song = require('./song')
+const Order = require('./order')
 
-User.hasMany(Mixtape)
-Mixtape.belongsTo(User)
+User.hasMany(Order)
+Order.belongsTo(User)
+
+Order.hasMany(Mixtape)
+Mixtape.belongsTo(Order)
+
 Song.belongsToMany(Mixtape, {through: 'songs_mixtapes'})
 Mixtape.belongsToMany(Song, {through: 'songs_mixtapes'})
 
 module.exports = {
   User,
   Mixtape,
-  Inventory,
-  Song
+  Song,
+  Order
 }
