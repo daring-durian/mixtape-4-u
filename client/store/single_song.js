@@ -17,7 +17,6 @@ export const fetchSingleSong = songId => {
     try {
       const {data} = await axios.get(`/api/songs/${songId}`)
       dispatch(setSong(data))
-      console.log(data)
     } catch (error) {
       console.log('Skipped Track!', error)
     }

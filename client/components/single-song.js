@@ -16,7 +16,6 @@ class Single_Song extends React.Component {
     const song = this.props.song
     console.log(song)
     return (
-      //<div>{song.name}</div>
       <Container>
         <Row>
           <h1>
