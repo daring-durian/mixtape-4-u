@@ -11,42 +11,45 @@ class Single_Song extends React.Component {
   }
 
   async componentDidMount() {
-    const {data} = await axios.get('/api/songs/:songid')
+    //const {data} = await axios.get('/api/songs/:songid')
   }
 
   render() {
-    const {name, artist, album, year, tags, imageUrl, songUrl} = data.body
+    // const {name, artist, album, year, tags, imageUrl, songUrl} = data.body
     return (
-      <Container>
-        <Row>
-          <h1>
-            {name} by {artist}
-          </h1>
-        </Row>
-        <Row>
-          <Col>
-            <Image src="imageUrl" rounded />
-          </Col>
-          <Col />
-        </Row>
-        <Row>
-          <Col>
-            <ul>
-              <li>
-                <b>Album:</b> {album}
-              </li>
-              <li>
-                <b>Year:</b> {year}
-              </li>
-              <li>
-                <b>Tags:</b> {tags}
-              </li>
-            </ul>
-          </Col>
-          <Col />
-          <Col />
-        </Row>
-      </Container>
+      <div>Hello World!</div>
+      // <Container>
+      //   <Row>
+      //     <h1>
+      //       {name} by {artist}
+      //     </h1>
+      //   </Row>
+      //   <Row>
+      //     <Col>
+      //       <Image src="imageUrl" rounded />
+      //     </Col>
+      //     <Col />
+      //   </Row>
+      //   <Row>
+      //     <Col>
+      //       <ul>
+      //         <li>
+      //           <b>Album:</b> {album}
+      //         </li>
+      //         <li>
+      //           <b>Year:</b> {year}
+      //         </li>
+      //         <li>
+      //           <b>Tags:</b> {tags}
+      //         </li>
+      //       </ul>
+      //     </Col>
+      //     <Col />
+      //     <Col />
+      //   </Row>
+      // </Container>
     )
   }
 }
+
+export default Single_Song
