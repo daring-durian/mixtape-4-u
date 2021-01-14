@@ -1,31 +1,31 @@
 import React from 'react'
-import axios from 'axios'
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types'
-import {auth} from '../store'
-import {Button, Card, Container, Form, InputGroup} from 'react-bootstrap'
+import {fetchSingleSong} from '../store/single_song'
+import {Image, Container, Row, Col} from 'react-bootstrap'
 
 class Single_Song extends React.Component {
-  constructor() {
-    super()
-  }
-
-  async componentDidMount() {
-    const {data} = await axios.get('/api/songs/:songid')
+  componentDidMount() {
+    try {
+      this.props.fetchSingleSong(this.props.match.params.songId)
+    } catch (error) {
+      console.log('I hate this song', error)
+    }
   }
 
   render() {
-    const {name, artist, album, year, tags, imageUrl, songUrl} = data.body
+    const song = this.props.song
+    console.log(song)
     return (
+      //<div>{song.name}</div>
       <Container>
         <Row>
           <h1>
-            {name} by {artist}
+            {song.name} by {song.artist}
           </h1>
         </Row>
         <Row>
           <Col>
-            <Image src="imageUrl" rounded />
+            <Image src={song.imageUrl} rounded />
           </Col>
           <Col />
         </Row>
@@ -33,13 +33,13 @@ class Single_Song extends React.Component {
           <Col>
             <ul>
               <li>
-                <b>Album:</b> {album}
+                <b>Album:</b> {song.album}
               </li>
               <li>
-                <b>Year:</b> {year}
+                <b>Year:</b> {song.year}
               </li>
               <li>
-                <b>Tags:</b> {tags}
+                <b>Tags:</b> {song.tags}
               </li>
             </ul>
           </Col>
@@ -50,3 +50,17 @@ class Single_Song extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    song: state.single_song
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchSingleSong: id => dispatch(fetchSingleSong(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Single_Song)
