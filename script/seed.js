@@ -33,8 +33,7 @@ async function seed() {
       album: 'Good News for People Who Love Bad News',
       year: '2004',
       tags: ['indie', 'rock'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -43,8 +42,7 @@ async function seed() {
       album: 'The Sunset Tree',
       year: '2005',
       tags: ['rock'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -53,8 +51,7 @@ async function seed() {
       album: 'The Best of Earth, Wind & Fire Vol. 1',
       year: '1978',
       tags: ['disco'],
-      iimageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      iimageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -63,8 +60,7 @@ async function seed() {
       album: 'Sermon on the Rocks',
       year: '2015',
       tags: ['indie'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -73,8 +69,7 @@ async function seed() {
       album: 'Opening for Steinbeck(Live)',
       year: '2018',
       tags: ['acoustic'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -83,8 +78,7 @@ async function seed() {
       album: 'Let It Die',
       year: '2004',
       tags: ['indie'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -93,8 +87,7 @@ async function seed() {
       album: 'Gordon',
       year: '1992',
       tags: ['pop'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -103,8 +96,7 @@ async function seed() {
       album: 'I Specialize In Love',
       year: '2010',
       tags: ['disco'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -113,8 +105,7 @@ async function seed() {
       album: 'Jazz',
       year: '1978',
       tags: ['upbeat'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -123,8 +114,7 @@ async function seed() {
       album: 'Deja Entendu',
       year: '2003',
       tags: ['emo'],
-      imageUrl:
-        'https://static.wikia.nocookie.net/animalcrossing/images/1/1c/AMF-AlbumArt-Aloha_K.K..png/revision/latest?cb=20171113021005',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     })
   ])
