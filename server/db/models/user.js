@@ -29,16 +29,10 @@ const User = db.define('user', {
   },
 
   // all feilds above this point were in our original Boilerplate
-  
+
   name: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  mixtapeCart: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
-  },
-  pastOrders: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 

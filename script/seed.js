@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Song, Inventory, Mixtape} = require('../server/db/models')
+const {User, Song, Mixtape, Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -32,7 +32,7 @@ async function seed() {
       artist: 'Modest Mouse',
       album: 'Good News for People Who Love Bad News',
       year: '2004',
-      tags: ['indie', 'rock'],
+      tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -41,7 +41,7 @@ async function seed() {
       artist: 'The Mountain Goats',
       album: 'The Sunset Tree',
       year: '2005',
-      tags: ['rock'],
+      tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -50,8 +50,8 @@ async function seed() {
       artist: 'Earth, Wind & Fire',
       album: 'The Best of Earth, Wind & Fire Vol. 1',
       year: '1978',
-      tags: ['disco'],
-      iimageUrl: '/album-art/AKAA.png',
+      tags: 'disco',
+      imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
     Song.create({
@@ -59,7 +59,7 @@ async function seed() {
       artist: 'Josh Ritter',
       album: 'Sermon on the Rocks',
       year: '2015',
-      tags: ['indie'],
+      tags: 'pop',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -68,7 +68,7 @@ async function seed() {
       artist: 'John Craigie',
       album: 'Opening for Steinbeck(Live)',
       year: '2018',
-      tags: ['acoustic'],
+      tags: 'classical',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -77,7 +77,7 @@ async function seed() {
       artist: 'Feist',
       album: 'Let It Die',
       year: '2004',
-      tags: ['indie'],
+      tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -86,7 +86,7 @@ async function seed() {
       artist: 'Barenaked Ladies',
       album: 'Gordon',
       year: '1992',
-      tags: ['pop'],
+      tags: 'pop',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -95,7 +95,7 @@ async function seed() {
       artist: 'Sharon Brown',
       album: 'I Specialize In Love',
       year: '2010',
-      tags: ['disco'],
+      tags: 'disco',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -104,7 +104,7 @@ async function seed() {
       artist: 'Queen',
       album: 'Jazz',
       year: '1978',
-      tags: ['upbeat'],
+      tags: 'pop',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     }),
@@ -113,27 +113,31 @@ async function seed() {
       artist: 'Brand New',
       album: 'Deja Entendu',
       year: '2003',
-      tags: ['emo'],
+      tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
       songUrl: 'soundcloud.com'
     })
   ])
 
-  const inventory = await Promise.all([
-    Inventory.create({type: 'vinyl', quantity: '321'})
+  const orders = await Promise.all([
+    Order.create({fulfulled: false}),
+    Order.create({fulfilled: true})
   ])
 
   const mixtapes = await Promise.all([
     Mixtape.create({medium: 'vinyl', name: 'Dance Mixtape'}),
     Mixtape.create({medium: 'vinyl', name: 'Work Mixtape'}),
-    Mixtape.create({medium: 'vinyl', name: 'Sad Mixtape'}),
-    Mixtape.create({medium: 'vinyl', name: 'Romantic Mixtape'})
+    Mixtape.create({medium: 'cassette', name: 'Sad Mixtape'}),
+    Mixtape.create({medium: 'cd', name: 'Romantic Mixtape'})
   ])
 
-  await mixtapes[0].setUser(users[0])
-  await mixtapes[1].setUser(users[1])
-  await mixtapes[2].setUser(users[2])
-  await mixtapes[3].setUser(users[3])
+  await mixtapes[0].setOrder(orders[0])
+  await mixtapes[1].setOrder(orders[1])
+  await mixtapes[2].setOrder(orders[1])
+  await mixtapes[3].setOrder(orders[0])
+
+  await orders[0].setUser(users[2])
+  await orders[1].setUser(users[1])
 
   await mixtapes[0].addSong(songs[3])
   await mixtapes[0].addSong(songs[6])
@@ -146,7 +150,6 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${songs.length} songs`)
-  console.log(`seeded ${inventory.length} inventory`)
   console.log(`seeded ${mixtapes.length} mixtapes`)
   console.log(`seeded successfully`)
 }

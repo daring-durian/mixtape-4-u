@@ -3,16 +3,19 @@ const db = require('../db')
 
 const Mixtape = db.define('mixtape', {
   medium: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM({values: ['vinyl', 'cd', 'cassette']}),
     allowNull: false
   },
   name: {
     type: Sequelize.STRING,
-    defaultValue: 'untitled mixtape'
+    defaultValue: 'untitled mixtape',
+    validate: {
+      len: [1, 150]
+    }
   },
-  fulfilled: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
+  price: {
+    type: Sequelize.INTEGER,
+    defaultValue: null
   }
 })
 
