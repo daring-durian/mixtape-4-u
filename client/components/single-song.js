@@ -46,6 +46,7 @@ class Single_Song extends React.Component {
           <Col />
         </Row>
       </Container>
+
     )
   }
 }
@@ -63,3 +64,5 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Single_Song)
+
+
