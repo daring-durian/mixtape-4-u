@@ -9,8 +9,8 @@ const gotSongs = songs => ({type: GOT_SONGS, songs})
 //THUNK CREATORS
 export const fetchSongs = () => async dispatch => {
   try {
-    const res = await axios.get('/api/songs')
-    dispatch(gotSongs(res.data))
+    const {data} = await axios.get('/api/songs')
+    dispatch(gotSongs(data))
   } catch (err) {
     console.error(err)
   }
