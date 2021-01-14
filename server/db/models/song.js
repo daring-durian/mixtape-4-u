@@ -23,7 +23,17 @@ const Song = db.define('song', {
   },
 
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.ENUM({
+      values: [
+        'rock',
+        'pop',
+        'r&b',
+        'hip hop',
+        'electronic',
+        'classical',
+        'disco'
+      ]
+    })
   },
 
   imageUrl: {
