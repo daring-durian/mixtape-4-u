@@ -28,8 +28,7 @@ const Song = db.define('song', {
 
   imageUrl: {
     type: Sequelize.TEXT,
-    defaultValue:
-      'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg'
+    defaultValue: '/album-art/AKAA.png'
   },
 
   songUrl: {
