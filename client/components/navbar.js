@@ -3,17 +3,20 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {Songs} from './all-songs'
 import {Nav, Navbar as BootstrapNavbar, NavDropdown} from 'react-bootstrap'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <BootstrapNavbar bg="light">
-    <BootstrapNavbar.Brand>Mixtape 4 U</BootstrapNavbar.Brand>
+    <BootstrapNavbar.Brand as={Link} to="/">
+      Mixtape 4 U
+    </BootstrapNavbar.Brand>
     <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
 
     <BootstrapNavbar.Collapse>
       <Nav className="mr-auto">
-        <Nav.Link as={Link} to="/">
-          Home
+        <Nav.Link as={Link} to="/songs">
+          Create a mixtape
         </Nav.Link>
 
         <NavDropdown title="My Account" id="account-dropdown-menu">
