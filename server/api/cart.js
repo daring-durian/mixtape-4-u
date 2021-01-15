@@ -1,22 +1,27 @@
 const router = require('express').Router()
-const {Mixtape, Inventory, Song} = require('../db/models')
+const {Mixtape, Order, Song} = require('../db/models')
 module.exports = router
 
-// /api/cart
+// (/api/cart) get's the logged in customer's cart
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      let order = await Mixtape.findOne({
+      let order = await Order.findOne({
         where: {
           userId: req.user.id,
           fulfilled: false
+        }
+      })
+      let mixtape = await Mixtape.findOne({
+        where: {
+          orderId: order.id
         },
         include: Song
       })
-      res.send(order)
+      res.json(mixtape)
     } else if (!req.user) {
       res.send('Please, log in first')
-      //once we have a login page, we should update this so user
+      //once we have a login page, we should update this so user gets sent to our login route
     }
   } catch (err) {
     next(err)
