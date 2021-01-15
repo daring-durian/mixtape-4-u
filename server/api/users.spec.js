@@ -16,11 +16,13 @@ describe('User routes', () => {
 
     beforeEach(() => {
       return User.create({
+        name: 'Cody Hello',
         email: codysEmail
       })
     })
 
     it('GET /api/users', async () => {
+      console.log('USER SPECS')
       const res = await request(app)
         .get('/api/users')
         .expect(200)
