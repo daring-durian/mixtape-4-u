@@ -1,6 +1,7 @@
 const passport = require('passport')
 const router = require('express').Router()
 const SpotifyStrategy = require('passport-spotify').Strategy
+module.exports = router
 
 if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
   console.log('Spotify client ID / secret not found. Skipping Spotify OAuth.')
