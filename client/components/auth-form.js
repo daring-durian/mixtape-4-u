@@ -122,9 +122,13 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      const fullName = evt.target.fullName.value
 
-      dispatch(auth(email, password, fullName, formName))
+      if (formName === 'login') {
+        dispatch(auth(email, password, formName))
+      } else {
+        const fullName = evt.target.fullName.value
+        dispatch(auth(email, password, formName, fullName))
+      }
     }
   }
 }
