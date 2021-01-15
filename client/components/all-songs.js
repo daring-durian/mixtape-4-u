@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSongs} from '../store/songs'
+import {fetchSongs, addSongToMix} from '../store/songs'
 import {Link} from 'react-router-dom'
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col, Nav} from 'react-bootstrap'
 import CardColumns from 'react-bootstrap/CardColumns'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 /**
  * COMPONENT
@@ -17,9 +18,10 @@ class Songs extends Component {
   componentDidMount() {
     this.props.loadSongs()
   }
-  /*
-  add handleclick to add song to cart
-  */
+  // handleClick(event) {
+  // 	this.props.addSongToCart();
+  // }
+
   render() {
     const songs = this.props.songs
     return (
@@ -28,12 +30,19 @@ class Songs extends Component {
           {songs.map(song => (
             <Card key={song.id} className="p-3">
               <Card.Img variant="top" src={song.imageUrl} />
+              <div className="card-img-overlay">
+                <a
+                  href={`/songs/${song.id}`}
+                  className="stretched-link"
+                  id="cardlink"
+                />
+              </div>
               <Card.Body>
                 <Card.Title>{song.artist}</Card.Title>
                 <Card.Text>{song.name}</Card.Text>
               </Card.Body>
               <Card.Footer>
-                <small className="text-muted">Add To Cart</small>
+                <Button variant="secondary">Add To Mix</Button>
               </Card.Footer>
             </Card>
           ))}
@@ -53,6 +62,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     loadSongs: () => dispatch(fetchSongs())
+    // addSongToCart: id => dispatch(addSongToMix(id))
   }
 }
 
