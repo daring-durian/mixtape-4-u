@@ -2,7 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSongs} from '../store/songs'
 import {Link} from 'react-router-dom'
-import {Grid, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col} from 'react-bootstrap'
+import CardColumns from 'react-bootstrap/CardColumns'
+import Card from 'react-bootstrap/Card'
 
 /**
  * COMPONENT
@@ -19,9 +21,24 @@ class Songs extends Component {
   add handleclick to add song to cart
   */
   render() {
-    console.log('this.props', this.props)
+    const songs = this.props.songs
     return (
-      <div>{this.props.songs.map(song => <div key={song.id}>HELLO</div>)}</div>
+      <Container fluid="md">
+        <CardColumns>
+          {songs.map(song => (
+            <Card key={song.id} className="p-3">
+              <Card.Img variant="top" src={song.imageUrl} />
+              <Card.Body>
+                <Card.Title>{song.artist}</Card.Title>
+                <Card.Text>{song.name}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Add To Cart</small>
+              </Card.Footer>
+            </Card>
+          ))}
+        </CardColumns>
+      </Container>
     )
   }
 }
@@ -40,13 +57,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Songs)
-
-{
-  /* <Grid>
-<Row className='show-grid'>
-  <Col xs={8} md={6}>
-    {this.props.songs.map(song => <div key='song.id'>HELLO</div>)}
-  </Col>
-</Row>
-</Grid> */
-}
