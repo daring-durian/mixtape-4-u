@@ -21,7 +21,7 @@ describe('Mixtape routes', () => {
         name: 'Cody'
       })
       let coolMixtape = Mixtape.create({
-        medium: 'CD',
+        medium: 'cd',
         name: 'Super Cool Mixtape',
         fulfilled: false
       })
