@@ -16,7 +16,7 @@ export const getLocalStorage = () => {
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
-// const ADD_SONG = 'ADD_SONG';
+// const ADD_SONG = 'ADD_SONG'
 
 //ACTION CREATORS
 export const getCart = cart => ({
@@ -38,7 +38,7 @@ export const fetchCart = () => {
   }
 }
 
-//rough draft of what I think our function to add songs to cart should look like
+// rough draft of what I think our function to add songs to cart should look like
 // export const addSongToCart = (songId) => {
 //   return async (dispatch) => {
 //     const { data } = await axios.get(`/api/songs/${songId}`)
