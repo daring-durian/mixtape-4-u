@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSongs} from '../store/songs'
+import {fetchSongs, addSongToMix} from '../store/songs'
 import {Link} from 'react-router-dom'
-import {Grid, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col, Nav} from 'react-bootstrap'
+import CardColumns from 'react-bootstrap/CardColumns'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 /**
  * COMPONENT
@@ -15,13 +18,36 @@ class Songs extends Component {
   componentDidMount() {
     this.props.loadSongs()
   }
-  /*
-  add handleclick to add song to cart
-  */
+  // handleClick(event) {
+  // 	this.props.addSongToCart();
+  // }
+
   render() {
-    console.log('this.props', this.props)
+    const songs = this.props.songs
     return (
-      <div>{this.props.songs.map(song => <div key={song.id}>HELLO</div>)}</div>
+      <Container fluid="md">
+        <CardColumns>
+          {songs.map(song => (
+            <Card key={song.id} className="p-3">
+              <Card.Img variant="top" src={song.imageUrl} />
+              <div className="card-img-overlay">
+                <a
+                  href={`/songs/${song.id}`}
+                  className="stretched-link"
+                  id="cardlink"
+                />
+              </div>
+              <Card.Body>
+                <Card.Title>{song.artist}</Card.Title>
+                <Card.Text>{song.name}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <Button variant="secondary">Add To Mix</Button>
+              </Card.Footer>
+            </Card>
+          ))}
+        </CardColumns>
+      </Container>
     )
   }
 }
@@ -36,17 +62,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     loadSongs: () => dispatch(fetchSongs())
+    // addSongToCart: id => dispatch(addSongToMix(id))
   }
 }
 
 export default connect(mapState, mapDispatch)(Songs)
-
-{
-  /* <Grid>
-<Row className='show-grid'>
-  <Col xs={8} md={6}>
-    {this.props.songs.map(song => <div key='song.id'>HELLO</div>)}
-  </Col>
-</Row>
-</Grid> */
-}
