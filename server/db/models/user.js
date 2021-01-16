@@ -3,6 +3,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -26,14 +30,9 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
-  },
+  }
 
   // all feilds above this point were in our original Boilerplate
-
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
 })
 
 module.exports = User
@@ -42,6 +41,7 @@ module.exports = User
  * instanceMethods
  */
 User.prototype.correctPassword = function(candidatePwd) {
+  console.log(candidatePwd)
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
 

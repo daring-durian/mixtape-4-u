@@ -17,7 +17,7 @@ describe('Mixtape routes', () => {
       let CodyUser = User.create({
         id: 1,
         email: codysEmail,
-        password: 1234,
+        password: '1234',
         name: 'Cody'
       })
       let coolMixtape = Mixtape.create({
