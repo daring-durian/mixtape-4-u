@@ -6,13 +6,13 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      let order = await Order.findOne({
+      const order = await Order.findOne({
         where: {
           userId: req.user.id,
           fulfilled: false
         }
       })
-      let mixtape = await Mixtape.findOne({
+      const mixtape = await Mixtape.findOne({
         where: {
           orderId: order.id
         },
@@ -23,6 +23,31 @@ router.get('/', async (req, res, next) => {
       res.send('Please, log in first')
       //once we have a login page, we should update this so user gets sent to our login route
     }
+  } catch (err) {
+    next(err)
+  }
+})
+
+// /api/cart/:songId Route to delete song to cart
+router.put('/:songId', async (req, res, next) => {
+  try {
+    const songId = req.params.songId
+    const song = await Song.findByPk(songId)
+    const order = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        fulfilled: false
+      }
+    })
+    const mixtape = await Mixtape.findOne({
+      where: {
+        orderId: order.id
+      },
+      include: Song
+    })
+    await mixtape.removeSong(song)
+
+    res.send(204).end()
   } catch (err) {
     next(err)
   }

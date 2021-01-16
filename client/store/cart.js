@@ -1,4 +1,5 @@
 import axios from 'axios'
+import songs from './songs'
 
 //GUEST USER:
 //If user is not logged in yet and they start adding
@@ -17,6 +18,7 @@ export const getLocalStorage = () => {
 //ACTION TYPES
 const GET_CART = 'GET_CART'
 const ADD_SONG = 'ADD_SONG'
+const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
 
 //ACTION CREATORS
 export const getCart = cart => ({
@@ -30,6 +32,11 @@ export const addSong = (songId, newSong) => ({
   newSong
 })
 
+export const deleteSong = songId => ({
+  type: DELETE_SONG_FROM_CART,
+  songId
+})
+
 // THUNK CREATORS
 export const fetchCart = () => {
   return async dispatch => {
@@ -38,12 +45,18 @@ export const fetchCart = () => {
   }
 }
 
-// rough draft of what I think our function to add songs to cart should look like
-export const addSongToCart = (songId, newSong) => {
+export const addSongToCart = songId => {
   return async dispatch => {
-    await axios.put(`/api/songs/${songId}`, songId)
-    // const cartData = await axios.get('/api/cart')
-    dispatch(addSong(songId, newSong))
+    const newSong = await axios.get(`/api/songs/${songId}`)
+    await axios.put(`/api/songs/${songId}`, newSong)
+    dispatch(addSong(songId, newSong.data))
+  }
+}
+
+export const deleteSongFromCart = songId => {
+  return async dispatch => {
+    await axios.put(`/api/cart/${songId}`)
+    dispatch(deleteSong(songId))
   }
 }
 
@@ -51,11 +64,17 @@ export const addSongToCart = (songId, newSong) => {
 const initialState = []
 
 //REDUCER
-
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
+    case ADD_SONG:
+      return {...state, songs: [...state.songs, action.newSong]}
+    case DELETE_SONG_FROM_CART:
+      const remainingSongs = state.songs.filter(
+        song => song.id !== action.songId
+      )
+      return {...state, songs: remainingSongs}
     default:
       return state
   }

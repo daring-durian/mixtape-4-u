@@ -24,19 +24,18 @@ router.put('/:songId', async (req, res, next) => {
   try {
     const songId = req.params.songId
     const song = await Song.findByPk(songId)
-    let order = await Order.findOne({
+    const order = await Order.findOne({
       where: {
         userId: req.user.id,
         fulfilled: false
       }
     })
-    let mixtape = await Mixtape.findOne({
+    const mixtape = await Mixtape.findOne({
       where: {
         orderId: order.id
       },
       include: Song
     })
-    console.log('ORDER->', order, 'MIXTAPE->', mixtape)
     await mixtape.addSong(song)
 
     res.send(204).end()
