@@ -19,8 +19,8 @@ router.get('/:songId', async (req, res, next) => {
   }
 })
 
-// /api/songs/:songId Route to add song to cart
-router.put('/:songId', async (req, res, next) => {
+// /api/songs/add/:songId Route to add song to cart
+router.put('/add/:songId', async (req, res, next) => {
   try {
     const songId = req.params.songId
     const song = await Song.findByPk(songId)
