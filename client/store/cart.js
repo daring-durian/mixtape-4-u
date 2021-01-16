@@ -16,14 +16,36 @@ export const getLocalStorage = () => {
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
+const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
+const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
 const ADD_SONG = 'ADD_SONG'
 const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
+
 
 //ACTION CREATORS
 export const getCart = cart => ({
   type: GET_CART,
   cart
 })
+
+
+// mixtape type and quantity should all be addded to the active order
+// and once user submits the order, we will post all of that data to the BE
+export const setMixtapeType = mixtapeType => ({
+  type: SET_MIXTAPE_TYPE,
+  mixtapeType
+})
+
+export const setMixtapeName = name => ({
+  type: SET_MIXTAPE_NAME,
+  name
+})
+
+// export const addSong = (newSong, mixtape) => ({
+//   type: ADD_SONG,
+//   newSong,
+//   mixtape
+// })
 
 export const addSong = (songId, newSong) => ({
   type: ADD_SONG,
@@ -67,6 +89,10 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
+    case SET_MIXTAPE_TYPE:
+      return {...state, medium: action.setMixtapeType}
+    case SET_MIXTAPE_NAME:
+      return {...state, name: action.setMixtapeName}
     case ADD_SONG:
       return {...state, songs: [...state.songs, action.newSong]}
     case DELETE_SONG_FROM_CART:
