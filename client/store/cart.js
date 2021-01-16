@@ -16,15 +16,18 @@ export const getLocalStorage = () => {
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
-// const ADD_SONG = 'ADD_SONG'
 const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
+const ADD_SONG = 'ADD_SONG'
+const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
+
 
 //ACTION CREATORS
 export const getCart = cart => ({
   type: GET_CART,
   cart
 })
+
 
 // mixtape type and quantity should all be addded to the active order
 // and once user submits the order, we will post all of that data to the BE
@@ -44,6 +47,17 @@ export const setMixtapeName = name => ({
 //   mixtape
 // })
 
+export const addSong = (songId, newSong) => ({
+  type: ADD_SONG,
+  songId,
+  newSong
+})
+
+export const deleteSong = songId => ({
+  type: DELETE_SONG_FROM_CART,
+  songId
+})
+
 // THUNK CREATORS
 export const fetchCart = () => {
   return async dispatch => {
@@ -52,31 +66,40 @@ export const fetchCart = () => {
   }
 }
 
-// rough draft of what I think our function to add songs to cart should look like
-// export const addSongToCart = (songId) => {
-//   return async (dispatch) => {
-//     const { data } = await axios.get(`/api/songs/${songId}`)
-//     const cartData = await axios.get('/api/cart')
-//     dispatch(addSong(data, cartData.data));
-//   }
-// }
+export const addSongToCart = songId => {
+  return async dispatch => {
+    const newSong = await axios.get(`/api/songs/${songId}`)
+    await axios.put(`/api/songs/${songId}`, newSong)
+    dispatch(addSong(songId, newSong.data))
+  }
+}
+
+export const deleteSongFromCart = songId => {
+  return async dispatch => {
+    await axios.put(`/api/cart/${songId}`)
+    dispatch(deleteSong(songId))
+  }
+}
 
 //INITIAL STATE
 const initialState = []
 
 //REDUCER
-
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
-
     case SET_MIXTAPE_TYPE:
       return {...state, medium: action.setMixtapeType}
-
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
-
+    case ADD_SONG:
+      return {...state, songs: [...state.songs, action.newSong]}
+    case DELETE_SONG_FROM_CART:
+      const remainingSongs = state.songs.filter(
+        song => song.id !== action.songId
+      )
+      return {...state, songs: remainingSongs}
     default:
       return state
   }
