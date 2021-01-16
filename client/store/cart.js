@@ -1,5 +1,4 @@
 import axios from 'axios'
-import songs from './songs'
 
 //GUEST USER:
 //If user is not logged in yet and they start adding
