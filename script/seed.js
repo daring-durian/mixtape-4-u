@@ -22,7 +22,7 @@ async function seed() {
     User.create({
       email: 'Yuliya@email.com',
       password: '012',
-      name: 'Yulia'
+      name: 'Yuliya'
     })
   ])
 
@@ -34,7 +34,8 @@ async function seed() {
       year: '2004',
       tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/5op53ANI4exiWqFHKuwWxd?si=DeaOXZZuS-KCqJq5uOGjoA'
     }),
     Song.create({
       name: 'This Year',
@@ -43,7 +44,8 @@ async function seed() {
       year: '2005',
       tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/0s9aeZriwqyBYfxFzsd20R?si=dN0eNchlQKOtF-7S0Sslcg'
     }),
     Song.create({
       name: 'September',
@@ -52,7 +54,8 @@ async function seed() {
       year: '1978',
       tags: 'disco',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/2grjqo0Frpf2okIBiifQKs?si=R8EcGX-PTvyYlbcVVDN70g'
     }),
     Song.create({
       name: 'Young Moses',
@@ -61,7 +64,8 @@ async function seed() {
       year: '2015',
       tags: 'pop',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/0HjCUl4EInIMuFB41bRD4O?si=HMa7-VUET6uEs5ds2EJiYQ'
     }),
     Song.create({
       name: 'Dissect the Bird(Live)',
@@ -70,7 +74,8 @@ async function seed() {
       year: '2018',
       tags: 'classical',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/52Cc6qv2MckQgLjeR5Eai0?si=-NWmDN56TZ2RKnJZuM3Zxg'
     }),
     Song.create({
       name: 'Tout doucement',
@@ -79,7 +84,8 @@ async function seed() {
       year: '2004',
       tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/6su54hbtgZvc2eKH125hE0?si=ohaC6EC0QESNXrTNxevfvg'
     }),
     Song.create({
       name: 'Brian Wilson',
@@ -88,7 +94,8 @@ async function seed() {
       year: '1992',
       tags: 'pop',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/2Eky0Rjbrv0YmNy3wrMtSM?si=y3Q3ZOGqSr-XZtAFf4UGYw'
     }),
     Song.create({
       name: 'I Specialize In Love',
@@ -97,7 +104,8 @@ async function seed() {
       year: '2010',
       tags: 'disco',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/1SRtnntbQW1KKO6rzEO7ac?si=LSf43l4sSLa0zvXKc9oP6A'
     }),
     Song.create({
       name: "Don't Stop Me Now",
@@ -106,7 +114,8 @@ async function seed() {
       year: '1978',
       tags: 'pop',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/7hQJA50XrCWABAu5v6QZ4i?si=Kww9f-obRLGwlsEbOiITXw'
     }),
     Song.create({
       name: 'The Quiet Things That No One Ever Knows',
@@ -115,7 +124,8 @@ async function seed() {
       year: '2003',
       tags: 'rock',
       imageUrl: '/album-art/AKAA.png',
-      songUrl: 'soundcloud.com'
+      songUrl:
+        'https://open.spotify.com/embed/track/3IlY76VbP31zwPY0S2EMjh?si=3auIFpj1Q-Sb_qO5Bv9JRQ'
     })
   ])
 

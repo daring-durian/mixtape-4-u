@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleSong} from '../store/single_song'
-import {Image, Container, Row, Col} from 'react-bootstrap'
+import {Image, Container, Row, Col, Button} from 'react-bootstrap'
 
 class Single_Song extends React.Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Single_Song extends React.Component {
 
   render() {
     const song = this.props.song
-    console.log(song)
+    //console.log(song.songUrl)
     return (
       <Container>
         <Row>
@@ -26,10 +26,19 @@ class Single_Song extends React.Component {
           <Col>
             <Image src={song.imageUrl} rounded />
           </Col>
+          <iframe
+            src={song.songUrl}
+            width="500"
+            height="250"
+            frameBorder="0"
+            allowTransparency="true"
+            allow="encrypted-media"
+          />
           <Col />
         </Row>
         <Row>
           <Col>
+            <Button variant="secondary">Add To Mix</Button>
             <ul>
               <li>
                 <b>Album:</b> {song.album}
@@ -46,7 +55,6 @@ class Single_Song extends React.Component {
           <Col />
         </Row>
       </Container>
-
     )
   }
 }
@@ -64,5 +72,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Single_Song)
-
-
