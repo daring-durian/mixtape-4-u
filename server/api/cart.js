@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
       })
       res.json(mixtape)
     } else if (!req.user) {
-      res.send('Please, log in first')
+      res.send(401)
       //once we have a login page, we should update this so user gets sent to our login route
     }
   } catch (err) {
@@ -28,8 +28,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// /api/cart/:songId Route to delete song to cart
-router.put('/:songId', async (req, res, next) => {
+// /api/cart/delete/:songId Route to delete song to cart
+router.put('/delete/:songId', async (req, res, next) => {
   try {
     const songId = req.params.songId
     const song = await Song.findByPk(songId)

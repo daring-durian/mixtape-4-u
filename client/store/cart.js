@@ -1,33 +1,18 @@
 import axios from 'axios'
 
-//GUEST USER:
-//If user is not logged in yet and they start adding
-//items to their cart, we need to get them from local storage
-export const getLocalStorage = () => {
-  try {
-    const guestLocalStorage = localStorage.getItem('guestCart')
-    return JSON.parse(guestLocalStorage)
-  } catch (err) {
-    console.log(err)
-  }
-}
-//will need to create func for localStorage.setItem('guestCart', {cart: []}) once we have a way to update our cart
-//You can see the data stored in local storage in Chrome under DevTools -> Application -> Local Storage./
-
 //ACTION TYPES
 const GET_CART = 'GET_CART'
 const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
 const ADD_SONG = 'ADD_SONG'
 const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
-
+const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE'
 
 //ACTION CREATORS
 export const getCart = cart => ({
   type: GET_CART,
   cart
 })
-
 
 // mixtape type and quantity should all be addded to the active order
 // and once user submits the order, we will post all of that data to the BE
@@ -41,12 +26,6 @@ export const setMixtapeName = name => ({
   name
 })
 
-// export const addSong = (newSong, mixtape) => ({
-//   type: ADD_SONG,
-//   newSong,
-//   mixtape
-// })
-
 export const addSong = (songId, newSong) => ({
   type: ADD_SONG,
   songId,
@@ -56,6 +35,11 @@ export const addSong = (songId, newSong) => ({
 export const deleteSong = songId => ({
   type: DELETE_SONG_FROM_CART,
   songId
+})
+
+export const setLocalStorage = entireCart => ({
+  type: SET_LOCAL_STORAGE,
+  entireCart
 })
 
 // THUNK CREATORS
@@ -80,6 +64,22 @@ export const deleteSongFromCart = songId => {
     dispatch(deleteSong(songId))
   }
 }
+//GUEST USER:
+//If user is not logged in yet and they start adding
+//items to their cart, we need to get them from local storage
+export const setLocalStorageItem = entireCart => {
+  return async dispatch => {
+    try {
+      const cartLocalStorage = 'mixtape-4-u-cart'
+      localStorage.setItem(cartLocalStorage, JSON.stringify(entireCart))
+      dispatch(setLocalStorage(entireCart))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+//will need to create func for localStorage.setItem('guestCart', {cart: []}) once we have a way to update our cart
+//You can see the data stored in local storage in Chrome under DevTools -> Application -> Local Storage./
 
 //INITIAL STATE
 const initialState = []
@@ -100,6 +100,8 @@ const cartReducer = (state = initialState, action) => {
         song => song.id !== action.songId
       )
       return {...state, songs: remainingSongs}
+    case SET_LOCAL_STORAGE:
+      return {...state}
     default:
       return state
   }

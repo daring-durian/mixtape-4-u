@@ -1,7 +1,7 @@
 // import { Container, Dropdown } from 'react-bootstrap'
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
+import {fetchCart, setLocalStorageItem} from '../store/cart'
 
 class Cart extends React.Component {
   constructor() {
@@ -10,6 +10,7 @@ class Cart extends React.Component {
 
   async componentDidMount() {
     await this.props.getCart()
+    await this.props.setLocalStorage(this.props.currentCart)
   }
 
   render() {
@@ -68,7 +69,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getCart: () => dispatch(fetchCart())
+    getCart: () => dispatch(fetchCart()),
+    setLocalStorage: currentCart => dispatch(setLocalStorageItem(currentCart))
   }
 }
 
