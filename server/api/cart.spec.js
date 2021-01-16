@@ -5,7 +5,7 @@ const app = require('../index')
 const Mixtape = db.model('mixtape')
 const User = db.model('user')
 
-describe('Mixtape routes', () => {
+describe('CART ROUTES', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,7 +14,7 @@ describe('Mixtape routes', () => {
     const codysEmail = 'cody@puppybook.com'
 
     beforeEach(async () => {
-      let CodyUser = User.create({
+      let codyUser = await User.create({
         id: 1,
         email: codysEmail,
         password: '1234',
@@ -25,7 +25,7 @@ describe('Mixtape routes', () => {
         name: 'Super Cool Mixtape',
         fulfilled: false
       })
-      // await coolMixtape.setUser(CodyUser)
+      // await coolMixtape.setUser(codyUser)
     })
 
     it('GET /api/cart', async () => {
