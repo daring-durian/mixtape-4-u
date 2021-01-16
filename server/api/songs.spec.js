@@ -6,7 +6,7 @@ const db = require('../db')
 const app = require('../index')
 const Song = db.model('song')
 
-describe('Song routes', () => {
+describe('SONG ROUTES', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -31,10 +31,29 @@ describe('Song routes', () => {
       expect(res.body[0].name).to.be.equal(dummyDataSong)
     })
   })
-})
-// it('GET /api/songs/:songid', async () => {
-// 	const res = await request(app).get('/api/songs/:songId').expect(200);
+  describe('/api/songs/:songId', () => {
+    const newSong = {
+      name: 'Ivo',
+      artist: 'Cocteau Twins',
+      album: 'Treasure',
+      year: '1984',
+      tags: 'pop'
+    }
 
-// 	expect(res.body).to.be.an('object');
-// 	expect(res.body.album).to.be.equal('None of this is real');
-// });
+    beforeEach(() => {
+      return Song.create(newSong)
+    })
+    it('GET /api/songs/:songId', async () => {
+      let [song] = await Song.findAll({
+        where: newSong
+      })
+      const res = request(app)
+        .get(`/api/songs/${song.id}`)
+        .expect(200)
+      //it's getting here... seems close!
+      // console.log('RES OVER HERE', res);
+      // expect(res.body).to.be.an('object');
+      // expect(res.body.album).to.be.equal('Ivo');
+    })
+  })
+})
