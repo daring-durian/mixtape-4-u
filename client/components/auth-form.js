@@ -62,11 +62,13 @@ const AuthForm = props => {
             placeholder="enter your password"
             required
           />
-
-          <Form.Text muted>
-            {error && error.response ? error.response.data : null}
-          </Form.Text>
         </InputGroup>
+
+        {error && error.response ? (
+          <p className="m-2" style={{color: '#b02c2c'}}>
+            {error.response.data}
+          </p>
+        ) : null}
 
         {displayName === 'Sign Up' ? nameField : null}
 

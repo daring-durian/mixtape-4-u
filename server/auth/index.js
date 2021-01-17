@@ -37,6 +37,7 @@ router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
   res.redirect('/')
+  localStorage.clear()
 })
 
 router.get('/me', (req, res) => {
@@ -44,4 +45,4 @@ router.get('/me', (req, res) => {
 })
 
 router.use('/google', require('./google'))
-router.use('/spotify', require('./spotify'))
+//router.use('/spotify', require('./spotify'))
