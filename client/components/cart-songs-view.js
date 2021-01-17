@@ -25,8 +25,7 @@ class Cart_Songs_View extends React.Component {
   render() {
     const cart = this.props.currentCart
     const cartSongs = cart.songs
-    // const availableMixtapeMediums = cart.medium;
-    // const availableMixtapeMediums = ['vinyl', 'cassette', 'cd']
+
 
     return (
       <Container fluid>
