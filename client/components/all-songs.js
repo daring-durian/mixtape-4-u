@@ -27,7 +27,9 @@ class Songs extends Component {
         <CardColumns>
           {songs.map(song => (
             <Card key={song.id} className="p-3">
-              <Card.Img variant="top" src={song.imageUrl} />
+              <a href={`/songs/${song.id}`}>
+                <Card.Img variant="top" src={song.imageUrl} />
+              </a>
               <Card.Body>
                 <Card.Title>{song.name}</Card.Title>
                 <Card.Subtitle>{song.artist}</Card.Subtitle>
@@ -39,7 +41,7 @@ class Songs extends Component {
                   className="add-song"
                   onClick={() => this.handleClick(song.id)}
                 >
-                  Add To Mix
+                  <i className="fas fa-cart-plus" />
                 </Button>
               </Card.Footer>
             </Card>
