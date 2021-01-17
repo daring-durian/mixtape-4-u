@@ -45,22 +45,23 @@ export const setLocalStorage = entireCart => ({
 // THUNK CREATORS
 export const fetchCart = () => {
   return async dispatch => {
-    const {data} = await axios.get('/api/cart')
-    dispatch(getCart(data))
+    const mixtape = await axios.get('/api/cart')
+    dispatch(getCart(mixtape.data))
   }
 }
 
 export const addSongToCart = songId => {
   return async dispatch => {
     const newSong = await axios.get(`/api/songs/${songId}`)
-    await axios.put(`/api/songs/${songId}`, newSong)
+    console.log('NEWSONG', newSong)
+    await axios.put(`/api/songs/add/${songId}`, newSong.data)
     dispatch(addSong(songId, newSong.data))
   }
 }
 
 export const deleteSongFromCart = songId => {
   return async dispatch => {
-    await axios.put(`/api/cart/${songId}`)
+    await axios.put(`/api/cart/delete/${songId}`)
     dispatch(deleteSong(songId))
   }
 }

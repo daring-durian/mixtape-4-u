@@ -10,18 +10,16 @@ router.get('/', async (req, res, next) => {
         where: {
           userId: req.user.id,
           fulfilled: false
-        }
-      })
-      const mixtape = await Mixtape.findOne({
-        where: {
-          orderId: order.id
         },
-        include: Song
+        include: {model: Mixtape, include: Song}
+      }).then(result => {
+        return result.mixtapes.map(mixtape => {
+          return mixtape.get()
+        })
       })
-      res.json(mixtape)
+      res.send(order)
     } else if (!req.user) {
       res.send(401)
-      //once we have a login page, we should update this so user gets sent to our login route
     }
   } catch (err) {
     next(err)
