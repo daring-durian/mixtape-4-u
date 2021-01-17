@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import {Alert, Button, Card, Container, Form, InputGroup} from 'react-bootstrap'
+import {Button, Card, Container, Form, InputGroup} from 'react-bootstrap'
 
 /**
  * COMPONENT
