@@ -1,189 +1,78 @@
 'use strict'
-
+const {userData, songData, orderData, mixtapeData} = require('./dummyData')
 const db = require('../server/db')
 const {User, Song, Mixtape, Order} = require('../server/db/models')
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max))
+}
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'Kathy@email.com', password: '123', name: 'Kathy'}),
-    User.create({
-      email: 'Desiree@email.com',
-      password: '456',
-      name: 'Desiree'
-    }),
-    User.create({
-      email: 'Allyson@email.com',
-      password: '789',
-      name: 'Allyson'
-    }),
-    User.create({
-      email: 'yuliya@email.com',
-      password: 'password',
-      name: 'Yuliya'
-    })
-  ])
+  const allUsers = await Promise.all(
+    userData.map(user =>
+      User.create({
+        email: user.email,
+        password: user.password,
+        name: user.name
+      })
+    )
+  )
 
-  const songs = await Promise.all([
-    Song.create({
-      name: 'The World At Large',
-      artist: 'Modest Mouse',
-      album: 'Good News for People Who Love Bad News',
-      year: '2004',
-      tags: 'rock',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/5op53ANI4exiWqFHKuwWxd?si=DeaOXZZuS-KCqJq5uOGjoA'
-    }),
-    Song.create({
-      name: 'This Year',
-      artist: 'The Mountain Goats',
-      album: 'The Sunset Tree',
-      year: '2005',
-      tags: 'rock',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/0s9aeZriwqyBYfxFzsd20R?si=dN0eNchlQKOtF-7S0Sslcg'
-    }),
-    Song.create({
-      name: 'September',
-      artist: 'Earth, Wind & Fire',
-      album: 'The Best of Earth, Wind & Fire Vol. 1',
-      year: '1978',
-      tags: 'disco',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/2grjqo0Frpf2okIBiifQKs?si=R8EcGX-PTvyYlbcVVDN70g'
-    }),
-    Song.create({
-      name: 'Young Moses',
-      artist: 'Josh Ritter',
-      album: 'Sermon on the Rocks',
-      year: '2015',
-      tags: 'pop',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/0HjCUl4EInIMuFB41bRD4O?si=HMa7-VUET6uEs5ds2EJiYQ'
-    }),
-    Song.create({
-      name: 'Dissect the Bird(Live)',
-      artist: 'John Craigie',
-      album: 'Opening for Steinbeck(Live)',
-      year: '2018',
-      tags: 'classical',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/52Cc6qv2MckQgLjeR5Eai0?si=-NWmDN56TZ2RKnJZuM3Zxg'
-    }),
-    Song.create({
-      name: 'Tout doucement',
-      artist: 'Feist',
-      album: 'Let It Die',
-      year: '2004',
-      tags: 'rock',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/6su54hbtgZvc2eKH125hE0?si=ohaC6EC0QESNXrTNxevfvg'
-    }),
-    Song.create({
-      name: 'Brian Wilson',
-      artist: 'Barenaked Ladies',
-      album: 'Gordon',
-      year: '1992',
-      tags: 'pop',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/2Eky0Rjbrv0YmNy3wrMtSM?si=y3Q3ZOGqSr-XZtAFf4UGYw'
-    }),
-    Song.create({
-      name: 'I Specialize In Love',
-      artist: 'Sharon Brown',
-      album: 'I Specialize In Love',
-      year: '2010',
-      tags: 'disco',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/1SRtnntbQW1KKO6rzEO7ac?si=LSf43l4sSLa0zvXKc9oP6A'
-    }),
-    Song.create({
-      name: "Don't Stop Me Now",
-      artist: 'Queen',
-      album: 'Jazz',
-      year: '1978',
-      tags: 'pop',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/7hQJA50XrCWABAu5v6QZ4i?si=Kww9f-obRLGwlsEbOiITXw'
-    }),
-    Song.create({
-      name: 'The Quiet Things That No One Ever Knows',
-      artist: 'Brand New',
-      album: 'Deja Entendu',
-      year: '2003',
-      tags: 'rock',
-      imageUrl: '/album-art/AKAA.png',
-      songUrl:
-        'https://open.spotify.com/embed/track/3IlY76VbP31zwPY0S2EMjh?si=3auIFpj1Q-Sb_qO5Bv9JRQ'
-    })
-  ])
+  const allSongs = await Promise.all(
+    songData.map(song =>
+      Song.create({
+        name: song.name,
+        album: song.album,
+        artist: song.artist,
+        year: song.year,
+        tags: song.tags,
+        imageUrl: song.imageUrl,
+        songUrl: song.songUrl
+      })
+    )
+  )
 
-  const orders = await Promise.all([
-    Order.create({fulfulled: false}),
-    Order.create({fulfilled: false}),
-    Order.create({fulfilled: true}),
-    Order.create({fulfulled: false}),
-    Order.create({fulfilled: false}),
-    Order.create({fulfilled: true}),
-    Order.create({fulfilled: false})
-  ])
+  const allOrders = await Promise.all(
+    orderData.map(order =>
+      Order.create({
+        fulfilled: order.fulfilled
+      })
+    )
+  )
 
-  const mixtapes = await Promise.all([
-    Mixtape.create({medium: 'vinyl', name: 'Dance Mixtape'}),
-    Mixtape.create({medium: 'vinyl', name: 'Work Mixtape'}),
-    Mixtape.create({medium: 'cassette', name: 'Sad Mixtape'}),
-    Mixtape.create({medium: 'cd', name: 'Romantic Mixtape'}),
-    Mixtape.create({medium: 'vinyl', name: 'Workout Mixtape'}),
-    Mixtape.create({medium: 'cd', name: 'Emo Mixtape'}),
-    Mixtape.create({medium: 'vinyl', name: 'Yuliyas mixtape'})
-  ])
+  const allMixtapes = await Promise.all(
+    mixtapeData.map(mixtape =>
+      Mixtape.create({
+        medium: mixtape.medium,
+        name: mixtape.name
+      })
+    )
+  )
 
-  await mixtapes[0].setOrder(orders[0])
-  await mixtapes[1].setOrder(orders[1])
-  await mixtapes[2].setOrder(orders[2])
-  await mixtapes[3].setOrder(orders[3])
-  await mixtapes[4].setOrder(orders[4])
-  await mixtapes[5].setOrder(orders[5])
-  await mixtapes[6].setOrder(orders[6])
+  await allOrders[0].setUser(allUsers[0])
+  await allOrders[1].setUser(allUsers[1])
+  await allOrders[2].setUser(allUsers[1])
+  await allOrders[3].setUser(allUsers[2])
+  await allOrders[4].setUser(allUsers[3])
+  await allOrders[5].setUser(allUsers[0])
+  await allOrders[6].setUser(allUsers[3])
 
-  await orders[0].setUser(users[0])
-  await orders[1].setUser(users[1])
-  await orders[2].setUser(users[1])
-  await orders[3].setUser(users[2])
-  await orders[4].setUser(users[3])
-  await orders[5].setUser(users[0])
-  await orders[6].setUser(users[3])
+  await allMixtapes[0].addSong(allSongs[3])
+  await allMixtapes[0].addSong(allSongs[6])
+  await allMixtapes[1].addSong(allSongs[(9, 0)])
+  await allMixtapes[2].addSong(allSongs[7])
+  await allMixtapes[2].addSong(allSongs[8])
+  await allMixtapes[3].addSong(allSongs[(5, 2)])
+  await allMixtapes[4].addSong(allSongs[(1, 2)])
+  await allMixtapes[5].addSong(allSongs[(4, 6)])
+  await allMixtapes[6].addSong(allSongs[(6, 3, 2)])
 
-  await mixtapes[0].addSong(songs[3])
-  await mixtapes[0].addSong(songs[6])
-  await mixtapes[1].addSong(songs[9])
-  await mixtapes[1].addSong(songs[0])
-  await mixtapes[2].addSong(songs[7])
-  await mixtapes[2].addSong(songs[8])
-  await mixtapes[3].addSong(songs[5])
-  await mixtapes[3].addSong(songs[2])
-  await mixtapes[4].addSong(songs[1])
-  await mixtapes[4].addSong(songs[2])
-  await mixtapes[5].addSong(songs[4])
-  await mixtapes[5].addSong(songs[6])
-  await mixtapes[6].addSong(songs[6])
-  await mixtapes[6].addSong(songs[3])
-  await mixtapes[6].addSong(songs[2])
-
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${songs.length} songs`)
-  console.log(`seeded ${mixtapes.length} mixtapes`)
+  console.log(`seeded ${allUsers.length} users`)
+  console.log(`seeded ${allSongs.length} songs`)
+  console.log(`seeded ${allMixtapes.length} mixtapes`)
   console.log(`seeded successfully`)
 }
 
