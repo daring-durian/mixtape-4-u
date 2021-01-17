@@ -52,7 +52,7 @@ export const fetchCart = () => {
 
 export const addSongToCart = songId => {
   return async dispatch => {
-    const newSong = await axios.get(`/api/songs/${songId}`)
+    const newSong = await axios.get(`/api/songs/add/${songId}`)
     await axios.put(`/api/songs/${songId}`, newSong)
     dispatch(addSong(songId, newSong.data))
   }
@@ -60,7 +60,7 @@ export const addSongToCart = songId => {
 
 export const deleteSongFromCart = songId => {
   return async dispatch => {
-    await axios.put(`/api/cart/${songId}`)
+    await axios.put(`/api/cart/delete/${songId}`)
     dispatch(deleteSong(songId))
   }
 }
