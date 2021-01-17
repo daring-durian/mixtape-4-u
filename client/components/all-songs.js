@@ -67,7 +67,3 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Songs)
-
-{
-  /* <a href={`/songs/${song.id}`} className='stretched-link' id='cardlink' /> */
-}
