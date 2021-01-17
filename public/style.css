@@ -18,3 +18,12 @@ nav a {
 #google-login {
   color: black;
 }
+
+.cart-song-details-name {
+  color: black;
+  padding-left: 10px;
+}
+.cart-song-details {
+  padding-left: 18px;
+  color: rgb(68, 63, 63);
+}
