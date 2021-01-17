@@ -159,6 +159,7 @@ async function seed() {
   await orders[2].setUser(users[1])
   await orders[3].setUser(users[2])
   await orders[4].setUser(users[3])
+  await orders[2].setUser(users[3])
   await orders[5].setUser(users[0])
 
   await mixtapes[0].addSong(songs[3])

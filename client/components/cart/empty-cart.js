@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
 
-export default function EmptyCartScreen() {
+export default function EmptyCart() {
   return (
     <>
       <h1>Your cart is empty.</h1>

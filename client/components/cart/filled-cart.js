@@ -1,25 +1,17 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {fetchCart, setLocalStorageItem} from '../store/cart'
-import {Button, Card, Col, Container, ListGroup, Row} from 'react-bootstrap'
+import {Button, Card, Col, ListGroup, Row} from 'react-bootstrap'
 
-class Cart extends Component {
+export class FilledCart extends Component {
   constructor() {
     super()
   }
 
-  async componentDidMount() {
-    await this.props.getCart()
-    await this.props.setLocalStorage(this.props.currentCart)
-  }
-
   render() {
-    const cart = this.props.currentCart
-    const cartSongs = cart.songs
-    const totalItemsInCart = cart.length
-    const subtotal = cart.price
+    const totalItemCount = this.props.totalItemCount
+    const subTotal = this.props.subTotal
     const shipping = 'FREE'
 
+    // totalItemCount, subTotal
     return (
       <>
         <Row id="cart-header" className="m-4 justify-content-center">
@@ -29,11 +21,9 @@ class Cart extends Component {
           <Col sm={8}>
             <Card>
               <Card.Header>
-                <h2>Cart ({totalItemsInCart || 0} items)</h2>
+                <h2>Cart ({totalItemCount || 0} items)</h2>
               </Card.Header>
-              <Card.Body>
-                {/* Cart Items (line Items) will go here */}
-              </Card.Body>
+              <Card.Body>{/* List of mixtapes will go here */}</Card.Body>
             </Card>
 
             <Card className="mt-5">
@@ -68,10 +58,10 @@ class Cart extends Component {
 
               <Card.Body>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>Subtotal: {subtotal || '$0'}</ListGroup.Item>
+                  <ListGroup.Item>Subtotal: {subTotal || '$0'}</ListGroup.Item>
                   <ListGroup.Item>Shipping: {shipping}</ListGroup.Item>
                   <ListGroup.Item>
-                    <h3>Total: {subtotal || '$0'}</h3>
+                    <h3>Total: {subTotal || '$0'}</h3>
                   </ListGroup.Item>
 
                   <Button variant="primary" size="lg" type="submit">
@@ -86,18 +76,3 @@ class Cart extends Component {
     )
   }
 }
-
-const mapState = state => {
-  return {
-    currentCart: state.cartReducer
-  }
-}
-
-const mapDispatch = dispatch => {
-  return {
-    getCart: () => dispatch(fetchCart()),
-    setLocalStorage: currentCart => dispatch(setLocalStorageItem(currentCart))
-  }
-}
-
-export default connect(mapState, mapDispatch)(Cart)
