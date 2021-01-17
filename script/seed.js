@@ -135,7 +135,8 @@ async function seed() {
     Order.create({fulfilled: true}),
     Order.create({fulfulled: false}),
     Order.create({fulfilled: false}),
-    Order.create({fulfilled: true})
+    Order.create({fulfilled: true}),
+    Order.create({fulfilled: false})
   ])
 
   const mixtapes = await Promise.all([
@@ -144,7 +145,8 @@ async function seed() {
     Mixtape.create({medium: 'cassette', name: 'Sad Mixtape'}),
     Mixtape.create({medium: 'cd', name: 'Romantic Mixtape'}),
     Mixtape.create({medium: 'vinyl', name: 'Workout Mixtape'}),
-    Mixtape.create({medium: 'cd', name: 'Emo Mixtape'})
+    Mixtape.create({medium: 'cd', name: 'Emo Mixtape'}),
+    Mixtape.create({medium: 'vinyl', name: 'Yuliyas mixtape'})
   ])
 
   await mixtapes[0].setOrder(orders[0])
@@ -153,14 +155,15 @@ async function seed() {
   await mixtapes[3].setOrder(orders[3])
   await mixtapes[4].setOrder(orders[4])
   await mixtapes[5].setOrder(orders[5])
+  await mixtapes[6].setOrder(orders[6])
 
   await orders[0].setUser(users[0])
   await orders[1].setUser(users[1])
   await orders[2].setUser(users[1])
   await orders[3].setUser(users[2])
   await orders[4].setUser(users[3])
-  await orders[2].setUser(users[3])
   await orders[5].setUser(users[0])
+  await orders[6].setUser(users[3])
 
   await mixtapes[0].addSong(songs[3])
   await mixtapes[0].addSong(songs[6])
@@ -174,6 +177,9 @@ async function seed() {
   await mixtapes[4].addSong(songs[2])
   await mixtapes[5].addSong(songs[4])
   await mixtapes[5].addSong(songs[6])
+  await mixtapes[6].addSong(songs[6])
+  await mixtapes[6].addSong(songs[3])
+  await mixtapes[6].addSong(songs[2])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${songs.length} songs`)

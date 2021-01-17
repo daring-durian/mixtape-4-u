@@ -7,11 +7,13 @@ export class FilledCart extends Component {
   }
 
   render() {
-    const totalItemCount = this.props.totalItemCount
-    const subTotal = this.props.subTotal
+    const mixtapes = this.props.mixtapes
+    const totalItemCount = mixtapes.length
+    // total will be calculated once we miplement add to cart functionality
+    const total = null
     const shipping = 'FREE'
+    console.log(this.props.mixtapes)
 
-    // totalItemCount, subTotal
     return (
       <>
         <Row id="cart-header" className="m-4 justify-content-center">
@@ -21,7 +23,7 @@ export class FilledCart extends Component {
           <Col sm={8}>
             <Card>
               <Card.Header>
-                <h2>Cart ({totalItemCount || 0} items)</h2>
+                <h2>Cart ({totalItemCount} items)</h2>
               </Card.Header>
               <Card.Body>{/* List of mixtapes will go here */}</Card.Body>
             </Card>
@@ -58,10 +60,10 @@ export class FilledCart extends Component {
 
               <Card.Body>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>Subtotal: {subTotal || '$0'}</ListGroup.Item>
+                  <ListGroup.Item>Subtotal: {total || '$0'}</ListGroup.Item>
                   <ListGroup.Item>Shipping: {shipping}</ListGroup.Item>
                   <ListGroup.Item>
-                    <h3>Total: {subTotal || '$0'}</h3>
+                    <h3>Total: {total || '$0'}</h3>
                   </ListGroup.Item>
 
                   <Button variant="primary" size="lg" type="submit">

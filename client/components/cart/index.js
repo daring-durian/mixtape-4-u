@@ -18,16 +18,11 @@ class Cart extends React.Component {
 
   render() {
     const cart = this.props.currentCart
-    console.log(cart)
     const totalItemCount = cart.length
 
     return (
       <Container fluid>
-        {totalItemCount === 0 ? (
-          <EmptyCart />
-        ) : (
-          <FilledCart totalItemCount={totalItemCount} subTotal={cart.price} />
-        )}
+        {totalItemCount === 0 ? <EmptyCart /> : <FilledCart mixtapes={cart} />}
       </Container>
     )
   }
