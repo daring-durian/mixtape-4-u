@@ -28,12 +28,7 @@ class Cart_Songs_View extends React.Component {
 
 
     return (
-      <Container fluid>
-        <div>
-          <section>
-            <h3>Songs:</h3>
             <ListGroup className="list-unstyled">
-              {cartSongs ? (
                 <div>
                   {cartSongs.map(song => (
                     <Media as="li" key={song.id}>
@@ -67,13 +62,7 @@ class Cart_Songs_View extends React.Component {
                     </Media>
                   ))}
                 </div>
-              ) : (
-                'Empty Cart'
-              )}
             </ListGroup>
-          </section>
-        </div>
-      </Container>
     )
   }
 }
