@@ -25,7 +25,8 @@ const songData = [
     year: '2020',
     tags: 'pop',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/7jkTZyAUQD1ODOmxHAGoSd'
+    songUrl:
+      'https://open.spotify.com/embed/track/7jkTZyAUQD1ODOmxHAGoSd?si=0p2R2E-hQ2epAfzxl_-Y_w'
   },
   {
     name: 'Nothing Can Stop Us',
@@ -34,7 +35,8 @@ const songData = [
     year: '1992',
     tags: 'pop',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/3izKffzHXSwXdhtJ9DasZU'
+    songUrl:
+      'https://open.spotify.com/embed/track/3izKffzHXSwXdhtJ9DasZU?si=_7k9OGl1TXexCgZ3s9v_gA'
   },
   {
     name: 'Go Away',
@@ -43,7 +45,8 @@ const songData = [
     year: '1985',
     tags: 'pop',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/19wyEOwk4PTvfhBxSoZ34a'
+    songUrl:
+      'https://open.spotify.com/embed/track/19wyEOwk4PTvfhBxSoZ34a?si=Ei9SrSlqQqe3XSNhQaU-wg'
   },
   {
     name: 'Modigliani',
@@ -52,7 +55,8 @@ const songData = [
     year: '1986',
     tags: 'pop',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/53yTfRNAwCC7aLGaKlbysJ'
+    songUrl:
+      'https://open.spotify.com/embed/track/53yTfRNAwCC7aLGaKlbysJ?si=kJVSt1HSS9G6B5NwO5H1AA'
   },
   {
     name: 'Deceptacon',
@@ -61,7 +65,8 @@ const songData = [
     year: '1999',
     tags: 'rock',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/5773KSWFzg9kCc8yazjbSt'
+    songUrl:
+      'https://open.spotify.com/embed/track/5773KSWFzg9kCc8yazjbSt?si=3SnPziejTWW13KNcBuRkCA'
   },
   {
     name: "I Don't Love Me Anymore",
@@ -70,7 +75,8 @@ const songData = [
     year: '2020',
     tags: 'electronic',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/70zcYOhqg2DR076kSbQZsR'
+    songUrl:
+      'https://open.spotify.com/embed/track/70zcYOhqg2DR076kSbQZsR?si=cvYM6Fj8SRmH6FIFr-GwJQ'
   },
   {
     name: 'Ageispolis',
@@ -79,7 +85,8 @@ const songData = [
     year: '1992',
     tags: 'electronic',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/7KRQoq9GeWeCm0ZAXg5XMb'
+    songUrl:
+      'https://open.spotify.com/embed/track/7KRQoq9GeWeCm0ZAXg5XMb?si=2mnHLWHFTUSYcpxMq3eNXw'
   },
   {
     name: 'Alameda',
@@ -88,7 +95,8 @@ const songData = [
     year: '1997',
     tags: 'rock',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/3c1EHob1Rp5p1P37YERSr6'
+    songUrl:
+      'https://open.spotify.com/embed/track/3c1EHob1Rp5p1P37YERSr6?si=tpjPBL8ORKq1x9qkdLz14A'
   },
   {
     name: 'Ur Doing Great Sweaty',
@@ -97,7 +105,8 @@ const songData = [
     year: '2020',
     tags: 'pop',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/4m3WWlq32JQEqOXgdRBz2F'
+    songUrl:
+      'https://open.spotify.com/embed/track/4m3WWlq32JQEqOXgdRBz2F?si=N7Zd143VR9iouVBkqFlr3A'
   },
   {
     name: "Don't You Want Me",
@@ -106,7 +115,8 @@ const songData = [
     year: '1981',
     tags: 'pop',
     imageUrl: '/album-art/AKAA.png',
-    songUrl: 'https://open.spotify.com/embed/track/3L7RtEcu1Hw3OXrpnthngx'
+    songUrl:
+      'https://open.spotify.com/embed/track/3L7RtEcu1Hw3OXrpnthngx?si=_ufp6czURLGFswoYFV52-Q'
   },
   {
     name: 'The World At Large',
