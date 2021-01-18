@@ -3,9 +3,6 @@ import {
   Accordion,
   Button,
   Container,
-  ButtonToolbar,
-  ButtonGroup,
-  Row,
   Dropdown,
   Card,
   Media
@@ -36,8 +33,6 @@ class Cart_Songs_View extends React.Component {
     const mixtapeMedium = mixtape.medium
     const mixtapeName = mixtape.name
     const mixtapeSongs = mixtape.songs
-
-    console.log(this.state)
 
     return (
       <>
