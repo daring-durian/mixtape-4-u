@@ -6,6 +6,13 @@ import {Container} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {fetchCart, setLocalStorageItem} from '../../store/cart'
 
+// Component Tree:
+//
+// Cart (this component)
+//  |__FilledCart
+//  |   |__CartSongsView
+//  |
+//  |__Empty Cart
 class Cart extends React.Component {
   constructor() {
     super()
