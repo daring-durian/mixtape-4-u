@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleSong} from '../store/single_song'
 import {addSongToCart} from '../store/cart'
-import {Image, Container, Row, Card, Col, Button} from 'react-bootstrap'
+import {Container, Row, Card, Col, Accordion, Button} from 'react-bootstrap'
 
 class Single_Song extends React.Component {
   constructor() {
@@ -33,9 +33,9 @@ class Single_Song extends React.Component {
           </h1>
         </Row>
         <Row>
-          <Col>
-            <Card>
-              <Card.Img variant="top" src={song.imageUrl} rounded />
+          <Col xs={4}>
+            <Card style={{width: '20rem'}}>
+              <Card.Img variant="top" src={song.imageUrl} />
               <Card.Body>
                 <Card.Title>
                   <b>Album: </b>
@@ -58,15 +58,30 @@ class Single_Song extends React.Component {
               </Card.Footer>
             </Card>
           </Col>
-          <iframe
-            src={song.songUrl}
-            width="500"
-            height="250"
-            frameBorder="0"
-            allowTransparency="true"
-            allow="encrypted-media"
-          />
-          <Col />
+          <Col>
+            <iframe
+              src={song.songUrl}
+              width="500"
+              height="250"
+              frameBorder="0"
+              allowTransparency="true"
+              allow="encrypted-media"
+            />
+            <Col style={{padding: '1px', width: '500px'}}>
+              <Accordion>
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                      Similar Songs
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>Coming Soon!</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </Col>
+          </Col>
         </Row>
       </Container>
     )
