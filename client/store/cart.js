@@ -52,7 +52,6 @@ export const fetchCart = () => {
 
 export const addSongToCart = songId => {
   return async dispatch => {
-
     const newSong = await axios.get(`/api/songs/${songId}`)
     await axios.put(`/api/songs/add/${songId}`, newSong.data)
     dispatch(addSong(songId, newSong.data))
@@ -101,8 +100,8 @@ const cartReducer = (state = initialState, action) => {
         song => song.id !== action.songId
       )
       return {...state, songs: remainingSongs}
-    case SET_LOCAL_STORAGE:
-      return {...state}
+    // case SET_LOCAL_STORAGE:
+    //   return {...state}
     default:
       return state
   }
