@@ -225,6 +225,106 @@ const songData = [
       'https://upload.wikimedia.org/wikipedia/en/7/7b/Brand_New_Deja_Entendu.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/3IlY76VbP31zwPY0S2EMjh?si=3auIFpj1Q-Sb_qO5Bv9JRQ'
+  },
+  {
+    name: 'Beautiful Life',
+    artist: 'Ace of Base',
+    album: 'The Bridge',
+    year: '1995',
+    tags: 'pop',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/2/23/Ace_Of_Base-The_Bridge.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/74jTexO94dFGyXGyeu8krd'
+  },
+  {
+    name: 'Be My Lover',
+    artist: 'La Bouche',
+    album: 'Sweet Dreams',
+    year: '1994',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/f/f5/Be_My_Lover_%28La_Bouche_single_-_cover_art%29.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/7FoUzKTSQp25oe32pY9z5p'
+  },
+  {
+    name: 'Pump Up the Jam',
+    artist: 'Technotronic',
+    album: 'Pump Up the Jam',
+    year: '1989',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/6/6c/Technotronic_Pump_Up_The_Jam_First_Cover.jpeg',
+    songUrl: 'https://open.spotify.com/embed/track/21qnJAMtzC6S5SESuqQLEK'
+  },
+  {
+    name: 'Freed from Desire',
+    artist: 'Gala',
+    album: 'Come into My Life',
+    year: '1996',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/c/c6/Gala_-_Come_into_My_Life_%281997%29.jpeg',
+    songUrl: 'https://open.spotify.com/embed/track/3u5N55tHf7hXATSQrjBh2q'
+  },
+  {
+    name: 'Show Me Love',
+    artist: 'Robin S',
+    album: 'Show Me Love',
+    year: '1990',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/b/b2/Robin_S_Show_Me_Love_album_cover.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/4t0UsYzmmmZRMTWn77jiGF'
+  },
+  {
+    name: 'Sweet Dreams',
+    artist: 'La Bouche',
+    album: 'Sweet Dreams',
+    year: '1994',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/5/57/La_Bouche_Sweet_Dreams_Single_Cover.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/2wz5weI4PREzpexKfrKgwv'
+  },
+  {
+    name: 'Try Me Out',
+    artist: 'Corona',
+    album: 'The Rhythm of the Night',
+    year: '1994',
+    tags: 'pop',
+    imageUrl:
+      'https://en.wikipedia.org/wiki/The_Rhythm_of_the_Night_(album)#/media/File:Corona_The_Rhythm_of_the_Night_album_cover.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/2S8EX7GNSnoMnjSJPEAsYt'
+  },
+  {
+    name: 'I Got to Give It Up',
+    artist: 'Masterboy',
+    album: 'Different Dreams',
+    year: '1994',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/2/2a/Masterboy_-_I_Got_to_Give_It_Up.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/2ThmEM6C0pq6bwKtDz8BBM'
+  },
+  {
+    name: 'Blue (Da Ba Dee)',
+    artist: 'Eiffel 65',
+    album: 'Single',
+    year: '1998',
+    tags: 'pop',
+    imageUrl:
+      'https://www.edmsauce.com/wp-content/uploads/2020/02/Screen-Shot-2020-02-18-at-8.26.34-PM.png',
+    songUrl: 'https://open.spotify.com/embed/track/2yAVzRiEQooPEJ9SYx11L3'
+  },
+  {
+    name: '9 PM (Till I Come)',
+    artist: 'ATB',
+    album: "Movin' Melodies",
+    year: '1998',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/e/e4/MovinMelodies.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/1CgbwsrNDlFrRuk2ebQ7zr'
   }
 ]
 
