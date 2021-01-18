@@ -38,7 +38,7 @@ router.put('/add/:songId', async (req, res, next) => {
     })
     await mixtape.addSong(song)
 
-    res.status(204).end()
+    res.send(204).end()
   } catch (err) {
     next(err)
   }
