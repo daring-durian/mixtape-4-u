@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchSongs, addSongToMix} from '../store/songs'
-import {Link} from 'react-router-dom'
-import {Container} from 'react-bootstrap'
-import CardColumns from 'react-bootstrap/CardColumns'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import {fetchSongs} from '../store/songs'
+import {addSongToCart} from '../store/cart'
+import {Container, CardColumns, Card, Button} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -13,14 +10,15 @@ import Button from 'react-bootstrap/Button'
 class Songs extends Component {
   constructor(props) {
     super(props)
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
     this.props.loadSongs()
   }
-  // handleClick(event) {
-  // 	this.props.addSongToCart();
-  // }
+  handleClick(event) {
+    console.log('EVENT', event)
+    this.props.addSong(event)
+  }
 
   render() {
     const songs = this.props.songs
@@ -29,20 +27,22 @@ class Songs extends Component {
         <CardColumns>
           {songs.map(song => (
             <Card key={song.id} className="p-3">
-              <Card.Img variant="top" src={song.imageUrl} />
-              <div className="card-img-overlay">
-                <a
-                  href={`/songs/${song.id}`}
-                  className="stretched-link"
-                  id="cardlink"
-                />
-              </div>
+              <a href={`/songs/${song.id}`}>
+                <Card.Img variant="top" src={song.imageUrl} />
+              </a>
               <Card.Body>
-                <Card.Title>{song.artist}</Card.Title>
-                <Card.Text>{song.name}</Card.Text>
+                <Card.Title>{song.name}</Card.Title>
+                <Card.Subtitle>{song.artist}</Card.Subtitle>
               </Card.Body>
               <Card.Footer>
-                <Button variant="secondary">Add To Mix</Button>
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  className="add-song"
+                  onClick={() => this.handleClick(song.id)}
+                >
+                  <i className="fas fa-cart-plus" />
+                </Button>
               </Card.Footer>
             </Card>
           ))}
@@ -61,8 +61,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    loadSongs: () => dispatch(fetchSongs())
-    // addSongToCart: id => dispatch(addSongToMix(id))
+    loadSongs: () => dispatch(fetchSongs()),
+    addSong: id => dispatch(addSongToCart(id))
   }
 }
 

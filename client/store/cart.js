@@ -52,6 +52,7 @@ export const fetchCart = () => {
 
 export const addSongToCart = songId => {
   return async dispatch => {
+
     const newSong = await axios.get(`/api/songs/${songId}`)
     await axios.put(`/api/songs/add/${songId}`, newSong.data)
     dispatch(addSong(songId, newSong.data))
