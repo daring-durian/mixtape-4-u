@@ -24,7 +24,7 @@ const songData = [
     album: 'Controversial',
     year: '2020',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl: 'https://f4.bcbits.com/img/a4161959886_16.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/7jkTZyAUQD1ODOmxHAGoSd?si=0p2R2E-hQ2epAfzxl_-Y_w'
   },
@@ -34,7 +34,7 @@ const songData = [
     album: 'Foxbase Alpha',
     year: '1992',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/5/51/FoxbaseAlpha.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/3izKffzHXSwXdhtJ9DasZU?si=_7k9OGl1TXexCgZ3s9v_gA'
   },
@@ -44,7 +44,8 @@ const songData = [
     album: 'Strawberry Switchblade',
     year: '1985',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/d/d2/Strawberry_Switchblade_Album_Cover.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/19wyEOwk4PTvfhBxSoZ34a?si=Ei9SrSlqQqe3XSNhQaU-wg'
   },
@@ -54,7 +55,8 @@ const songData = [
     album: 'Book Of Love',
     year: '1986',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/f/f5/Book-of-Love-album-cover.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/53yTfRNAwCC7aLGaKlbysJ?si=kJVSt1HSS9G6B5NwO5H1AA'
   },
@@ -64,7 +66,8 @@ const songData = [
     album: 'Le Tigre',
     year: '1999',
     tags: 'rock',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/8/87/Le_Tigre_%28album%29.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/5773KSWFzg9kCc8yazjbSt?si=3SnPziejTWW13KNcBuRkCA'
   },
@@ -74,7 +77,8 @@ const songData = [
     album: 'Magic Oneohtrix Point Never',
     year: '2020',
     tags: 'electronic',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/9/93/Magic_Oneohtrix_Point_Never.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/70zcYOhqg2DR076kSbQZsR?si=cvYM6Fj8SRmH6FIFr-GwJQ'
   },
@@ -84,7 +88,8 @@ const songData = [
     album: 'Selected Ambient Works 85-92',
     year: '1992',
     tags: 'electronic',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/8/82/Selected_Ambient_Works_85-92.png',
     songUrl:
       'https://open.spotify.com/embed/track/7KRQoq9GeWeCm0ZAXg5XMb?si=2mnHLWHFTUSYcpxMq3eNXw'
   },
@@ -94,7 +99,8 @@ const songData = [
     album: 'Either/Or',
     year: '1997',
     tags: 'rock',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/f/fd/Elliottsmitheitheror55.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/3c1EHob1Rp5p1P37YERSr6?si=tpjPBL8ORKq1x9qkdLz14A'
   },
@@ -104,7 +110,7 @@ const songData = [
     album: 'Ur Doing Great Sweaty',
     year: '2020',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl: 'https://f4.bcbits.com/img/a1572192702_16.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/4m3WWlq32JQEqOXgdRBz2F?si=N7Zd143VR9iouVBkqFlr3A'
   },
@@ -114,7 +120,7 @@ const songData = [
     album: 'Dare!',
     year: '1981',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/c/ce/Dare-cover.png',
     songUrl:
       'https://open.spotify.com/embed/track/3L7RtEcu1Hw3OXrpnthngx?si=_ufp6czURLGFswoYFV52-Q'
   },
@@ -293,7 +299,7 @@ const songData = [
     year: '1994',
     tags: 'pop',
     imageUrl:
-      'https://en.wikipedia.org/wiki/The_Rhythm_of_the_Night_(album)#/media/File:Corona_The_Rhythm_of_the_Night_album_cover.jpg',
+      'https://upload.wikimedia.org/wikipedia/en/2/21/Corona_The_Rhythm_of_the_Night_album_cover.jpg',
     songUrl: 'https://open.spotify.com/embed/track/2S8EX7GNSnoMnjSJPEAsYt'
   },
   {
