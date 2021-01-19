@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// api/admin/create/song enables admin to modify song data song data
+// api/admin/create/song enables admin to modify song data
 // accepts following schema
 // {
 //   "name": "Don't You Want Me",
