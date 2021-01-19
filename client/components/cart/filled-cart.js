@@ -13,6 +13,8 @@ export class FilledCart extends Component {
     // total will be calculated once we implement add to cart functionality
     const total = null
     const shipping = 'FREE'
+    const deleteSong = this.props.deleteSong
+    const getCart = this.props.getCart
 
     return (
       <>
@@ -28,7 +30,11 @@ export class FilledCart extends Component {
               <Card.Body>
                 {mixtapes.map((mixtape, index) => (
                   <Card key={index} className="m-3">
-                    <Cart_Songs_View mixtape={mixtape} />
+                    <Cart_Songs_View
+                      mixtape={mixtape}
+                      deleteSong={deleteSong}
+                      getCart={getCart}
+                    />
                   </Card>
                 ))}
               </Card.Body>

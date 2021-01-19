@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap'
 
 class Cart_Songs_View extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -16,6 +17,12 @@ class Cart_Songs_View extends React.Component {
       quantity: null
     }
     this.handleChange = this.handleChange.bind(this)
+    this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
+  }
+  
+  async deleteSongFromCart(songId) {
+    await this.props.deleteSong(songId)
+    await this.props.getCart()
   }
 
   handleChange(event) {
@@ -33,6 +40,7 @@ class Cart_Songs_View extends React.Component {
     const mixtapeMedium = mixtape.medium
     const mixtapeName = mixtape.name
     const mixtapeSongs = mixtape.songs
+    const deleteSong = this.props.deleteSong
 
     return (
       <>
@@ -104,6 +112,7 @@ class Cart_Songs_View extends React.Component {
                         className="cart-song-delete-button"
                         variant="outline-secondary"
                         size="sm"
+                        onClick={() => deleteSong(`${song.id}`)}
                       >
                         <img
                           width={25}

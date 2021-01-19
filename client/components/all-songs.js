@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSongs} from '../store/songs'
-import {addSongToCart} from '../store/cart'
+import {addSongToCart, fetchCart} from '../store/cart'
 import {Container, CardColumns, Card, Button} from 'react-bootstrap'
 
 /**
@@ -14,10 +14,12 @@ class Songs extends Component {
   }
   componentDidMount() {
     this.props.loadSongs()
+    this.props.loadCart()
   }
   handleClick(event) {
     console.log('EVENT', event)
     this.props.addSong(event)
+    this.props.loadCart()
   }
 
   render() {
@@ -62,6 +64,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     loadSongs: () => dispatch(fetchSongs()),
+    loadCart: () => dispatch(fetchCart()),
     addSong: id => dispatch(addSongToCart(id))
   }
 }

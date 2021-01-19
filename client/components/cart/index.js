@@ -4,7 +4,11 @@ import EmptyCart from './empty-cart'
 import {FilledCart} from './filled-cart'
 import {Container} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {fetchCart, setLocalStorageItem} from '../../store/cart'
+import {
+  fetchCart,
+  setLocalStorageItem,
+  deleteSongFromCart
+} from '../../store/cart'
 
 // Component Tree:
 //
@@ -26,10 +30,20 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.currentCart
     const totalItemCount = cart.length
+    const deleteSong = this.props.deleteSong
+    const getCart = this.props.getCart
 
     return (
       <Container fluid>
-        {totalItemCount === 0 ? <EmptyCart /> : <FilledCart mixtapes={cart} />}
+        {totalItemCount === 0 ? (
+          <EmptyCart />
+        ) : (
+          <FilledCart
+            mixtapes={cart}
+            deleteSong={deleteSong}
+            getCart={getCart}
+          />
+        )}
       </Container>
     )
   }
@@ -44,7 +58,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    setLocalStorage: currentCart => dispatch(setLocalStorageItem(currentCart))
+    setLocalStorage: currentCart => dispatch(setLocalStorageItem(currentCart)),
+    deleteSong: songId => dispatch(deleteSongFromCart(songId))
   }
 }
 
