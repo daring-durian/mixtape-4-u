@@ -23,6 +23,7 @@ class Cart_Songs_View extends React.Component {
   async deleteSongFromCart(songId) {
     await this.props.deleteSong(songId)
     await this.props.getCart()
+  }
 
   handleChange(event) {
     const value = event
