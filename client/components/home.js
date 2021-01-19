@@ -1,19 +1,41 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import HomeImage from '../../public/images/home.svg'
+import PropTypes from 'prop-types'
+import {Container, ResponsiveEmbed} from 'react-bootstrap'
+import {connect} from 'react-redux'
+
 /**
  * COMPONENT
  */
-const Home = () => {
+export const Home = props => {
+  const {name} = props
   return (
-    <div>
-      <div className="mainContainer">
-        <Link to="/songs">
-          <img src={HomeImage} />
-        </Link>
-      </div>
-    </div>
+    <Container fluid="md">
+      <h3>{name ? `Welcome back, ${name}!` : `Welcome To Mixtape-4-U`}</h3>
+      <Link to="/songs">
+        <ResponsiveEmbed aspectRatio="16by9">
+          <embed type="image/svg+xml" src={HomeImage} />
+        </ResponsiveEmbed>
+      </Link>
+    </Container>
   )
 }
 
-export default Home
+/**
+ * CONTAINER
+ */
+const mapState = state => {
+  return {
+    name: state.user.name
+  }
+}
+
+export default connect(mapState)(Home)
+
+/**
+ * PROP TYPES
+ */
+Home.propTypes = {
+  name: PropTypes.string
+}
