@@ -8,7 +8,7 @@ import {Nav, Navbar as BootstrapNavbar, NavDropdown} from 'react-bootstrap'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <BootstrapNavbar bg="light">
-    <BootstrapNavbar.Brand as={Link} to="/">
+    <BootstrapNavbar.Brand as={Link} to="/home">
       Mixtape 4 U
     </BootstrapNavbar.Brand>
     <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
