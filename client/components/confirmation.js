@@ -17,12 +17,12 @@ const Confirmation = () => {
       </Row>
       <Row style={{justifyContent: 'center'}}>
         <Link to="/songs">
-          <Button>Go make another mixtape!</Button>
+          <Button variant="outline-light">Go make another mixtape!</Button>
         </Link>
       </Row>
       <Row style={{justifyContent: 'center'}}>
         <Image
-          style={{marginTop: '-2rem', width: '450px', height: '450px'}}
+          style={{marginTop: '0rem', width: '400px', height: '400px'}}
           src="https://freesvg.org/img/tapecassette.png"
         />
       </Row>
