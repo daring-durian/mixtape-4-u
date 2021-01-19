@@ -12,12 +12,14 @@ router.get('/', async (req, res, next) => {
           fulfilled: false
         },
         include: {model: Mixtape, include: Song}
-      }).then(result => {
-        return result.mixtapes.map(mixtape => {
-          return mixtape.get()
-        })
       })
-      res.send(order)
+      const mixtape = await Mixtape.findAll({
+        where: {
+          orderId: order.id
+        },
+        include: Song
+      })
+      res.send(mixtape)
     } else if (!req.user) {
       res.send(401)
     }
