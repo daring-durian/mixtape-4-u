@@ -18,8 +18,8 @@ router.post('/createmixtape', async (req, res, next) => {
     if (req.user) {
       const userId = req.user.id
       const currentUser = await User.findByPk(userId)
-      const newOrderLoggedInUer = await Order.create()
-      await newOrderLoggedInUer.setUser(currentUser)
+      const newOrderLoggedInUser = await Order.create()
+      await newOrderLoggedInUser.setUser(currentUser)
       const newMixtape = await Mixtape.create({
         medium: 'cd' //setting cd as default as this cannot be null
       })
