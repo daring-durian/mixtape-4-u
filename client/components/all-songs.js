@@ -41,9 +41,7 @@ class Songs extends Component {
                   variant="secondary"
                   type="submit"
                   className="add-song"
-                  onClick={(songId, mixtapeId) =>
-                    this.handleClick(song.id, currentMixtape.id)
-                  }
+                  onClick={() => this.handleClick(song.id, currentMixtape.id)}
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>
