@@ -2,11 +2,23 @@ import React from 'react'
 import {Button, Media, ListGroup} from 'react-bootstrap'
 
 class Cart_Songs_View extends React.Component {
+  constructor() {
+    super()
+    this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
+  }
+
+  async deleteSongFromCart(songId) {
+    await this.props.deleteSong(songId)
+    await this.props.getCart()
+  }
+
   render() {
+    console.log('props', this.props)
     const mixtape = this.props.mixtape
     const mixtapeMedium = mixtape.medium
     const mixtapeName = mixtape.name
     const mixtapeSongs = mixtape.songs
+    const deleteSong = this.props.deleteSong
 
     return (
       <ListGroup className="list-unstyled">
@@ -30,6 +42,7 @@ class Cart_Songs_View extends React.Component {
                 className="cart-song-delete-button"
                 variant="outline-secondary"
                 size="sm"
+                onClick={() => deleteSong(`${song.id}`)}
               >
                 <img
                   width={25}

@@ -61,7 +61,7 @@ export const addSongToCart = songId => {
 export const deleteSongFromCart = songId => {
   return async dispatch => {
     await axios.put(`/api/cart/delete/${songId}`)
-    dispatch(deleteSong(songId))
+    dispatch(deleteSong(songId), fetchCart())
   }
 }
 //GUEST USER:
@@ -94,14 +94,15 @@ const cartReducer = (state = initialState, action) => {
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
     case ADD_SONG:
+      // console.log("STATE-->", state.songs)
       return {...state, songs: [...state.songs, action.newSong]}
     case DELETE_SONG_FROM_CART:
       const remainingSongs = state.songs.filter(
         song => song.id !== action.songId
       )
       return {...state, songs: remainingSongs}
-    // case SET_LOCAL_STORAGE:
-    //   return {...state}
+    case SET_LOCAL_STORAGE:
+      return [...state]
     default:
       return state
   }
