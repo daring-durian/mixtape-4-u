@@ -16,7 +16,8 @@ async function seed() {
       User.create({
         email: user.email,
         password: user.password,
-        name: user.name
+        name: user.name,
+        role: user.role
       })
     )
   )

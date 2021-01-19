@@ -30,9 +30,14 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  role: {
+    type: Sequelize.ENUM({
+      values: ['admin', 'customer']
+    }),
+    allowNull: false,
+    defaultValue: 'customer'
   }
-
-  // all feilds above this point were in our original Boilerplate
 })
 
 module.exports = User
