@@ -6,6 +6,7 @@ import {
   Login,
   Signup,
   UserHome,
+  Home,
   Single_Song,
   Songs,
   Cart
@@ -25,6 +26,7 @@ class Routes extends Component {
 
     return (
       <Switch>
+        <Route exact path="/home" component={Home} />
         <Route exact path="/songs" component={Songs} />
         {/* Routes placed here are available to all visitors */}
         <Route path="/songs/:songId" component={Single_Song} />
