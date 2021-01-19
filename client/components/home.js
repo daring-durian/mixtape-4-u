@@ -12,7 +12,7 @@ export const Home = props => {
   const {name} = props
   return (
     <Container fluid="md">
-      <h3>{name ? `Welcome back, ${name}!` : `Welcome To Mixtape-4-U`}</h3>
+      <h3>{name ? `Welcome back, ${name}!` : `Welcome To Mixtape 4 U`}</h3>
       <Link to="/songs">
         <ResponsiveEmbed aspectRatio="16by9">
           <embed type="image/svg+xml" src={HomeImage} />
