@@ -1,9 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleSong} from '../store/single_song'
-import {Image, Container, Row, Col, Button} from 'react-bootstrap'
+import {addSongToCart} from '../store/cart'
+import {Container, Row, Card, Col, Accordion, Button} from 'react-bootstrap'
 
 class Single_Song extends React.Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
+
   componentDidMount() {
     try {
       this.props.fetchSingleSong(this.props.match.params.songId)
@@ -12,9 +18,13 @@ class Single_Song extends React.Component {
     }
   }
 
+  handleClick(event) {
+    console.log('EVENT', event)
+    this.props.addSong(event)
+  }
+
   render() {
     const song = this.props.song
-    //console.log(song.songUrl)
     return (
       <Container>
         <Row>
@@ -23,36 +33,55 @@ class Single_Song extends React.Component {
           </h1>
         </Row>
         <Row>
-          <Col>
-            <Image src={song.imageUrl} rounded />
+          <Col xs={4}>
+            <Card style={{width: '20rem'}}>
+              <Card.Img variant="top" src={song.imageUrl} />
+              <Card.Body>
+                <Card.Title>
+                  <b>Album: </b>
+                  {song.album}
+                </Card.Title>
+                <Card.Subtitle>
+                  <b>Year: </b>
+                  {song.year}
+                </Card.Subtitle>
+              </Card.Body>
+              <Card.Footer>
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  className="add-song"
+                  onClick={() => this.handleClick(song.id)}
+                >
+                  <i className="fas fa-cart-plus" />
+                </Button>
+              </Card.Footer>
+            </Card>
           </Col>
-          <iframe
-            src={song.songUrl}
-            width="500"
-            height="250"
-            frameBorder="0"
-            allowTransparency="true"
-            allow="encrypted-media"
-          />
-          <Col />
-        </Row>
-        <Row>
           <Col>
-            <Button variant="secondary">Add To Mix</Button>
-            <ul>
-              <li>
-                <b>Album:</b> {song.album}
-              </li>
-              <li>
-                <b>Year:</b> {song.year}
-              </li>
-              <li>
-                <b>Tags:</b> {song.tags}
-              </li>
-            </ul>
+            <iframe
+              src={song.songUrl}
+              width="500"
+              height="250"
+              frameBorder="0"
+              allowTransparency="true"
+              allow="encrypted-media"
+            />
+            <Col style={{padding: '1px', width: '500px'}}>
+              <Accordion>
+                <Card>
+                  <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                      Similar Songs
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>Coming Soon!</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </Col>
           </Col>
-          <Col />
-          <Col />
         </Row>
       </Container>
     )
@@ -67,7 +96,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleSong: id => dispatch(fetchSingleSong(id))
+    fetchSingleSong: id => dispatch(fetchSingleSong(id)),
+    addSong: id => dispatch(addSongToCart(id))
   }
 }
 

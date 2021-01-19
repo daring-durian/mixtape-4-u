@@ -124,7 +124,8 @@ const songData = [
     album: 'Good News for People Who Love Bad News',
     year: '2004',
     tags: 'rock',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/a/aa/MMGoodNews5075.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/5op53ANI4exiWqFHKuwWxd?si=DeaOXZZuS-KCqJq5uOGjoA'
   },
@@ -134,7 +135,8 @@ const songData = [
     album: 'The Sunset Tree',
     year: '2005',
     tags: 'rock',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/3/35/Themountaingoatsthesunsettreealbumcover.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/0s9aeZriwqyBYfxFzsd20R?si=dN0eNchlQKOtF-7S0Sslcg'
   },
@@ -144,7 +146,8 @@ const songData = [
     album: 'The Best of Earth, Wind & Fire Vol. 1',
     year: '1978',
     tags: 'disco',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/9/95/BestofEarthWind%26Fire.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/2grjqo0Frpf2okIBiifQKs?si=R8EcGX-PTvyYlbcVVDN70g'
   },
@@ -154,7 +157,8 @@ const songData = [
     album: 'Sermon on the Rocks',
     year: '2015',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/c/c8/Sermon_on_the_Rocks_cover.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/0HjCUl4EInIMuFB41bRD4O?si=HMa7-VUET6uEs5ds2EJiYQ'
   },
@@ -164,7 +168,8 @@ const songData = [
     album: 'Opening for Steinbeck(Live)',
     year: '2018',
     tags: 'classical',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/e/e6/Opening_for_Steinbeck_%28live%29_John_Craigie_album.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/52Cc6qv2MckQgLjeR5Eai0?si=-NWmDN56TZ2RKnJZuM3Zxg'
   },
@@ -174,7 +179,8 @@ const songData = [
     album: 'Let It Die',
     year: '2004',
     tags: 'rock',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/a/ab/Feist_Let_It_Die.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/6su54hbtgZvc2eKH125hE0?si=ohaC6EC0QESNXrTNxevfvg'
   },
@@ -184,7 +190,7 @@ const songData = [
     album: 'Gordon',
     year: '1992',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/2c/Gordon-album.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/2Eky0Rjbrv0YmNy3wrMtSM?si=y3Q3ZOGqSr-XZtAFf4UGYw'
   },
@@ -194,7 +200,8 @@ const songData = [
     album: 'I Specialize In Love',
     year: '2010',
     tags: 'disco',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/0/0a/12%22_Single_%22I_Specialize_In_Love%22_Sharon_Brown.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/1SRtnntbQW1KKO6rzEO7ac?si=LSf43l4sSLa0zvXKc9oP6A'
   },
@@ -204,7 +211,7 @@ const songData = [
     album: 'Jazz',
     year: '1978',
     tags: 'pop',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/0/06/Queen_Jazz.png',
     songUrl:
       'https://open.spotify.com/embed/track/7hQJA50XrCWABAu5v6QZ4i?si=Kww9f-obRLGwlsEbOiITXw'
   },
@@ -214,9 +221,110 @@ const songData = [
     album: 'Deja Entendu',
     year: '2003',
     tags: 'rock',
-    imageUrl: '/album-art/AKAA.png',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/7/7b/Brand_New_Deja_Entendu.jpg',
     songUrl:
       'https://open.spotify.com/embed/track/3IlY76VbP31zwPY0S2EMjh?si=3auIFpj1Q-Sb_qO5Bv9JRQ'
+  },
+  {
+    name: 'Beautiful Life',
+    artist: 'Ace of Base',
+    album: 'The Bridge',
+    year: '1995',
+    tags: 'pop',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/2/23/Ace_Of_Base-The_Bridge.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/74jTexO94dFGyXGyeu8krd'
+  },
+  {
+    name: 'Be My Lover',
+    artist: 'La Bouche',
+    album: 'Sweet Dreams',
+    year: '1994',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/f/f5/Be_My_Lover_%28La_Bouche_single_-_cover_art%29.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/7FoUzKTSQp25oe32pY9z5p'
+  },
+  {
+    name: 'Pump Up the Jam',
+    artist: 'Technotronic',
+    album: 'Pump Up the Jam',
+    year: '1989',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/6/6c/Technotronic_Pump_Up_The_Jam_First_Cover.jpeg',
+    songUrl: 'https://open.spotify.com/embed/track/21qnJAMtzC6S5SESuqQLEK'
+  },
+  {
+    name: 'Freed from Desire',
+    artist: 'Gala',
+    album: 'Come into My Life',
+    year: '1996',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/c/c6/Gala_-_Come_into_My_Life_%281997%29.jpeg',
+    songUrl: 'https://open.spotify.com/embed/track/3u5N55tHf7hXATSQrjBh2q'
+  },
+  {
+    name: 'Show Me Love',
+    artist: 'Robin S',
+    album: 'Show Me Love',
+    year: '1990',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/b/b2/Robin_S_Show_Me_Love_album_cover.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/4t0UsYzmmmZRMTWn77jiGF'
+  },
+  {
+    name: 'Sweet Dreams',
+    artist: 'La Bouche',
+    album: 'Sweet Dreams',
+    year: '1994',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/5/57/La_Bouche_Sweet_Dreams_Single_Cover.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/2wz5weI4PREzpexKfrKgwv'
+  },
+  {
+    name: 'Try Me Out',
+    artist: 'Corona',
+    album: 'The Rhythm of the Night',
+    year: '1994',
+    tags: 'pop',
+    imageUrl:
+      'https://en.wikipedia.org/wiki/The_Rhythm_of_the_Night_(album)#/media/File:Corona_The_Rhythm_of_the_Night_album_cover.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/2S8EX7GNSnoMnjSJPEAsYt'
+  },
+  {
+    name: 'I Got to Give It Up',
+    artist: 'Masterboy',
+    album: 'Different Dreams',
+    year: '1994',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/2/2a/Masterboy_-_I_Got_to_Give_It_Up.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/2ThmEM6C0pq6bwKtDz8BBM'
+  },
+  {
+    name: 'Blue (Da Ba Dee)',
+    artist: 'Eiffel 65',
+    album: 'Single',
+    year: '1998',
+    tags: 'pop',
+    imageUrl:
+      'https://www.edmsauce.com/wp-content/uploads/2020/02/Screen-Shot-2020-02-18-at-8.26.34-PM.png',
+    songUrl: 'https://open.spotify.com/embed/track/2yAVzRiEQooPEJ9SYx11L3'
+  },
+  {
+    name: '9 PM (Till I Come)',
+    artist: 'ATB',
+    album: "Movin' Melodies",
+    year: '1998',
+    tags: 'electronic',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/en/e/e4/MovinMelodies.jpg',
+    songUrl: 'https://open.spotify.com/embed/track/1CgbwsrNDlFrRuk2ebQ7zr'
   }
 ]
 
