@@ -100,10 +100,10 @@ const cartReducer = (state = initialState, action) => {
         }
       })
     case DELETE_SONG_FROM_CART:
-    // const remainingSongs = state.songs.filter(
-    //   song => song.id !== action.songId
-    // )
-    // return { ...state, songs: remainingSongs }
+      const remainingSongs = state.songs.filter(
+        song => song.id !== action.songId
+      )
+      return {...state, songs: remainingSongs}
     case SET_LOCAL_STORAGE:
       return [...state]
     default:
