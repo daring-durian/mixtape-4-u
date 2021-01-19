@@ -48,31 +48,45 @@ router.post('/create/song', async (req, res, next) => {
 })
 
 // api/admin/edit/song/:songId
-// router.put('/edit/song/:songId', async (req, res, next) => {
+// accepts the same schema as create song
+router.put('/edit/song/:songId', async (req, res, next) => {
+  const isAdmin = req.user.role === 'admin'
+  const songId = req.params.songId
+  const songName = req.body.name
+  const artist = req.body.artist
+  const album = req.body.album
+  const year = req.body.year
+  const tags = req.body.tags
+  const imageUrl = req.body.imageUrl
+  const songUrl = req.body.songUrl
 
-//   const isAdmin = req.user.role === 'admin'
-//   const songId = req.params.songId
-//   const songData =
+  try {
+    if (isAdmin) {
+      const updatedSong = await Song.update(
+        {
+          name: songName,
+          artist: artist,
+          album: album,
+          year: year,
+          tags: tags,
+          imageUrl: imageUrl,
+          songUrl: songUrl
+        },
+        {
+          where: {id: songId},
+          returning: true,
+          plain: true
+        }
+      )
 
-//   try {
-//     if (isAdmin){
-//       await Song.destroy({
-//         where: {
-//           id: songId
-//         }
-//       })
-//       res.send(200).end()
-//     }
-
-//     else {
-//       res.send(404)
-//     }
-//   }
-
-//   catch (error) {
-//     next(error)
-//   }
-// })
+      res.send(updatedSong)
+    } else {
+      res.send(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
 
 // api/admin/delete/song/songId
 // accepts just the ID of the song in request URL
@@ -87,7 +101,7 @@ router.delete('/delete/song/:songId', async (req, res, next) => {
           id: songId
         }
       })
-      res.send(200).end()
+      res.send(202).end()
     } else {
       res.send(404)
     }
