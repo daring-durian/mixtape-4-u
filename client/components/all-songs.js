@@ -16,14 +16,14 @@ class Songs extends Component {
     this.props.loadSongs()
     this.props.loadCart()
   }
-  handleClick(event) {
-    console.log('EVENT', event)
-    this.props.addSong(event)
+  handleClick(songId, mixtapeId) {
+    this.props.addSong(songId, mixtapeId)
     this.props.loadCart()
   }
 
   render() {
     const songs = this.props.songs
+    const currentMixtape = this.props.cart[0]
     return (
       <Container fluid="md">
         <CardColumns>
@@ -41,7 +41,9 @@ class Songs extends Component {
                   variant="secondary"
                   type="submit"
                   className="add-song"
-                  onClick={() => this.handleClick(song.id)}
+                  onClick={(songId, mixtapeId) =>
+                    this.handleClick(song.id, currentMixtape.id)
+                  }
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>
@@ -58,14 +60,15 @@ class Songs extends Component {
  * CONTAINER
  */
 const mapState = state => ({
-  songs: state.songs
+  songs: state.songs,
+  cart: state.cartReducer
 })
 
 const mapDispatch = dispatch => {
   return {
     loadSongs: () => dispatch(fetchSongs()),
     loadCart: () => dispatch(fetchCart()),
-    addSong: id => dispatch(addSongToCart(id))
+    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId))
   }
 }
 
