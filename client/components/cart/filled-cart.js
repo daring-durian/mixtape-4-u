@@ -1,19 +1,30 @@
 import React, {Component} from 'react'
 import {Button, Card, Col, ListGroup, Row} from 'react-bootstrap'
 import Cart_Songs_View from './cart-songs-view'
-import {fetchCart, updateCart} from '../../store/cart'
+import {fetchCart} from '../../store/cart'
+import {connect} from 'react-redux'
 
-export class FilledCart extends Component {
+class FilledCart extends Component {
   constructor() {
     super()
+    this.state = {
+      total: 0,
+      shipping: 'FREE'
+    }
+  }
+
+  componentDidMount() {
+    // this price changes, but to render updated price, a page refresh is needed :/
+    const gotPrice = this.props.mixtapes[0].price
+    this.setState({total: gotPrice})
+    this.props.getCart()
   }
 
   render() {
     const mixtapes = this.props.mixtapes
     const totalItemCount = mixtapes.length
-    // total will be calculated once we implement add to cart functionality
-    const total = null
-    const shipping = 'FREE'
+    const total = this.state.total
+    const shipping = this.state.shipping
     const deleteSong = this.props.deleteSong
     const getCart = this.props.getCart
 
@@ -73,7 +84,9 @@ export class FilledCart extends Component {
 
               <Card.Body>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>Subtotal: {total || '$0'}</ListGroup.Item>
+                  <ListGroup.Item>
+                    Subtotal: {`$${total}` || '$0'}
+                  </ListGroup.Item>
                   <ListGroup.Item>Shipping: {shipping}</ListGroup.Item>
                   <ListGroup.Item>
                     <h3>Total: {`$${total}` || '$0'}</h3>
@@ -91,3 +104,11 @@ export class FilledCart extends Component {
     )
   }
 }
+
+const mapDispatch = dispatch => {
+  return {
+    getCart: () => dispatch(fetchCart())
+  }
+}
+
+export default connect(null, mapDispatch)(FilledCart)
