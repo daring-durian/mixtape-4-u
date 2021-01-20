@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Card, Col, ListGroup, Row} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import Cart_Songs_View from './cart-songs-view'
 
 export class FilledCart extends Component {
@@ -77,10 +78,11 @@ export class FilledCart extends Component {
                   <ListGroup.Item>
                     <h3>Total: {total || '$0'}</h3>
                   </ListGroup.Item>
-
-                  <Button variant="primary" size="lg" type="submit">
-                    Check Out
-                  </Button>
+                  <Link to="/confirmation">
+                    <Button variant="primary" size="lg" type="submit">
+                      Check Out
+                    </Button>
+                  </Link>
                 </ListGroup>
               </Card.Body>
             </Card>

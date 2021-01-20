@@ -28,7 +28,7 @@ class Single_Song extends React.Component {
     const song = this.props.song
     const currentMixtape = this.props.cart[0]
     return (
-      <Container>
+      <Container fluid>
         <Row>
           <h1>
             {song.name} by {song.artist}
@@ -69,20 +69,7 @@ class Single_Song extends React.Component {
               allowTransparency="true"
               allow="encrypted-media"
             />
-            <Col style={{padding: '1px', width: '500px'}}>
-              <Accordion>
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Similar Songs
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>Coming Soon!</Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
-            </Col>
+            <Col style={{padding: '1px', width: '500px'}} />
           </Col>
         </Row>
       </Container>
