@@ -38,8 +38,7 @@ class Cart_Songs_View extends React.Component {
     const currentMixtapeId = this.props.currentCart[0].id
     const currentMixtapeMedium = this.props.currentCart[0].medium
 
-    // this will only handle first time selection
-    // as soon as
+    // this won't work if the user goes back and changes their selection
     if (medium && quantity) {
       if (medium !== currentMixtapeMedium && needsToUpdate) {
         this.props.updateCart(medium, quantity, currentMixtapeId)
@@ -73,26 +72,7 @@ class Cart_Songs_View extends React.Component {
         <Card className="border-0 m-3">
           <h2>{mixtapeName}</h2>
           <Container className="d-flex flex-column ml-0 pl-0">
-            <Container className="d-flex inline pl-0 align-items-center">
-              <h5 className="m-0">Selected Medium:</h5>
-              <Dropdown
-                className="m-2"
-                name="medium"
-                value={this.state.medium}
-                onSelect={this.handleChange}
-              >
-                <Dropdown.Toggle variant="light" id="mixtape-medium-dropdown">
-                  {this.state.medium ? this.state.medium : 'no medium selected'}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item eventKey="cassette">cassette</Dropdown.Item>
-                  <Dropdown.Item eventKey="vinyl">vinyl</Dropdown.Item>
-                  <Dropdown.Item eventKey="cd">cd</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Container>
-
+            {/* select quantity dropdown */}
             <Container className="d-flex inline pl-0 align-items-center">
               <h5 className="m-0">Selected Quantity:</h5>
               <Dropdown
@@ -108,6 +88,39 @@ class Cart_Songs_View extends React.Component {
                   <Dropdown.Item eventKey="1">1</Dropdown.Item>
                   <Dropdown.Item eventKey="2">2</Dropdown.Item>
                   <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Container>
+
+            {/* select medium dropdown */}
+            <Container className="d-flex inline pl-0 align-items-center">
+              <h5 className="m-0">Selected Medium:</h5>
+              <Dropdown
+                className="m-2"
+                name="medium"
+                value={this.state.medium}
+                onSelect={this.handleChange}
+              >
+                {this.state.quantity ? (
+                  <Dropdown.Toggle variant="light" id="mixtape-medium-dropdown">
+                    {this.state.medium
+                      ? this.state.medium
+                      : 'no medium selected'}
+                  </Dropdown.Toggle>
+                ) : (
+                  <Dropdown.Toggle
+                    variant="light"
+                    id="mixtape-medium-dropdown"
+                    disabled
+                  >
+                    no medium selected
+                  </Dropdown.Toggle>
+                )}
+
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="cassette">cassette</Dropdown.Item>
+                  <Dropdown.Item eventKey="vinyl">vinyl</Dropdown.Item>
+                  <Dropdown.Item eventKey="cd">cd</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Container>

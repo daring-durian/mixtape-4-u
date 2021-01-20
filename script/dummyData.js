@@ -346,7 +346,7 @@ const orderData = [
 ]
 
 const mixtapeData = [
-  {medium: 'vinyl', name: 'Dance Mixtape'},
+  {medium: null, name: 'Dance Mixtape'},
   {medium: 'vinyl', name: 'Work Mixtape'},
   {medium: 'cassette', name: 'Sad Mixtape'},
   {medium: 'cd', name: 'Romantic Mixtape'},

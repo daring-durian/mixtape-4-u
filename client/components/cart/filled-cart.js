@@ -17,8 +17,6 @@ export class FilledCart extends Component {
     const deleteSong = this.props.deleteSong
     const getCart = this.props.getCart
 
-    console.log('WHAT IS GOING ON WITH MIXTAPES', mixtapes)
-
     return (
       <>
         <Row id="cart-header" className="m-4 justify-content-center">
