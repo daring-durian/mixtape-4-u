@@ -49,7 +49,7 @@ export const removeSong = id => {
   return async dispatch => {
     try {
       await axios.delete(`/api/songs/${id}`)
-      dispatch(deleteSong)
+      dispatch(deleteSong(id))
     } catch (error) {
       console.log(error)
     }

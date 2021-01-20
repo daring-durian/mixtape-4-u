@@ -17,7 +17,6 @@ class AdminSongs extends Component {
   }
 
   handleDelete(id) {
-    console.log('getting here')
     this.props.removeSong(id)
   }
   render() {
@@ -40,7 +39,7 @@ class AdminSongs extends Component {
                   variant="secondary"
                   type="submit"
                   className="delete-song"
-                  onClick={() => () => this.handleDelete(song.id)}
+                  onClick={() => this.handleDelete(song.id)}
                 >
                   Delete
                 </Button>
