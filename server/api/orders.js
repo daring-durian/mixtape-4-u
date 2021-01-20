@@ -12,8 +12,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//  /api/orders/createmixtape  -creates new mixtape for order
-router.post('/createmixtape', async (req, res, next) => {
+//  /api/orders/create  -creates new mixtape for order
+router.post('/create', async (req, res, next) => {
   try {
     if (req.user) {
       const userId = req.user.id
@@ -23,7 +23,7 @@ router.post('/createmixtape', async (req, res, next) => {
       const newMixtape = await Mixtape.create({
         medium: 'cd' //setting cd as default as this cannot be null
       })
-      await newMixtape.setOrder(newOrderLoggedInUer)
+      await newMixtape.setOrder(newOrderLoggedInUser)
     } else if (!req.user) {
       const newOrder = await Order.create()
       //will need code later on to set user to order when they login
