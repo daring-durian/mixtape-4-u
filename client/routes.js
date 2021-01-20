@@ -11,7 +11,7 @@ import {
   Cart,
   AdminUsers,
   AdminHome,
-  AdminSongs
+  AdminSongs,
   Confirmation
 } from './components/index'
 import {me} from './store'
