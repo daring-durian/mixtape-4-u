@@ -59,7 +59,8 @@ const mapDispatch = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
     setLocalStorage: currentCart => dispatch(setLocalStorageItem(currentCart)),
-    deleteSong: songId => dispatch(deleteSongFromCart(songId))
+    deleteSong: (songId, mixtapeId) =>
+      dispatch(deleteSongFromCart(songId, mixtapeId))
   }
 }
 

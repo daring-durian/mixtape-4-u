@@ -26,15 +26,16 @@ export const setMixtapeName = name => ({
   name
 })
 
-export const addSong = (songId, newSong) => ({
+export const addSong = (newSong, mixtapeId) => ({
   type: ADD_SONG,
-  songId,
-  newSong
+  newSong,
+  mixtapeId
 })
 
-export const deleteSong = songId => ({
+export const deleteSong = (songId, mixtapeId) => ({
   type: DELETE_SONG_FROM_CART,
-  songId
+  songId,
+  mixtapeId
 })
 
 export const setLocalStorage = entireCart => ({
@@ -50,18 +51,18 @@ export const fetchCart = () => {
   }
 }
 
-export const addSongToCart = songId => {
+export const addSongToCart = (songId, mixtapeId) => {
   return async dispatch => {
     const newSong = await axios.get(`/api/songs/${songId}`)
     await axios.put(`/api/songs/add/${songId}`, newSong.data)
-    dispatch(addSong(songId, newSong.data))
+    dispatch(addSong(newSong.data, mixtapeId))
   }
 }
 
-export const deleteSongFromCart = songId => {
+export const deleteSongFromCart = (songId, mixtapeId) => {
   return async dispatch => {
     await axios.put(`/api/cart/delete/${songId}`)
-    dispatch(deleteSong(songId))
+    dispatch(deleteSong(songId, mixtapeId))
   }
 }
 //GUEST USER:
@@ -94,13 +95,17 @@ const cartReducer = (state = initialState, action) => {
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
     case ADD_SONG:
-      // console.log("STATE-->", state.songs)
-      return {...state, songs: [...state.songs, action.newSong]}
+      state.map(mixtape => {
+        if ((mixtape.id = action.mixtapeId)) {
+          return [{...mixtape, songs: [...mixtape.songs, action.newSong]}]
+        }
+      })
     case DELETE_SONG_FROM_CART:
-      const remainingSongs = state.songs.filter(
-        song => song.id !== action.songId
-      )
-      return {...state, songs: remainingSongs}
+    // const currentMixtape = state.filter(mixtape =>
+    //   mixtape.id === action.mixtapeId)
+    // const mixtapeToUpdate = currentMixtape[0]
+    // const remainingSongs = mixtapeToUpdate.songs.filter(song => song.id !== action.songId)
+    // return [{ ...state, songs: [remainingSongs] }]
     case SET_LOCAL_STORAGE:
       return [...state]
     default:

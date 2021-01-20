@@ -9,7 +9,6 @@ import {
 } from 'react-bootstrap'
 
 class Cart_Songs_View extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -19,10 +18,10 @@ class Cart_Songs_View extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
-  
-  async deleteSongFromCart(songId) {
-    await this.props.deleteSong(songId)
-    await this.props.getCart()
+
+  deleteSongFromCart(songId, mixtapeId) {
+    this.props.deleteSong(songId, mixtapeId)
+    this.props.getCart()
   }
 
   handleChange(event) {
@@ -89,8 +88,8 @@ class Cart_Songs_View extends React.Component {
 
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                {mixtapeSongs.map(song => (
-                  <div key={song.id}>
+                {mixtapeSongs.map((song, index) => (
+                  <div key={index}>
                     <Media as="li" className="m-3">
                       <img
                         width={150}
@@ -112,7 +111,7 @@ class Cart_Songs_View extends React.Component {
                         className="cart-song-delete-button"
                         variant="outline-secondary"
                         size="sm"
-                        onClick={() => deleteSong(`${song.id}`)}
+                        onClick={() => deleteSong(song.id, mixtape.id)}
                       >
                         <img
                           width={25}
