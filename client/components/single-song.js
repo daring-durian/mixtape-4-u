@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleSong} from '../store/single_song'
 import {addSongToCart, fetchCart} from '../store/cart'
-import {Container, Row, Card, Col, Accordion, Button} from 'react-bootstrap'
+import {Container, Row, Card, Col, Button} from 'react-bootstrap'
 
 class Single_Song extends React.Component {
   constructor() {
