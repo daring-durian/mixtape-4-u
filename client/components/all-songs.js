@@ -4,6 +4,8 @@ import {fetchSongs} from '../store/songs'
 import {addSongToCart, fetchCart} from '../store/cart'
 import {createNewOrder} from '../store/orders'
 import {Container, CardColumns, Card, Button} from 'react-bootstrap'
+import toast from 'toasted-notes'
+import 'toasted-notes/src/styles.css'
 
 /**
  * COMPONENT
@@ -20,7 +22,6 @@ class Songs extends Component {
     // this.setState({ currentMixtape: this.props.cart[0] })
   }
 
-
   // componentDidUpdate(prevProps, prevState) {
   //   // console.log("PREV PROPS", prevProps)
   //   // console.log("PREV STATE", prevState)
@@ -35,6 +36,9 @@ class Songs extends Component {
     if (currentMixtape) {
       this.props.addSong(songId, currentMixtape.id)
       this.props.loadCart()
+      toast.notify('Added to cart!', {
+        position: 'top-right'
+      })
     } else {
       await this.props.createOrder()
       this.props.loadCart()

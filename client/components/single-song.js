@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {fetchSingleSong} from '../store/single_song'
 import {addSongToCart, fetchCart} from '../store/cart'
 import {createNewOrder} from '../store/orders'
-import {Container, Row, Card, Col, Accordion, Button} from 'react-bootstrap'
-
+import {Container, Row, Card, Col, Button} from 'react-bootstrap'
+import toast from 'toasted-notes'
+import 'toasted-notes/src/styles.css'
 
 class Single_Song extends React.Component {
   constructor() {
@@ -21,12 +22,14 @@ class Single_Song extends React.Component {
     }
   }
 
-
   async handleClick(songId) {
     const currentMixtape = this.props.cart[0]
     if (currentMixtape) {
       this.props.addSong(songId, currentMixtape.id)
       this.props.loadCart()
+      toast.notify('Added to cart!', {
+        position: 'top-right'
+      })
     } else {
       await this.props.createOrder()
       this.props.loadCart()
@@ -76,10 +79,8 @@ class Single_Song extends React.Component {
               width="500"
               height="250"
               frameBorder="0"
-              allowTransparency="true"
               allow="encrypted-media"
             />
-            <Col style={{padding: '1px', width: '500px'}} />
           </Col>
         </Row>
       </Container>
