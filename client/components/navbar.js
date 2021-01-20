@@ -26,10 +26,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             </NavDropdown.Item>
           ) : (
             <>
-              <NavDropdown.Item as={Link} to="/login">
+              <NavDropdown.Item as={Link} to="/login" style={{width: '130px'}}>
                 Login
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/signup">
+              <NavDropdown.Item as={Link} to="/signup" style={{width: '130px'}}>
                 Sign Up
               </NavDropdown.Item>
             </>

@@ -28,7 +28,11 @@ class Songs extends Component {
       <Container fluid="md">
         <CardColumns className="m-5">
           {songs.map(song => (
-            <Card key={song.id} className="p-3">
+            <Card
+              key={song.id}
+              className="p-3"
+              style={{backgroundColor: '#403F4C', color: '#ffffff'}}
+            >
               <a href={`/songs/${song.id}`}>
                 <Card.Img variant="top" src={song.imageUrl} />
               </a>
@@ -36,12 +40,19 @@ class Songs extends Component {
                 <Card.Title>{song.name}</Card.Title>
                 <Card.Subtitle>{song.artist}</Card.Subtitle>
               </Card.Body>
-              <Card.Footer>
+              <Card.Footer className="border-0">
                 <Button
                   variant="secondary"
                   type="submit"
                   className="add-song"
                   onClick={() => this.handleClick(song.id, currentMixtape.id)}
+                  style={{
+                    backgroundColor: '#A06CD5',
+                    border: 'none',
+                    height: '50px',
+                    width: '50px',
+                    borderRadius: '25px'
+                  }}
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>

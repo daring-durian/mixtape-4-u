@@ -29,7 +29,10 @@ const AuthForm = props => {
   )
 
   return (
-    <Container className="align-items-center d-flex" style={{height: '80vh'}}>
+    <Container
+      className="align-items-center d-flex"
+      style={{height: '80vh', maxWidth: '400px'}}
+    >
       <Form onSubmit={handleSubmit} name={name} className="w-100">
         <InputGroup className="m-2">
           <InputGroup.Prepend>
@@ -74,17 +77,18 @@ const AuthForm = props => {
           className="m-2 w-80"
           size="lg"
           block
+          style={{backgroundColor: '#A06CD5', border: 'none'}}
         >
           {displayName}
         </Button>
 
-        <Card className="m-2">
+        {/* <Card className="m-2">
           <Card.Body>
             <a href="/auth/google" id="google-login">
               {displayName} with Google <i className="fas fa-chevron-right" />
             </a>
           </Card.Body>
-        </Card>
+        </Card> */}
       </Form>
     </Container>
   )
