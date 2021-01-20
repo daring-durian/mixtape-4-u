@@ -1,7 +1,7 @@
 // import { Container, Dropdown } from 'react-bootstrap'
 import React from 'react'
 import EmptyCart from './empty-cart'
-import {FilledCart} from './filled-cart'
+import FilledCart from './filled-cart'
 import {Container} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {

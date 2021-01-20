@@ -20,6 +20,7 @@ class Songs extends Component {
     // this.setState({ currentMixtape: this.props.cart[0] })
   }
 
+
   // componentDidUpdate(prevProps, prevState) {
   //   // console.log("PREV PROPS", prevProps)
   //   // console.log("PREV STATE", prevState)
@@ -43,6 +44,7 @@ class Songs extends Component {
 
   render() {
     const songs = this.props.songs
+    const currentMixtape = this.props.cart[0]
     return (
       <Container fluid="md">
         <CardColumns>
@@ -60,7 +62,7 @@ class Songs extends Component {
                   variant="secondary"
                   type="submit"
                   className="add-song"
-                  onClick={() => this.handleClick(song.id)}
+                  onClick={() => this.handleClick(song.id, currentMixtape.id)}
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>

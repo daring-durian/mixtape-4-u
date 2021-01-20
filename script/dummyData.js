@@ -202,15 +202,15 @@ const songData = [
       'https://open.spotify.com/embed/track/2Eky0Rjbrv0YmNy3wrMtSM?si=y3Q3ZOGqSr-XZtAFf4UGYw'
   },
   {
-    name: 'I Specialize In Love',
-    artist: 'Sharon Brown',
-    album: 'I Specialize In Love',
-    year: '2010',
-    tags: 'disco',
+    name: 'Crane Your Neck',
+    artist: 'Lady Lamb',
+    album: 'Ripely Pine',
+    year: '2013',
+    tags: 'rock',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/en/0/0a/12%22_Single_%22I_Specialize_In_Love%22_Sharon_Brown.jpg',
+      'https://media.pitchfork.com/photos/5929b9cbea9e61561daa7090/1:1/w_320/e661cf20.jpg',
     songUrl:
-      'https://open.spotify.com/embed/track/1SRtnntbQW1KKO6rzEO7ac?si=LSf43l4sSLa0zvXKc9oP6A'
+      'https://open.spotify.com/embed/track/7FMedJPiag48GjON0tp2PO?si=dxYz1I8kThOR0FYWhiUfRw'
   },
   {
     name: "Don't Stop Me Now",
@@ -223,15 +223,15 @@ const songData = [
       'https://open.spotify.com/embed/track/7hQJA50XrCWABAu5v6QZ4i?si=Kww9f-obRLGwlsEbOiITXw'
   },
   {
-    name: 'The Quiet Things That No One Ever Knows',
-    artist: 'Brand New',
-    album: 'Deja Entendu',
-    year: '2003',
+    name: 'In The Aeroplane Over The Sea',
+    artist: 'Neutral Milk Hotel',
+    album: 'In The Aeroplane Over The Sea',
+    year: '1998',
     tags: 'rock',
     imageUrl:
-      'https://upload.wikimedia.org/wikipedia/en/7/7b/Brand_New_Deja_Entendu.jpg',
+      'https://upload.wikimedia.org/wikipedia/en/8/83/In_the_aeroplane_over_the_sea_album_cover_copy.jpg',
     songUrl:
-      'https://open.spotify.com/embed/track/3IlY76VbP31zwPY0S2EMjh?si=3auIFpj1Q-Sb_qO5Bv9JRQ'
+      'https://open.spotify.com/embed/track/4OciRObYGzPzlU40U7YRc8?si=7t15NeeNQema6XUaRhjezQ'
   },
   {
     name: 'Beautiful Life',
@@ -346,7 +346,7 @@ const orderData = [
 ]
 
 const mixtapeData = [
-  {medium: 'vinyl', name: 'Dance Mixtape'},
+  {medium: null, name: 'Dance Mixtape'},
   {medium: 'vinyl', name: 'Work Mixtape'},
   {medium: 'cassette', name: 'Sad Mixtape'},
   {medium: 'cd', name: 'Romantic Mixtape'},
