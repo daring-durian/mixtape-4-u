@@ -7,7 +7,7 @@ import {Songs} from './all-songs'
 import {Nav, Navbar as BootstrapNavbar, NavDropdown} from 'react-bootstrap'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <BootstrapNavbar bg="light">
+  <BootstrapNavbar bg="dark" variant="dark" sticky="top">
     <BootstrapNavbar.Brand as={Link} to="/home">
       Mixtape 4 U
     </BootstrapNavbar.Brand>
