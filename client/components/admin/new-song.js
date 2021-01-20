@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 //we need a thunk creator to add song
 //addSong currently does not exist
-import {addSong} from '../../store/admin'
+import {postSong} from '../../store/songs'
 
 export class NewSong extends Component {
   constructor() {
@@ -110,7 +110,7 @@ export class NewSong extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewSong: song => dispatch(addSong(song))
+    addNewSong: song => dispatch(postSong(song))
   }
 }
 

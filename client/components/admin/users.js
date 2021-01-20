@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 //We need to add an admin file to the store folder
 //& import its getUsers Thunk
 //so fetchUsers below does exist yet
-import {fetchUsers} from '../../store'
+import {fetchUsers} from '../../store/admin'
 import {Link} from 'react-router-dom'
 
 export class AdminUsers extends Component {
@@ -18,7 +18,7 @@ export class AdminUsers extends Component {
           return (
             <div key={user.id}>
               <h2>
-                <Link to={`/adminusers/${user.id}`}>{user.name}</Link>
+                <Link to={`/admin/users/${user.id}`}>{user.name}</Link>
               </h2>
               <h4>{user.email}</h4>
             </div>
@@ -31,7 +31,7 @@ export class AdminUsers extends Component {
 
 const mapState = state => {
   return {
-    users: state.adminUsers
+    users: state.usersReducer
   }
 }
 

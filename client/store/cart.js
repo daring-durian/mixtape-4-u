@@ -9,7 +9,7 @@ const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
 const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE'
 
 //ACTION CREATORS
-export const getCart = cart => ({
+const getCart = cart => ({
   type: GET_CART,
   cart
 })

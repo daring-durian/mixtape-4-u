@@ -1,10 +1,8 @@
 const router = require('express').Router()
-module.exports = router
-
 const {User, Song} = require('../db/models')
 
-// api/admin returns all user data
-router.get('/', async (req, res, next) => {
+// api/admin/users returns all user data
+router.get('/users', async (req, res, next) => {
   const isAdmin = req.user.role === 'admin'
 
   try {
@@ -109,3 +107,5 @@ router.delete('/delete/song/:songId', async (req, res, next) => {
     next(error)
   }
 })
+
+module.exports = router

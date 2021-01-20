@@ -3,7 +3,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 //i think we need a thunk creator to edit song also?
 //updateSong currently does not exist
-import {updateSong} from '../../store/admin'
+import {updateSong} from '../../store/songs'
+import {Button} from 'react-bootstrap'
 
 export class EditSong extends Component {
   constructor(props) {
@@ -106,9 +107,14 @@ export class EditSong extends Component {
             <option name="disco">disco</option>
           </select>
           <div>
-            <button className="editSongAdmin" type="submit">
-              UPDATE SONG
-            </button>
+            <Button
+              variant="secondary"
+              className="editSongAdmin"
+              type="submit"
+              onClick={() => () => this.handleSubmit(song.id)}
+            >
+              Update
+            </Button>
           </div>
         </form>
       </div>
