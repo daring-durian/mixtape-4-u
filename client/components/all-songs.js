@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchSongs} from '../store/songs'
 import {addSongToCart, fetchCart} from '../store/cart'
+import {createNewOrder} from '../store/orders'
 import {Container, CardColumns, Card, Button} from 'react-bootstrap'
 
 /**
@@ -11,14 +12,34 @@ class Songs extends Component {
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    // this.state = { currentMixtape: null }
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.props.loadSongs()
     this.props.loadCart()
+    // this.setState({ currentMixtape: this.props.cart[0] })
   }
-  handleClick(songId, mixtapeId) {
-    this.props.addSong(songId, mixtapeId)
-    this.props.loadCart()
+
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   // console.log("PREV PROPS", prevProps)
+  //   // console.log("PREV STATE", prevState)
+  //   if (prevState.currentMixtape !== this.state.currentMixtape) {
+  //     console.log("this.state", this.state.currentMixtape)
+  //     this.props.loadCart()
+  //   }
+  // }
+
+  async handleClick(songId) {
+    const currentMixtape = this.props.cart[0]
+    if (currentMixtape) {
+      this.props.addSong(songId, currentMixtape.id)
+      this.props.loadCart()
+    } else {
+      await this.props.createOrder()
+      this.props.loadCart()
+      await this.props.addSong(songId, this.state.currentMixtape.id)
+    }
   }
 
   render() {
@@ -26,7 +47,7 @@ class Songs extends Component {
     const currentMixtape = this.props.cart[0]
     return (
       <Container fluid="md">
-        <CardColumns>
+        <CardColumns className="m-5">
           {songs.map(song => (
             <Card key={song.id} className="p-3">
               <a href={`/songs/${song.id}`}>
@@ -66,7 +87,8 @@ const mapDispatch = dispatch => {
   return {
     loadSongs: () => dispatch(fetchSongs()),
     loadCart: () => dispatch(fetchCart()),
-    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId))
+    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId)),
+    createOrder: () => dispatch(createNewOrder())
   }
 }
 

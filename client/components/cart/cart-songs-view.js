@@ -135,8 +135,8 @@ class Cart_Songs_View extends React.Component {
 
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                {mixtapeSongs.map(song => (
-                  <div key={song.id}>
+                {mixtapeSongs.map((song, index) => (
+                  <div key={index}>
                     <Media as="li" className="m-3">
                       <img
                         width={150}

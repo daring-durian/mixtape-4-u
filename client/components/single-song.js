@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleSong} from '../store/single_song'
 import {addSongToCart, fetchCart} from '../store/cart'
-import {Container, Row, Card, Col, Button} from 'react-bootstrap'
+import {createNewOrder} from '../store/orders'
+import {Container, Row, Card, Col, Accordion, Button} from 'react-bootstrap'
+
 
 class Single_Song extends React.Component {
   constructor() {
@@ -19,9 +21,17 @@ class Single_Song extends React.Component {
     }
   }
 
-  handleClick(songId, mixtapeId) {
-    this.props.addSong(songId, mixtapeId)
-    this.props.loadCart()
+
+  async handleClick(songId) {
+    const currentMixtape = this.props.cart[0]
+    if (currentMixtape) {
+      this.props.addSong(songId, currentMixtape.id)
+      this.props.loadCart()
+    } else {
+      await this.props.createOrder()
+      this.props.loadCart()
+      await this.props.addSong(songId, this.state.currentMixtape.id)
+    }
   }
 
   render() {
@@ -88,7 +98,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchSingleSong: id => dispatch(fetchSingleSong(id)),
     loadCart: () => dispatch(fetchCart()),
-    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId))
+    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId)),
+    createOrder: () => dispatch(createNewOrder())
   }
 }
 
