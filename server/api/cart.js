@@ -28,6 +28,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.put('/', async (req, res, next) => {
+  try {
+    const availablePricing = {
+      vinyl: 30,
+      cd: 10,
+      cassette: 5
+    }
+
+    // calculate price based on the item posted
+    console.log(req.body)
+    res.send(req.body)
+  } catch (error) {
+    next(err)
+  }
+})
+
 // /api/cart/delete/:songId Route to delete song to cart
 router.put('/delete/:songId', async (req, res, next) => {
   try {

@@ -1,11 +1,10 @@
 import axios from 'axios'
-import {act} from 'react-test-renderer'
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
 const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
-const SET_ORDER_PRICE = 'SET_ORDER_PRICE'
+const SET_QUANTITY = 'SET_QUANTITY'
 const UPDATE_CART = 'UPDATE_CART'
 const ADD_SONG = 'ADD_SONG'
 const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
@@ -32,6 +31,11 @@ export const setMixtapeType = mixtapeType => ({
 export const setMixtapeName = name => ({
   type: SET_MIXTAPE_NAME,
   name
+})
+
+export const setQuantity = quantity => ({
+  type: SET_QUANTITY,
+  quantity
 })
 
 export const addSong = (newSong, mixtapeId) => ({
@@ -73,11 +77,15 @@ export const deleteSongFromCart = songId => {
   }
 }
 
-export const updateCart = data => {
+export const updateCart = (medium, quantity) => {
   return async dispatch => {
-    console.log(data)
-    await axios.put('/api/cart')
-    dispatch(updateCart(data))
+    //console.log('thunk data', medium, quantity)
+    const updatedMixtapeData = {
+      medium: medium,
+      quantity: quantity
+    }
+    await axios.put('/api/cart', updatedMixtapeData)
+    dispatch(setMixtapeType(medium), setQuantity(quantity))
   }
 }
 //GUEST USER:

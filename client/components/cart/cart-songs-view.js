@@ -12,8 +12,10 @@ import {
   fetchCart,
   setLocalStorageItem,
   deleteSongFromCart,
-  updateCart
+  updateCart,
+  setMixtapeType
 } from '../../store/cart'
+import store from '../../store'
 
 class Cart_Songs_View extends React.Component {
   constructor(props) {
@@ -26,16 +28,38 @@ class Cart_Songs_View extends React.Component {
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
 
+  // getCurrentStateFromStore(){
+  //   return {
+  //     medium: store.getState().cartReducer[0].medium
+  //   }
+  // }
+
+  // updateStateFromStore(){
+  //   const currentState = this.getCurrentStateFromStore()
+
+  //   if (this.state.medium !== currentState){
+  //     this.setState(currentState)
+  //   }
+  // }
+
   async deleteSongFromCart(songId) {
     await this.props.deleteSong(songId)
     await this.props.getCart()
   }
 
+  componentDidMount() {
+    this.props.getCart()
+    const currentCart = this.props.currentCart
+  }
+
   componentDidUpdate() {
-    console.log('component updated', this.state)
+    const medium = this.state.medium
+    const quantity = this.state.quantity
     // only fire the update when both quantity and medium were set
-    if (this.state.medium && this.state.quantity) {
-      this.props.updateCart(this.state)
+    if (medium && quantity) {
+      // console.log('store', store.getState().cartReducer[0].medium)
+      // console.log('current state ', medium, quantity)
+      this.props.updateCart(medium, quantity)
     }
   }
 
@@ -47,7 +71,6 @@ class Cart_Songs_View extends React.Component {
     this.setState({
       [name]: value
     })
-    console.log(this.state)
   }
 
   render() {
@@ -163,7 +186,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    updateCart: () => dispatch(updateCart())
+    updateCart: (medium, quantity) => dispatch(updateCart(medium, quantity)),
+    setMixtapeType: () => dispatch(setMixtapeType(type))
   }
 }
 
