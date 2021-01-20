@@ -2,8 +2,10 @@ import axios from 'axios'
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
-const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
+const SET_MIXTAPE_MEDIUM = 'SET_MIXTAPE_MEDIUM'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
+const SET_QUANTITY = 'SET_QUANTITY'
+const UPDATE_CART = 'UPDATE_CART'
 const ADD_SONG = 'ADD_SONG'
 const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
 const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE'
@@ -14,11 +16,17 @@ const getCart = cart => ({
   cart
 })
 
+export const setCart = cart => ({
+  type: UPDATE_CART,
+  cart
+})
+
 // mixtape type and quantity should all be addded to the active order
 // and once user submits the order, we will post all of that data to the BE
-export const setMixtapeType = mixtapeType => ({
-  type: SET_MIXTAPE_TYPE,
-  mixtapeType
+export const setMixtapeMedium = (medium, id) => ({
+  type: SET_MIXTAPE_MEDIUM,
+  medium,
+  id
 })
 
 export const setMixtapeName = name => ({
@@ -26,15 +34,23 @@ export const setMixtapeName = name => ({
   name
 })
 
+
+export const setQuantity = quantity => ({
+  type: SET_QUANTITY,
+  quantity
+})
+
+
 export const addSong = (newSong, mixtapeId) => ({
   type: ADD_SONG,
   newSong,
   mixtapeId
 })
 
-export const deleteSong = songId => ({
+export const deleteSong = (songId, mixtapeId) => ({
   type: DELETE_SONG_FROM_CART,
-  songId
+  songId,
+  mixtapeId
 })
 
 export const setLocalStorage = entireCart => ({
@@ -58,10 +74,22 @@ export const addSongToCart = (songId, mixtapeId) => {
   }
 }
 
-export const deleteSongFromCart = songId => {
+export const deleteSongFromCart = (songId, mixtapeId) => {
   return async dispatch => {
     await axios.put(`/api/cart/delete/${songId}`)
-    dispatch(deleteSong(songId))
+    dispatch(deleteSong(songId, mixtapeId))
+  }
+}
+
+export const updateCart = (medium, quantity, id) => {
+  return async dispatch => {
+    const updatedMixtapeData = {
+      id: id,
+      medium: medium,
+      quantity: quantity
+    }
+    await axios.put('/api/cart', updatedMixtapeData)
+    dispatch(setMixtapeMedium(medium, id), setQuantity(quantity))
   }
 }
 //GUEST USER:
@@ -89,8 +117,14 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
       return action.cart
-    case SET_MIXTAPE_TYPE:
-      return {...state, medium: action.setMixtapeType}
+    case UPDATE_CART:
+      return action.cart
+    case SET_MIXTAPE_MEDIUM:
+      const mixtapes = state
+      const updatedMixtapes = mixtapes.filter(
+        mixtape => mixtape.id === action.id
+      )
+      return updatedMixtapes
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
     case ADD_SONG:
@@ -100,10 +134,11 @@ const cartReducer = (state = initialState, action) => {
         }
       })
     case DELETE_SONG_FROM_CART:
-      const remainingSongs = state.songs.filter(
-        song => song.id !== action.songId
-      )
-      return {...state, songs: remainingSongs}
+    // const currentMixtape = state.filter(mixtape =>
+    //   mixtape.id === action.mixtapeId)
+    // const mixtapeToUpdate = currentMixtape[0]
+    // const remainingSongs = mixtapeToUpdate.songs.filter(song => song.id !== action.songId)
+    // return [{ ...state, songs: [remainingSongs] }]
     case SET_LOCAL_STORAGE:
       return [...state]
     default:

@@ -7,13 +7,16 @@ import songs from './songs'
 import cartReducer from './cart'
 import usersReducer from './admin'
 import single_song from './single_song'
+import orders from './orders'
 
 const reducer = combineReducers({
   user,
   cartReducer,
   songs,
   single_song,
-  usersReducer
+  usersReducer,
+  orders
+
 })
 
 const middleware = composeWithDevTools(

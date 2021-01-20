@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Mixtape, Order, Song} = require('../db/models')
+const {Mixtape, Order, Song, User} = require('../db/models')
 module.exports = router
 
 // (/api/cart) get's the logged in customer's cart
@@ -13,18 +13,58 @@ router.get('/', async (req, res, next) => {
         },
         include: {model: Mixtape, include: Song}
       })
-      const mixtape = await Mixtape.findAll({
-        where: {
-          orderId: order.id
-        },
-        include: Song
-      })
-      res.send(mixtape)
+      if (order) {
+        const mixtape = await Mixtape.findAll({
+          where: {
+            orderId: order.id
+          },
+          include: Song
+        })
+        res.send(mixtape)
+      } else if (!order) {
+        res.status(100)
+      }
     } else if (!req.user) {
       res.send(401)
     }
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  try {
+    if (req.user) {
+      const availablePricing = {
+        vinyl: 30,
+        cd: 10,
+        cassette: 5
+      }
+
+      const mixtapeId = req.body.id
+      const medium = req.body.medium
+      const quantity = req.body.quantity
+      const pricePerMediumType = availablePricing[medium]
+      const totalPricePerMixtape = pricePerMediumType * quantity
+
+      const updatedMixtape = await Mixtape.update(
+        {
+          medium: medium,
+          price: totalPricePerMixtape
+        },
+        {
+          where: {id: mixtapeId},
+          return: true,
+          plain: true
+        }
+      )
+      //console.log(updatedMixtape)
+      res.send(updatedMixtape)
+    } else {
+      res.send(401)
+    }
+  } catch (error) {
+    next(error)
   }
 })
 

@@ -7,22 +7,48 @@ import {
   Card,
   Media
 } from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {fetchCart, updateCart, setMixtapeMedium} from '../../store/cart'
 
 class Cart_Songs_View extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
       medium: null,
-      quantity: null
+      quantity: null,
+      needsToUpdate: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
-  
-  async deleteSongFromCart(songId) {
-    await this.props.deleteSong(songId)
-    await this.props.getCart()
+
+
+  deleteSongFromCart(songId, mixtapeId) {
+    this.props.deleteSong(songId, mixtapeId)
+    this.props.getCart()
+  }
+
+  componentDidMount() {
+    this.props.getCart()
+  }
+
+  componentDidUpdate() {
+    const medium = this.state.medium
+    const quantity = this.state.quantity
+    const needsToUpdate = this.state.needsToUpdate
+    const currentMixtapeId = this.props.currentCart[0].id
+    const currentMixtapeMedium = this.props.currentCart[0].medium
+
+    // this won't work if the user goes back and changes their selection
+    if (medium && quantity) {
+      if (medium !== currentMixtapeMedium && needsToUpdate) {
+        this.props.updateCart(medium, quantity, currentMixtapeId)
+        this.setState({
+          needsToUpdate: false
+        })
+        this.props.getCart()
+      }
+    }
   }
 
   handleChange(event) {
@@ -46,38 +72,59 @@ class Cart_Songs_View extends React.Component {
       <>
         <Card className="border-0 m-3">
           <h2>{mixtapeName}</h2>
-          <Container className="d-flex justify-content-space-between">
-            <Dropdown
-              className="m-1"
-              name="medium"
-              value={this.state.medium}
-              onSelect={this.handleChange}
-            >
-              <Dropdown.Toggle variant="light" id="mixtape-medium-dropdown">
-                Select medium
-              </Dropdown.Toggle>
+          <Container className="d-flex flex-column ml-0 pl-0">
+            {/* select quantity dropdown */}
+            <Container className="d-flex inline pl-0 align-items-center">
+              <h5 className="m-0">Selected Quantity:</h5>
+              <Dropdown
+                className="m-1"
+                name="quantity"
+                value={this.state.quantity}
+                onSelect={this.handleChange}
+              >
+                <Dropdown.Toggle variant="light">
+                  {this.state.quantity ? this.state.quantity : '0'}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                  <Dropdown.Item eventKey="2">2</Dropdown.Item>
+                  <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Container>
 
-              <Dropdown.Menu>
-                <Dropdown.Item eventKey="cassette">cassette</Dropdown.Item>
-                <Dropdown.Item eventKey="vinyl">vinyl</Dropdown.Item>
-                <Dropdown.Item eventKey="cd">cd</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            {/* select medium dropdown */}
+            <Container className="d-flex inline pl-0 align-items-center">
+              <h5 className="m-0">Selected Medium:</h5>
+              <Dropdown
+                className="m-2"
+                name="medium"
+                value={this.state.medium}
+                onSelect={this.handleChange}
+              >
+                {this.state.quantity ? (
+                  <Dropdown.Toggle variant="light" id="mixtape-medium-dropdown">
+                    {this.state.medium
+                      ? this.state.medium
+                      : 'no medium selected'}
+                  </Dropdown.Toggle>
+                ) : (
+                  <Dropdown.Toggle
+                    variant="light"
+                    id="mixtape-medium-dropdown"
+                    disabled
+                  >
+                    no medium selected
+                  </Dropdown.Toggle>
+                )}
 
-            {/* will this break when second mixtape dropdown will be opened?? */}
-            <Dropdown
-              className="m-1"
-              name="quantity"
-              value={this.state.quantity}
-              onSelect={this.handleChange}
-            >
-              <Dropdown.Toggle variant="light">Select quantity</Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                <Dropdown.Item eventKey="2">2</Dropdown.Item>
-                <Dropdown.Item eventKey="3">3</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="cassette">cassette</Dropdown.Item>
+                  <Dropdown.Item eventKey="vinyl">vinyl</Dropdown.Item>
+                  <Dropdown.Item eventKey="cd">cd</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Container>
           </Container>
         </Card>
 
@@ -89,8 +136,8 @@ class Cart_Songs_View extends React.Component {
 
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                {mixtapeSongs.map(song => (
-                  <div key={song.id}>
+                {mixtapeSongs.map((song, index) => (
+                  <div key={index}>
                     <Media as="li" className="m-3">
                       <img
                         width={150}
@@ -112,7 +159,7 @@ class Cart_Songs_View extends React.Component {
                         className="cart-song-delete-button"
                         variant="outline-secondary"
                         size="sm"
-                        onClick={() => deleteSong(`${song.id}`)}
+                        onClick={() => deleteSong(song.id, mixtape.id)}
                       >
                         <img
                           width={25}
@@ -132,4 +179,19 @@ class Cart_Songs_View extends React.Component {
   }
 }
 
-export default Cart_Songs_View
+const mapState = state => {
+  return {
+    currentCart: state.cartReducer
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    getCart: () => dispatch(fetchCart()),
+    updateCart: (medium, quantity, currentMixtapeId) =>
+      dispatch(updateCart(medium, quantity, currentMixtapeId)),
+    setMixtapeMedium: () => dispatch(setMixtapeMedium(type))
+  }
+}
+
+export default connect(mapState, mapDispatch)(Cart_Songs_View)

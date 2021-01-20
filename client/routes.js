@@ -12,6 +12,7 @@ import {
   AdminUsers,
   AdminHome,
   AdminSongs
+  Confirmation
 } from './components/index'
 import {me} from './store'
 
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
+        <Route path="/confirmation" component={Confirmation} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

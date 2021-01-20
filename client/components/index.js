@@ -12,3 +12,6 @@ export {default as Cart} from './cart/index'
 export {default as AdminUsers} from './admin/users'
 export {default as AdminSongs} from './admin/songs'
 export {default as AdminHome} from './admin/admin-home'
+// export {default as Cart_Songs_View} from './cart-songs-view'
+export {default as Confirmation} from './confirmation'
+
