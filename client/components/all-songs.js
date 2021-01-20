@@ -47,7 +47,7 @@ class Songs extends Component {
     const currentMixtape = this.props.cart[0]
     return (
       <Container fluid="md">
-        <CardColumns>
+        <CardColumns className="m-5">
           {songs.map(song => (
             <Card key={song.id} className="p-3">
               <a href={`/songs/${song.id}`}>

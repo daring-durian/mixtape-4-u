@@ -28,10 +28,6 @@ const AuthForm = props => {
     </InputGroup>
   )
 
-  //     {error && error.response && <div> {error.response.data} </div>}
-  //   <a href="/auth/google" id='google-login'>{displayName} with Google <i className="fas fa-chevron-right"></i></a>
-  // </div>
-
   return (
     <Container className="align-items-center d-flex" style={{height: '80vh'}}>
       <Form onSubmit={handleSubmit} name={name} className="w-100">
