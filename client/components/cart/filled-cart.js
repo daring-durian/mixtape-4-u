@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Card, Col, ListGroup, Row} from 'react-bootstrap'
 import Cart_Songs_View from './cart-songs-view'
+import {fetchCart, updateCart} from '../../store/cart'
 
 export class FilledCart extends Component {
   constructor() {
@@ -15,6 +16,8 @@ export class FilledCart extends Component {
     const shipping = 'FREE'
     const deleteSong = this.props.deleteSong
     const getCart = this.props.getCart
+
+    console.log('WHAT IS GOING ON WITH MIXTAPES', mixtapes)
 
     return (
       <>
@@ -75,7 +78,7 @@ export class FilledCart extends Component {
                   <ListGroup.Item>Subtotal: {total || '$0'}</ListGroup.Item>
                   <ListGroup.Item>Shipping: {shipping}</ListGroup.Item>
                   <ListGroup.Item>
-                    <h3>Total: {total || '$0'}</h3>
+                    <h3>Total: {`$${total}` || '$0'}</h3>
                   </ListGroup.Item>
 
                   <Button variant="primary" size="lg" type="submit">

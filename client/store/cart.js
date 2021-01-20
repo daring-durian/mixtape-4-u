@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
-const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
+const SET_MIXTAPE_MEDIUM = 'SET_MIXTAPE_MEDIUM'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
 const SET_QUANTITY = 'SET_QUANTITY'
 const UPDATE_CART = 'UPDATE_CART'
@@ -23,9 +23,10 @@ export const setCart = cart => ({
 
 // mixtape type and quantity should all be addded to the active order
 // and once user submits the order, we will post all of that data to the BE
-export const setMixtapeType = mixtapeType => ({
-  type: SET_MIXTAPE_TYPE,
-  mixtapeType
+export const setMixtapeMedium = (medium, id) => ({
+  type: SET_MIXTAPE_MEDIUM,
+  medium,
+  id
 })
 
 export const setMixtapeName = name => ({
@@ -77,16 +78,15 @@ export const deleteSongFromCart = songId => {
   }
 }
 
-export const updateCart = (medium, quantity, currentMixtapeId) => {
+export const updateCart = (medium, quantity, id) => {
   return async dispatch => {
-    //console.log('thunk data', medium, quantity)
     const updatedMixtapeData = {
-      id: currentMixtapeId,
+      id: id,
       medium: medium,
       quantity: quantity
     }
     await axios.put('/api/cart', updatedMixtapeData)
-    dispatch(setMixtapeType(medium), setQuantity(quantity))
+    dispatch(setMixtapeMedium(medium, id), setQuantity(quantity))
   }
 }
 //GUEST USER:
@@ -116,8 +116,12 @@ const cartReducer = (state = initialState, action) => {
       return action.cart
     case UPDATE_CART:
       return action.cart
-    case SET_MIXTAPE_TYPE:
-      return {...state, medium: action.setMixtapeType}
+    case SET_MIXTAPE_MEDIUM:
+      const mixtapes = state
+      const updatedMixtapes = mixtapes.filter(
+        mixtape => mixtape.id === action.id
+      )
+      return updatedMixtapes
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
     case ADD_SONG:

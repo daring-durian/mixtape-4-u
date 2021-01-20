@@ -13,7 +13,7 @@ import {
   setLocalStorageItem,
   deleteSongFromCart,
   updateCart,
-  setMixtapeType
+  setMixtapeMedium
 } from '../../store/cart'
 import store from '../../store'
 
@@ -28,20 +28,6 @@ class Cart_Songs_View extends React.Component {
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
 
-  // getCurrentStateFromStore(){
-  //   return {
-  //     medium: store.getState().cartReducer[0].medium
-  //   }
-  // }
-
-  // updateStateFromStore(){
-  //   const currentState = this.getCurrentStateFromStore()
-
-  //   if (this.state.medium !== currentState){
-  //     this.setState(currentState)
-  //   }
-  // }
-
   async deleteSongFromCart(songId) {
     await this.props.deleteSong(songId)
     await this.props.getCart()
@@ -49,7 +35,6 @@ class Cart_Songs_View extends React.Component {
 
   componentDidMount() {
     this.props.getCart()
-    const currentCart = this.props.currentCart
   }
 
   componentDidUpdate() {
@@ -190,7 +175,7 @@ const mapDispatch = dispatch => {
     getCart: () => dispatch(fetchCart()),
     updateCart: (medium, quantity, currentMixtapeId) =>
       dispatch(updateCart(medium, quantity, currentMixtapeId)),
-    setMixtapeType: () => dispatch(setMixtapeType(type))
+    setMixtapeMedium: () => dispatch(setMixtapeMedium(type))
   }
 }
 
