@@ -22,12 +22,6 @@ class Cart_Songs_View extends React.Component {
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
 
-
-  deleteSongFromCart(songId, mixtapeId) {
-    this.props.deleteSong(songId, mixtapeId)
-    this.props.getCart()
-  }
-
   componentDidMount() {
     this.props.getCart()
   }
@@ -49,6 +43,11 @@ class Cart_Songs_View extends React.Component {
         this.props.getCart()
       }
     }
+  }
+
+  deleteSongFromCart(songId, mixtapeId) {
+    this.props.deleteSong(songId, mixtapeId)
+    this.props.getCart()
   }
 
   handleChange(event) {

@@ -134,11 +134,15 @@ const cartReducer = (state = initialState, action) => {
         }
       })
     case DELETE_SONG_FROM_CART:
-    // const currentMixtape = state.filter(mixtape =>
-    //   mixtape.id === action.mixtapeId)
-    // const mixtapeToUpdate = currentMixtape[0]
-    // const remainingSongs = mixtapeToUpdate.songs.filter(song => song.id !== action.songId)
-    // return [{ ...state, songs: [remainingSongs] }]
+      const currentMixtape = state.filter(
+        mixtape => mixtape.id === action.mixtapeId
+      )
+      currentMixtape.map(mixtape => {
+        const remainingSongs = mixtape.songs.filter(
+          song => song.id !== action.songId
+        )
+        return [{...mixtape, songs: remainingSongs}]
+      })
     case SET_LOCAL_STORAGE:
       return [...state]
     default:
