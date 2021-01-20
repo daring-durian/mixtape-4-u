@@ -45,9 +45,10 @@ export const addSong = (newSong, mixtapeId) => ({
   mixtapeId
 })
 
-export const deleteSong = songId => ({
+export const deleteSong = (songId, mixtapeId) => ({
   type: DELETE_SONG_FROM_CART,
-  songId
+  songId,
+  mixtapeId
 })
 
 export const setLocalStorage = entireCart => ({
@@ -71,10 +72,10 @@ export const addSongToCart = (songId, mixtapeId) => {
   }
 }
 
-export const deleteSongFromCart = songId => {
+export const deleteSongFromCart = (songId, mixtapeId) => {
   return async dispatch => {
     await axios.put(`/api/cart/delete/${songId}`)
-    dispatch(deleteSong(songId))
+    dispatch(deleteSong(songId, mixtapeId))
   }
 }
 
@@ -131,10 +132,15 @@ const cartReducer = (state = initialState, action) => {
         }
       })
     case DELETE_SONG_FROM_CART:
-      const remainingSongs = state.songs.filter(
-        song => song.id !== action.songId
+      const currentMixtape = state.filter(
+        mixtape => mixtape.id === action.mixtapeId
       )
-      return {...state, songs: remainingSongs}
+      currentMixtape.map(mixtape => {
+        const remainingSongs = mixtape.songs.filter(
+          song => song.id !== action.songId
+        )
+        return [{...mixtape, songs: remainingSongs}]
+      })
     case SET_LOCAL_STORAGE:
       return [...state]
     default:

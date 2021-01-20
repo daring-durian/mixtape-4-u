@@ -22,11 +22,6 @@ class Cart_Songs_View extends React.Component {
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
 
-  async deleteSongFromCart(songId) {
-    await this.props.deleteSong(songId)
-    await this.props.getCart()
-  }
-
   componentDidMount() {
     this.props.getCart()
   }
@@ -48,6 +43,11 @@ class Cart_Songs_View extends React.Component {
         this.props.getCart()
       }
     }
+  }
+
+  deleteSongFromCart(songId, mixtapeId) {
+    this.props.deleteSong(songId, mixtapeId)
+    this.props.getCart()
   }
 
   handleChange(event) {
@@ -158,7 +158,7 @@ class Cart_Songs_View extends React.Component {
                         className="cart-song-delete-button"
                         variant="outline-secondary"
                         size="sm"
-                        onClick={() => deleteSong(`${song.id}`)}
+                        onClick={() => deleteSong(song.id, mixtape.id)}
                       >
                         <img
                           width={25}
