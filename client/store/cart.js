@@ -1,9 +1,12 @@
 import axios from 'axios'
+import {act} from 'react-test-renderer'
 
 //ACTION TYPES
 const GET_CART = 'GET_CART'
 const SET_MIXTAPE_TYPE = 'SET_MIXTAPE_TYPE'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
+const SET_ORDER_PRICE = 'SET_ORDER_PRICE'
+const UPDATE_CART = 'UPDATE_CART'
 const ADD_SONG = 'ADD_SONG'
 const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
 const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE'
@@ -11,6 +14,11 @@ const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE'
 //ACTION CREATORS
 export const getCart = cart => ({
   type: GET_CART,
+  cart
+})
+
+export const setCart = cart => ({
+  type: UPDATE_CART,
   cart
 })
 
@@ -64,6 +72,14 @@ export const deleteSongFromCart = songId => {
     dispatch(deleteSong(songId))
   }
 }
+
+export const updateCart = data => {
+  return async dispatch => {
+    console.log(data)
+    await axios.put('/api/cart')
+    dispatch(updateCart(data))
+  }
+}
 //GUEST USER:
 //If user is not logged in yet and they start adding
 //items to their cart, we need to get them from local storage
@@ -88,6 +104,8 @@ const initialState = []
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_CART:
+      return action.cart
+    case UPDATE_CART:
       return action.cart
     case SET_MIXTAPE_TYPE:
       return {...state, medium: action.setMixtapeType}

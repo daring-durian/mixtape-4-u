@@ -7,9 +7,15 @@ import {
   Card,
   Media
 } from 'react-bootstrap'
+import {connect} from 'react-redux'
+import {
+  fetchCart,
+  setLocalStorageItem,
+  deleteSongFromCart,
+  updateCart
+} from '../../store/cart'
 
 class Cart_Songs_View extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -19,10 +25,18 @@ class Cart_Songs_View extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
   }
-  
+
   async deleteSongFromCart(songId) {
     await this.props.deleteSong(songId)
     await this.props.getCart()
+  }
+
+  componentDidUpdate() {
+    console.log('component updated', this.state)
+    // only fire the update when both quantity and medium were set
+    if (this.state.medium && this.state.quantity) {
+      this.props.updateCart(this.state)
+    }
   }
 
   handleChange(event) {
@@ -33,6 +47,7 @@ class Cart_Songs_View extends React.Component {
     this.setState({
       [name]: value
     })
+    console.log(this.state)
   }
 
   render() {
@@ -46,38 +61,45 @@ class Cart_Songs_View extends React.Component {
       <>
         <Card className="border-0 m-3">
           <h2>{mixtapeName}</h2>
-          <Container className="d-flex justify-content-space-between">
-            <Dropdown
-              className="m-1"
-              name="medium"
-              value={this.state.medium}
-              onSelect={this.handleChange}
-            >
-              <Dropdown.Toggle variant="light" id="mixtape-medium-dropdown">
-                Select medium
-              </Dropdown.Toggle>
+          <Container className="d-flex flex-column ml-0 pl-0">
+            <Container className="d-flex inline pl-0 align-items-center">
+              <h5 className="m-0">Selected Medium:</h5>
+              <Dropdown
+                className="m-2"
+                name="medium"
+                value={this.state.medium}
+                onSelect={this.handleChange}
+              >
+                <Dropdown.Toggle variant="light" id="mixtape-medium-dropdown">
+                  {this.state.medium ? this.state.medium : 'no medium selected'}
+                </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <Dropdown.Item eventKey="cassette">cassette</Dropdown.Item>
-                <Dropdown.Item eventKey="vinyl">vinyl</Dropdown.Item>
-                <Dropdown.Item eventKey="cd">cd</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="cassette">cassette</Dropdown.Item>
+                  <Dropdown.Item eventKey="vinyl">vinyl</Dropdown.Item>
+                  <Dropdown.Item eventKey="cd">cd</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Container>
 
-            {/* will this break when second mixtape dropdown will be opened?? */}
-            <Dropdown
-              className="m-1"
-              name="quantity"
-              value={this.state.quantity}
-              onSelect={this.handleChange}
-            >
-              <Dropdown.Toggle variant="light">Select quantity</Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                <Dropdown.Item eventKey="2">2</Dropdown.Item>
-                <Dropdown.Item eventKey="3">3</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Container className="d-flex inline pl-0 align-items-center">
+              <h5 className="m-0">Selected Quantity:</h5>
+              <Dropdown
+                className="m-1"
+                name="quantity"
+                value={this.state.quantity}
+                onSelect={this.handleChange}
+              >
+                <Dropdown.Toggle variant="light">
+                  {this.state.quantity ? this.state.quantity : '0'}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                  <Dropdown.Item eventKey="2">2</Dropdown.Item>
+                  <Dropdown.Item eventKey="3">3</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Container>
           </Container>
         </Card>
 
@@ -132,4 +154,17 @@ class Cart_Songs_View extends React.Component {
   }
 }
 
-export default Cart_Songs_View
+const mapState = state => {
+  return {
+    currentCart: state.cartReducer
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    getCart: () => dispatch(fetchCart()),
+    updateCart: () => dispatch(updateCart())
+  }
+}
+
+export default connect(mapState, mapDispatch)(Cart_Songs_View)
