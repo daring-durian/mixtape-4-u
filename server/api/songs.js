@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {Song, Mixtape, Order} = require('../db/models')
-
+//api/songs/
 router.get('/', async (req, res, next) => {
   try {
     const songs = await Song.findAll()
@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
-
+//api/songs/:songId
 router.get('/:songId', async (req, res, next) => {
   try {
     const song = await Song.findByPk(req.params.songId)
@@ -42,6 +42,30 @@ router.put('/add/:songId', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+//api/songs/:songId
+router.patch('/:songId', async (req, res, next) => {
+  try {
+    await Song.update(req.body.song, {
+      where: {
+        id: req.params.songId
+      }
+    })
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+//api/songs/:songId
+router.delete('/:songId', (req, res, next) => {
+  Song.destroy({
+    where: {
+      id: req.params.songId
+    }
+  })
+    .then(() => res.status(204).end())
+    .catch(next)
+  res.status(200)
 })
 
 module.exports = router
