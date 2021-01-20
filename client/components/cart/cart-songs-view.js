@@ -55,11 +55,13 @@ class Cart_Songs_View extends React.Component {
   componentDidUpdate() {
     const medium = this.state.medium
     const quantity = this.state.quantity
+    const currentMixtapeId = this.props.currentCart[0].id
     // only fire the update when both quantity and medium were set
     if (medium && quantity) {
       // console.log('store', store.getState().cartReducer[0].medium)
       // console.log('current state ', medium, quantity)
-      this.props.updateCart(medium, quantity)
+      //console.log(currentMixtapeId)
+      this.props.updateCart(medium, quantity, currentMixtapeId)
     }
   }
 
@@ -186,7 +188,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    updateCart: (medium, quantity) => dispatch(updateCart(medium, quantity)),
+    updateCart: (medium, quantity, currentMixtapeId) =>
+      dispatch(updateCart(medium, quantity, currentMixtapeId)),
     setMixtapeType: () => dispatch(setMixtapeType(type))
   }
 }

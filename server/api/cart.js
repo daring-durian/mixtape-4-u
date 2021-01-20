@@ -30,17 +30,37 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   try {
-    const availablePricing = {
-      vinyl: 30,
-      cd: 10,
-      cassette: 5
-    }
+    if (req.user) {
+      const availablePricing = {
+        vinyl: 30,
+        cd: 10,
+        cassette: 5
+      }
 
-    // calculate price based on the item posted
-    console.log(req.body)
-    res.send(req.body)
+      const mixtapeId = req.body.id
+      const medium = req.body.medium
+      const quantity = req.body.quantity
+      const pricePerMediumType = availablePricing[medium]
+      const totalPricePerMixtape = pricePerMediumType * quantity
+
+      const updatedMixtape = await Mixtape.update(
+        {
+          medium: medium,
+          price: totalPricePerMixtape
+        },
+        {
+          where: {id: mixtapeId},
+          return: true,
+          plain: true
+        }
+      )
+      //console.log(updatedMixtape)
+      res.send(updatedMixtape)
+    } else {
+      res.send(401)
+    }
   } catch (error) {
-    next(err)
+    next(error)
   }
 })
 

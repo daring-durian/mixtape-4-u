@@ -77,10 +77,11 @@ export const deleteSongFromCart = songId => {
   }
 }
 
-export const updateCart = (medium, quantity) => {
+export const updateCart = (medium, quantity, currentMixtapeId) => {
   return async dispatch => {
     //console.log('thunk data', medium, quantity)
     const updatedMixtapeData = {
+      id: currentMixtapeId,
       medium: medium,
       quantity: quantity
     }
