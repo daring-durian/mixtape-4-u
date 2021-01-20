@@ -8,21 +8,15 @@ import {
   Media
 } from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {
-  fetchCart,
-  setLocalStorageItem,
-  deleteSongFromCart,
-  updateCart,
-  setMixtapeMedium
-} from '../../store/cart'
-import store from '../../store'
+import {fetchCart, updateCart, setMixtapeMedium} from '../../store/cart'
 
 class Cart_Songs_View extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       medium: null,
-      quantity: null
+      quantity: null,
+      needsToUpdate: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.deleteSongFromCart = this.deleteSongFromCart.bind(this)
@@ -40,13 +34,20 @@ class Cart_Songs_View extends React.Component {
   componentDidUpdate() {
     const medium = this.state.medium
     const quantity = this.state.quantity
+    const needsToUpdate = this.state.needsToUpdate
     const currentMixtapeId = this.props.currentCart[0].id
-    // only fire the update when both quantity and medium were set
+    const currentMixtapeMedium = this.props.currentCart[0].medium
+
+    // this will only handle first time selection
+    // as soon as
     if (medium && quantity) {
-      // console.log('store', store.getState().cartReducer[0].medium)
-      // console.log('current state ', medium, quantity)
-      //console.log(currentMixtapeId)
-      this.props.updateCart(medium, quantity, currentMixtapeId)
+      if (medium !== currentMixtapeMedium && needsToUpdate) {
+        this.props.updateCart(medium, quantity, currentMixtapeId)
+        this.setState({
+          needsToUpdate: false
+        })
+        this.props.getCart()
+      }
     }
   }
 
