@@ -6,7 +6,7 @@ import {logout} from '../store'
 import {Songs} from './all-songs'
 import {Nav, Navbar as BootstrapNavbar, NavDropdown} from 'react-bootstrap'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
   <BootstrapNavbar bg="dark" variant="dark" sticky="top">
     <BootstrapNavbar.Brand as={Link} to="/home">
       Mixtape 4 U
@@ -21,9 +21,30 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 
         <NavDropdown title="My Account" id="account-dropdown-menu">
           {isLoggedIn ? (
-            <NavDropdown.Item to="/" onClick={handleClick}>
-              Logout
-            </NavDropdown.Item>
+            <>
+              <NavDropdown.Item to="/" onClick={handleClick}>
+                Logout
+              </NavDropdown.Item>
+
+              {isAdmin === 'admin' ? (
+                <>
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/admin/users"
+                    style={{color: 'red'}}
+                  >
+                    View All users
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/admin/song"
+                    style={{color: 'red'}}
+                  >
+                    View All Songs
+                  </NavDropdown.Item>
+                </>
+              ) : null}
+            </>
           ) : (
             <>
               <NavDropdown.Item as={Link} to="/login" style={{width: '130px'}}>
@@ -49,7 +70,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: state.user.role
   }
 }
 
