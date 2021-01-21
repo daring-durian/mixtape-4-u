@@ -49,7 +49,7 @@ class Single_Song extends React.Component {
         </Row>
         <Row>
           <Col xs={4}>
-            <Card style={{width: '20rem'}}>
+            <Card style={{backgroundColor: '#403F4C', color: '#ffffff'}}>
               <Card.Img variant="top" src={song.imageUrl} />
               <Card.Body>
                 <Card.Title>
@@ -67,6 +67,13 @@ class Single_Song extends React.Component {
                   type="submit"
                   className="add-song"
                   onClick={() => this.handleClick(song.id, currentMixtape.id)}
+                  style={{
+                    backgroundColor: '#A06CD5',
+                    border: 'none',
+                    height: '50px',
+                    width: '50px',
+                    borderRadius: '25px'
+                  }}
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>
