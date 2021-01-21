@@ -7,7 +7,7 @@ export default function EmptyCart() {
       <>
         <h1>Looks like your cart is empty.</h1>
         <p>Your mixtapes will show up here.</p>
-        <Button>
+        <Button style={{backgroundColor: '#A06CD5', border: 'none'}}>
           <a href="/songs" style={{color: 'white', textDecoration: 'none'}}>
             Continue Shopping
           </a>

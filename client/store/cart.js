@@ -66,6 +66,7 @@ export const fetchCart = () => {
 
 export const addSongToCart = (songId, mixtapeId) => {
   return async dispatch => {
+    console.log('songid inside of the thunk', songId)
     const newSong = await axios.get(`/api/songs/${songId}`)
     await axios.put(`/api/songs/add/${songId}`, newSong.data)
     dispatch(addSong(newSong.data, mixtapeId))
