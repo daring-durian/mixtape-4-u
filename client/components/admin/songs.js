@@ -17,7 +17,6 @@ class AdminSongs extends Component {
   }
 
   handleDelete(id) {
-    console.log('getting here')
     this.props.removeSong(id)
   }
   render() {
