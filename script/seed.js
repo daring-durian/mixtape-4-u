@@ -59,10 +59,9 @@ async function seed() {
   await allOrders[3].setUser(allUsers[2])
   await allOrders[4].setUser(allUsers[3])
   await allOrders[5].setUser(allUsers[0])
-  await allOrders[6].setUser(allUsers[3])
 
   await allMixtapes[0].setOrder(allOrders[6])
-  await allMixtapes[1].setOrder(allOrders[3])
+  await allMixtapes[1].setOrder(allOrders[4])
   await allMixtapes[2].setOrder(allOrders[2])
   await allMixtapes[5].setOrder(allOrders[0])
 

@@ -86,17 +86,21 @@ class FilledCart extends Component {
               <Card.Body>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    Subtotal: {`$${total}` || '$0'}
+                    Subtotal: {total === null ? '$0' : `$${total}`}
                   </ListGroup.Item>
                   <ListGroup.Item>Shipping: {shipping}</ListGroup.Item>
                   <ListGroup.Item>
-                    <h3>Total: {`$${total}` || '$0'}</h3>
+                    <h3>Total: {total === null ? '$0' : `$${total}`}</h3>
                   </ListGroup.Item>
-                  <Link to="/confirmation">
-                    <Button variant="primary" size="lg" type="submit">
-                      Check Out
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    type="submit"
+                    as={Link}
+                    to="/confirmation"
+                  >
+                    Check Out
+                  </Button>
                 </ListGroup>
               </Card.Body>
             </Card>
