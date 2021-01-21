@@ -1,10 +1,16 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Container, Button, Image, Row} from 'react-bootstrap'
+import {WEEEEEE} from './cart/confetti'
 
 const Confirmation = () => {
   return (
-    <Container fluid style={{backgroundColor: '#7040C9'}}>
+    <Container
+      fluid
+      style={{backgroundColor: '#7040C9', height: '100vh'}}
+      className="align-items-center d-flex flex-column justify-content-center"
+    >
+      <WEEEEEE />
       <Row style={{textAlign: 'center', justifyContent: 'center'}}>
         <h1
           style={{
@@ -17,7 +23,9 @@ const Confirmation = () => {
       </Row>
       <Row style={{justifyContent: 'center'}}>
         <Link to="/songs">
-          <Button variant="outline-light">Go make another mixtape!</Button>
+          <Button variant="outline-light" size="lg" className="m-4">
+            Go make another mixtape!
+          </Button>
         </Link>
       </Row>
       <Row style={{justifyContent: 'center'}}>
