@@ -20,7 +20,6 @@ export const fetchUsers = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/admin/users')
-      console.log(data)
       dispatch(gotUsers(data))
     } catch (err) {
       console.log(err)
@@ -43,7 +42,6 @@ export const fetchSingleUser = id => {
 export default function usersReducer(state = [], action) {
   switch (action.type) {
     case GOT_USERS:
-      console.log(action.users)
       return action.users
     case GOT_SINGLE_USER:
       return action.user
