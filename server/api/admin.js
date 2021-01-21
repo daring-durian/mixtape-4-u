@@ -45,8 +45,6 @@ router.post('/create/song', async (req, res, next) => {
   }
 })
 
-// api/admin/edit/song/:songId
-// accepts the same schema as create song
 router.put('/edit/song/:songId', async (req, res, next) => {
   const isAdmin = req.user.role === 'admin'
   const songId = req.params.songId

@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unused-state */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-//i think we need a thunk creator to edit song also?
-//updateSong currently does not exist
 import {updateSong} from '../../store/songs'
 import {Button} from 'react-bootstrap'
 

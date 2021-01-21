@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-//We need to add an admin file to the store folder
-//& import its getUsers Thunk
-//so fetchUsers below does exist yet
 import {fetchUsers} from '../../store/admin'
 import {Link} from 'react-router-dom'
 

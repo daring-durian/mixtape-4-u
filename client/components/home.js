@@ -9,8 +9,6 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const Home = props => {
-  //const { name, email } = props
-
   const userFullName = props.name
   const userEmail = props.email
 
@@ -24,7 +22,6 @@ export const Home = props => {
   const welcomeGuest = (
     <div>
       <p>Welcome To Mixtape 4 U</p>
-      {/* <div style={{backgroundColor: '#643173', textDecoration: 'none', color: '#ffffff', height: '60px', width: '300px', borderRadius: '10px', fontSize: '0.7em'}}> */}
       <Link
         to="/auth/login"
         style={{color: '#ffffff', textDecoration: 'underline'}}
@@ -32,7 +29,6 @@ export const Home = props => {
         Please Log in or Sign Up
         <i className="fas fa-chevron-right pl-2" />
       </Link>
-      {/* </div> */}
     </div>
   )
 

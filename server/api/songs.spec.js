@@ -50,10 +50,6 @@ describe('SONG ROUTES', () => {
       const res = request(app)
         .get(`/api/songs/${song.id}`)
         .expect(200)
-      //it's getting here... seems close!
-      // console.log('RES OVER HERE', res);
-      // expect(res.body).to.be.an('object');
-      // expect(res.body.album).to.be.equal('Ivo');
     })
   })
 })

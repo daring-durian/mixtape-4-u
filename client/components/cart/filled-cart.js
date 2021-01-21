@@ -15,7 +15,6 @@ class FilledCart extends Component {
   }
 
   componentDidMount() {
-    // this price changes, but to render updated price, a page refresh is needed :/
     const gotPrice = this.props.mixtapes[0].price
     this.setState({total: gotPrice})
     this.props.getCart()

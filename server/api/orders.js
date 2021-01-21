@@ -21,14 +21,14 @@ router.post('/create', async (req, res, next) => {
       const newOrderLoggedInUser = await Order.create()
       await newOrderLoggedInUser.setUser(currentUser)
       const newMixtape = await Mixtape.create({
-        medium: 'cd' //setting cd as default as this cannot be null
+        medium: 'cd'
       })
       await newMixtape.setOrder(newOrderLoggedInUser)
     } else if (!req.user) {
       const newOrder = await Order.create()
-      //will need code later on to set user to order when they login
+
       const newMixtape = await Mixtape.create({
-        medium: 'cd' //setting cd as default as this cannot be null
+        medium: 'cd'
       })
       await newMixtape.setOrder(newOrder)
     }

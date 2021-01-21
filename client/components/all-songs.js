@@ -14,22 +14,11 @@ class Songs extends Component {
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
-    // this.state = { currentMixtape: null }
   }
   async componentDidMount() {
     this.props.loadSongs()
     this.props.loadCart()
-    // this.setState({ currentMixtape: this.props.cart[0] })
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   // console.log("PREV PROPS", prevProps)
-  //   // console.log("PREV STATE", prevState)
-  //   if (prevState.currentMixtape !== this.state.currentMixtape) {
-  //     console.log("this.state", this.state.currentMixtape)
-  //     this.props.loadCart()
-  //   }
-  // }
 
   async handleClick(songId) {
     const currentMixtape = this.props.cart[0]

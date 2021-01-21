@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-//create below thunk creators
 import {
   default as songsReducer,
   fetchSongs,
@@ -17,7 +16,6 @@ class AdminSongs extends Component {
   }
 
   handleDelete(id) {
-    console.log('getting here')
     this.props.removeSong(id)
   }
   render() {

@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-//we need a thunk creator to add song
-//addSong currently does not exist
 import {postSong} from '../../store/songs'
 
 export class NewSong extends Component {

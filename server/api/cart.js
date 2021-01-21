@@ -58,7 +58,6 @@ router.put('/', async (req, res, next) => {
           plain: true
         }
       )
-      //console.log(updatedMixtape)
       res.send(updatedMixtape)
     } else {
       res.send(401)

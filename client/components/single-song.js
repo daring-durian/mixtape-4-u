@@ -18,7 +18,7 @@ class Single_Song extends React.Component {
       this.props.fetchSingleSong(this.props.match.params.songId)
       this.props.loadCart()
     } catch (error) {
-      console.log('I hate this song', error)
+      console.log(error)
     }
   }
 
