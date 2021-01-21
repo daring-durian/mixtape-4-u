@@ -26,20 +26,19 @@ class Single_Song extends React.Component {
     const currentMixtape = this.props.cart[0]
     if (currentMixtape) {
       this.props.addSong(songId, currentMixtape.id)
-      this.props.loadCart()
+      this.props.addSongToCart()
       toast.notify('Added to cart!', {
         position: 'top-right'
       })
     } else {
       await this.props.createOrder()
-      this.props.loadCart()
-      await this.props.addSong(songId, this.state.currentMixtape.id)
+      this.props.addSongToCart()
+      await this.props.addSong(songId, currentMixtape.id)
     }
   }
 
   render() {
     const song = this.props.song
-    const currentMixtape = this.props.cart[0]
     return (
       <Container fluid>
         <Row>
@@ -66,7 +65,7 @@ class Single_Song extends React.Component {
                   variant="secondary"
                   type="submit"
                   className="add-song"
-                  onClick={() => this.handleClick(song.id, currentMixtape.id)}
+                  onClick={() => this.handleClick(song.id)}
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>
@@ -99,7 +98,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchSingleSong: id => dispatch(fetchSingleSong(id)),
     loadCart: () => dispatch(fetchCart()),
-    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId)),
+    addSongToCart: (songId, mixtapeId) =>
+      dispatch(addSongToCart(songId, mixtapeId)),
     createOrder: () => dispatch(createNewOrder())
   }
 }
