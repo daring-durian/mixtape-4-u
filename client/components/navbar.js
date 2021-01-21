@@ -67,6 +67,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
 /**
  * CONTAINER
  */
+
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
@@ -78,6 +79,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+      localStorage.clear()
+      window.location.reload(true)
     }
   }
 }
