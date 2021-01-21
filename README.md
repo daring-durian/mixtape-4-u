@@ -22,7 +22,7 @@ Windows
 
 ## Demo
 
-View an example Mixtape 4 U interface with dummy data at https://nameless-cliffs-56166.herokuapp.com/
+View an example Mixtape 4 U interface with dummy data at https://mixtape-4-u.herokuapp.com/
 
 ## Tools
 
@@ -38,7 +38,7 @@ Mixtape 4 U was created with:
 * PostgreSQL
 * Sequelize
 * PassportJS
-* Spotify API
+* Spotify embed codes
 ```
 
 ## People
