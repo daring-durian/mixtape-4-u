@@ -34,12 +34,10 @@ export const setMixtapeName = name => ({
   name
 })
 
-
 export const setQuantity = quantity => ({
   type: SET_QUANTITY,
   quantity
 })
-
 
 export const addSong = (newSong, mixtapeId) => ({
   type: ADD_SONG,
@@ -68,6 +66,7 @@ export const fetchCart = () => {
 
 export const addSongToCart = (songId, mixtapeId) => {
   return async dispatch => {
+    console.log('songid inside of the thunk', songId)
     const newSong = await axios.get(`/api/songs/${songId}`)
     await axios.put(`/api/songs/add/${songId}`, newSong.data)
     dispatch(addSong(newSong.data, mixtapeId))
@@ -128,6 +127,7 @@ const cartReducer = (state = initialState, action) => {
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
     case ADD_SONG:
+      console.log('reducer action', action.mixtapeId)
       state.map(mixtape => {
         if ((mixtape.id = action.mixtapeId)) {
           return [{...mixtape, songs: [...mixtape.songs, action.newSong]}]
