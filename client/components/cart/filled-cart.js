@@ -52,7 +52,7 @@ class FilledCart extends Component {
               </Card.Body>
             </Card>
 
-            <Card className="mt-5">
+            <Card className="mt-5 mb-5">
               <Card.Body>
                 <h3>Accepted Payment Methods:</h3>
                 <ListGroup horizontal>
@@ -76,8 +76,8 @@ class FilledCart extends Component {
             </Card>
           </Col>
 
-          <Col sm={4}>
-            <Card>
+          <Col sm={4} id="order-summary">
+            <Card className="mb-5">
               <Card.Header>
                 <h2>Order Summary</h2>
               </Card.Header>
