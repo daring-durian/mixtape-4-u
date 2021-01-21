@@ -22,18 +22,16 @@ class Single_Song extends React.Component {
     }
   }
 
-  async handleClick(songId) {
+  handleClick(songId) {
     const currentMixtape = this.props.cart[0]
     if (currentMixtape) {
-      this.props.addSong(songId, currentMixtape.id)
-      this.props.addSongToCart()
+      this.props.addSongToCart(songId, currentMixtape.id)
       toast.notify('Added to cart!', {
         position: 'top-right'
       })
     } else {
-      await this.props.createOrder()
-      this.props.addSongToCart()
-      await this.props.addSong(songId, currentMixtape.id)
+      this.props.createOrder()
+      this.props.addSongToCart(songId, currentMixtape.id)
     }
   }
 
