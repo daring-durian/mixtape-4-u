@@ -72,7 +72,6 @@ class Cart_Songs_View extends React.Component {
         <Card className="border-0 m-3">
           <h2>{mixtapeName}</h2>
           <Container className="d-flex flex-column ml-0 pl-0">
-            {/* select quantity dropdown */}
             <Container className="d-flex inline pl-0 align-items-center">
               <h5 className="m-0">Selected Quantity:</h5>
               <Dropdown
@@ -92,7 +91,6 @@ class Cart_Songs_View extends React.Component {
               </Dropdown>
             </Container>
 
-            {/* select medium dropdown */}
             <Container className="d-flex inline pl-0 align-items-center">
               <h5 className="m-0">Selected Medium:</h5>
               <Dropdown

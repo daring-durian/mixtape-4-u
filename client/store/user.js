@@ -32,8 +32,6 @@ export const me = () => async dispatch => {
 
 export const auth = (email, password, method, fullName) => async dispatch => {
   let res
-
-  // handles both sign in and sign up variables
   const credentials = {
     login: {email, password},
     signup: {email, password, name: fullName}

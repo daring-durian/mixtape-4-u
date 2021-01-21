@@ -34,7 +34,6 @@ describe('CART ROUTES', () => {
         .expect(200)
 
       expect(res.body).to.be.an('object')
-      // expect(res.body[0].name).to.be.equal('Super Cool Mixtape')
     })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+  })
+})

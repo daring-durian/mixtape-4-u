@@ -81,14 +81,6 @@ const AuthForm = props => {
         >
           {displayName}
         </Button>
-
-        {/* <Card className="m-2">
-          <Card.Body>
-            <a href="/auth/google" id="google-login">
-              {displayName} with Google <i className="fas fa-chevron-right" />
-            </a>
-          </Card.Body>
-        </Card> */}
       </Form>
     </Container>
   )

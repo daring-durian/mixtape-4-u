@@ -20,6 +20,7 @@ class Songs extends Component {
     this.props.loadCart()
   }
 
+
   handleClick(songId) {
     const currentMixtape = this.props.cart[0]
     if (currentMixtape) {
