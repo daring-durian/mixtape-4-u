@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Songs} from './all-songs'
 import {Nav, Navbar as BootstrapNavbar, NavDropdown} from 'react-bootstrap'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
@@ -37,7 +36,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
                   </NavDropdown.Item>
                   <NavDropdown.Item
                     as={Link}
-                    to="/admin/song"
+                    to="/admin/songs"
                     style={{color: 'red'}}
                   >
                     View All Songs
@@ -68,6 +67,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
 /**
  * CONTAINER
  */
+
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
@@ -79,6 +79,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+      localStorage.clear()
+      window.location.reload(true)
     }
   }
 }

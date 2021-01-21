@@ -1,5 +1,13 @@
 import React, {Component} from 'react'
-import {Button, Card, Col, ListGroup, Row} from 'react-bootstrap'
+import {
+  Button,
+  Card,
+  Col,
+  ListGroup,
+  Row,
+  OverlayTrigger,
+  Tooltip
+} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import Cart_Songs_View from './cart-songs-view'
 import {fetchCart} from '../../store/cart'
@@ -37,7 +45,19 @@ class FilledCart extends Component {
           <Col sm={8}>
             <Card>
               <Card.Header>
-                <h3>{totalItemCount} mixtape(s)</h3>
+                <h3>
+                  {totalItemCount} mixtape(s)
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="button-tooltip-2">
+                        Items will be removed from your cart once you log out.
+                      </Tooltip>
+                    }
+                  >
+                    <i className="fas fa-info-circle" />
+                  </OverlayTrigger>
+                </h3>
               </Card.Header>
               <Card.Body>
                 {mixtapes.map((mixtape, index) => (
@@ -52,7 +72,7 @@ class FilledCart extends Component {
               </Card.Body>
             </Card>
 
-            <Card className="mt-5">
+            <Card className="mt-5 mb-5">
               <Card.Body>
                 <h3>Accepted Payment Methods:</h3>
                 <ListGroup horizontal>
@@ -76,8 +96,8 @@ class FilledCart extends Component {
             </Card>
           </Col>
 
-          <Col sm={4}>
-            <Card>
+          <Col sm={4} id="order-summary">
+            <Card className="mb-5">
               <Card.Header>
                 <h2>Order Summary</h2>
               </Card.Header>

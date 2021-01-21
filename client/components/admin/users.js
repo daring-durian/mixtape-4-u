@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../../store/admin'
 import {Link} from 'react-router-dom'
+import {ListGroup} from 'react-bootstrap'
 
 export class AdminUsers extends Component {
   componentDidMount() {
@@ -13,12 +14,12 @@ export class AdminUsers extends Component {
         <h1>All Users</h1>
         {this.props.users.map(user => {
           return (
-            <div key={user.id}>
-              <h2>
+            <ListGroup key={user.id}>
+              <ListGroup.Item>
                 <Link to={`/admin/users/${user.id}`}>{user.name}</Link>
-              </h2>
-              <h4>{user.email}</h4>
-            </div>
+                <p>{user.email}</p>
+              </ListGroup.Item>
+            </ListGroup>
           )
         })}
       </div>

@@ -28,3 +28,13 @@ nav a {
   padding-left: 18px;
   color: rgb(68, 63, 63);
 }
+
+@media only screen and (max-width: 1250px) {
+  #cart-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin: 0 auto;
+  }
+}
