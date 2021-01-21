@@ -22,6 +22,7 @@ class AdminSongs extends Component {
     const songs = this.props.songs
     return (
       <Container fluid="md">
+        <NewSong />
         <CardColumns>
           {songs.map(song => (
             <Card key={song.id} className="p-3">
@@ -38,7 +39,7 @@ class AdminSongs extends Component {
                   variant="secondary"
                   type="submit"
                   className="delete-song"
-                  onClick={() => () => this.handleDelete(song.id)}
+                  onClick={() => this.handleDelete(song.id)}
                 >
                   Delete
                 </Button>

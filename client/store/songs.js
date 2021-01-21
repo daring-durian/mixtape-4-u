@@ -25,7 +25,7 @@ export const fetchSongs = () => async dispatch => {
 export const postSong = song => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/songs', song)
+      const {data} = await axios.post('/api/admin/songs', song)
       dispatch(addSong(data))
     } catch (error) {
       console.log(error)
@@ -48,8 +48,8 @@ export const updateSong = (songId, song) => {
 export const removeSong = id => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/songs/${id}`)
-      dispatch(deleteSong)
+      await axios.delete(`/api/admin/delete/${id}`)
+      dispatch(deleteSong(id))
     } catch (error) {
       console.log(error)
     }

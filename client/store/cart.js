@@ -6,7 +6,7 @@ const SET_MIXTAPE_MEDIUM = 'SET_MIXTAPE_MEDIUM'
 const SET_MIXTAPE_NAME = 'SET_MIXTAPE_NAME'
 const SET_QUANTITY = 'SET_QUANTITY'
 const UPDATE_CART = 'UPDATE_CART'
-const ADD_SONG = 'ADD_SONG'
+const ADD_SONG_TO_CART = 'ADD_SONG_TO_CART'
 const DELETE_SONG_FROM_CART = 'DELETE_SONG_FROM_CART'
 const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE'
 
@@ -40,7 +40,7 @@ export const setQuantity = quantity => ({
 })
 
 export const addSong = (newSong, mixtapeId) => ({
-  type: ADD_SONG,
+  type: ADD_SONG_TO_CART,
   newSong,
   mixtapeId
 })
@@ -91,6 +91,7 @@ export const updateCart = (medium, quantity, id) => {
   }
 }
 
+//GUEST USER:
 export const setLocalStorageItem = entireCart => {
   return async dispatch => {
     try {
@@ -102,8 +103,6 @@ export const setLocalStorageItem = entireCart => {
     }
   }
 }
-//will need to create func for localStorage.setItem('guestCart', {cart: []}) once we have a way to update our cart
-//You can see the data stored in local storage in Chrome under DevTools -> Application -> Local Storage./
 
 //INITIAL STATE
 const initialState = []
@@ -123,7 +122,8 @@ const cartReducer = (state = initialState, action) => {
       return updatedMixtapes
     case SET_MIXTAPE_NAME:
       return {...state, name: action.setMixtapeName}
-    case ADD_SONG:
+
+    case ADD_SONG_TO_CART:
       state.map(mixtape => {
         if ((mixtape.id = action.mixtapeId)) {
           return [{...mixtape, songs: [...mixtape.songs, action.newSong]}]

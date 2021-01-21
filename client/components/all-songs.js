@@ -15,38 +15,33 @@ class Songs extends Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
   }
-  async componentDidMount() {
+  componentDidMount() {
     this.props.loadSongs()
     this.props.loadCart()
   }
 
-  async handleClick(songId) {
+
+  handleClick(songId) {
     const currentMixtape = this.props.cart[0]
     if (currentMixtape) {
-      this.props.addSong(songId, currentMixtape.id)
-      this.props.loadCart()
+      this.props.addSongToCart(songId, currentMixtape.id)
       toast.notify('Added to cart!', {
         position: 'top-right'
       })
     } else {
-      await this.props.createOrder()
-      this.props.loadCart()
-      await this.props.addSong(songId, this.state.currentMixtape.id)
+      this.props.createOrder()
+      this.props.addSongToCart(songId, currentMixtape.id)
     }
   }
 
   render() {
     const songs = this.props.songs
-    const currentMixtape = this.props.cart[0]
+
     return (
       <Container fluid="md">
         <CardColumns className="m-5">
-          {songs.map(song => (
-            <Card
-              key={song.id}
-              className="p-3"
-              style={{backgroundColor: '#403F4C', color: '#ffffff'}}
-            >
+          {songs.map((song, index) => (
+            <Card key={index} className="p-3" style={{backgroundColor: '#403F4C', color: '#ffffff'}}>
               <a href={`/songs/${song.id}`}>
                 <Card.Img variant="top" src={song.imageUrl} />
               </a>
@@ -59,7 +54,8 @@ class Songs extends Component {
                   variant="secondary"
                   type="submit"
                   className="add-song"
-                  onClick={() => this.handleClick(song.id, currentMixtape.id)}
+
+                  onClick={() => this.handleClick(song.id)}
                   style={{
                     backgroundColor: '#A06CD5',
                     border: 'none',
@@ -67,6 +63,7 @@ class Songs extends Component {
                     width: '50px',
                     borderRadius: '25px'
                   }}
+
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>
@@ -91,7 +88,8 @@ const mapDispatch = dispatch => {
   return {
     loadSongs: () => dispatch(fetchSongs()),
     loadCart: () => dispatch(fetchCart()),
-    addSong: (songId, mixtapeId) => dispatch(addSongToCart(songId, mixtapeId)),
+    addSongToCart: (songId, mixtapeId) =>
+      dispatch(addSongToCart(songId, mixtapeId)),
     createOrder: () => dispatch(createNewOrder())
   }
 }

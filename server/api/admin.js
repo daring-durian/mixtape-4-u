@@ -45,6 +45,7 @@ router.post('/create/song', async (req, res, next) => {
   }
 })
 
+
 router.put('/edit/song/:songId', async (req, res, next) => {
   const isAdmin = req.user.role === 'admin'
   const songId = req.params.songId
@@ -84,20 +85,19 @@ router.put('/edit/song/:songId', async (req, res, next) => {
   }
 })
 
+
 // api/admin/delete/song/songId
 // accepts just the ID of the song in request URL
-router.delete('/delete/song/:songId', async (req, res, next) => {
+router.delete('/delete/:songId', async (req, res, next) => {
   const isAdmin = req.user.role === 'admin'
-  const songId = req.params.songId
-
   try {
     if (isAdmin) {
       await Song.destroy({
         where: {
-          id: songId
+          id: req.params.songId
         }
       })
-      res.send(202).end()
+      res.status(204).end()
     } else {
       res.send(404)
     }
