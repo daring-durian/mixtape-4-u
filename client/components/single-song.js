@@ -30,8 +30,9 @@ class Single_Song extends React.Component {
         position: 'top-right'
       })
     } else {
-      this.props.createOrder()
-      this.props.addSongToCart(songId, currentMixtape.id)
+      toast.notify('Please login or sign up to start creating a mixtape', {
+        position: 'top-right'
+      })
     }
   }
 
@@ -104,8 +105,7 @@ const mapDispatchToProps = dispatch => {
     fetchSingleSong: id => dispatch(fetchSingleSong(id)),
     loadCart: () => dispatch(fetchCart()),
     addSongToCart: (songId, mixtapeId) =>
-      dispatch(addSongToCart(songId, mixtapeId)),
-    createOrder: () => dispatch(createNewOrder())
+      dispatch(addSongToCart(songId, mixtapeId))
   }
 }
 
