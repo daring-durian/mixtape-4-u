@@ -20,7 +20,6 @@ class Songs extends Component {
     this.props.loadCart()
   }
 
-
   handleClick(songId) {
     const currentMixtape = this.props.cart[0]
     if (currentMixtape) {
@@ -29,8 +28,9 @@ class Songs extends Component {
         position: 'top-right'
       })
     } else {
-      this.props.createOrder()
-      this.props.addSongToCart(songId, currentMixtape.id)
+      toast.notify('Please login or sign up to start creating a mixtape', {
+        position: 'top-right'
+      })
     }
   }
 
@@ -41,7 +41,11 @@ class Songs extends Component {
       <Container fluid="md">
         <CardColumns className="m-5">
           {songs.map((song, index) => (
-            <Card key={index} className="p-3" style={{backgroundColor: '#403F4C', color: '#ffffff'}}>
+            <Card
+              key={index}
+              className="p-3"
+              style={{backgroundColor: '#403F4C', color: '#ffffff'}}
+            >
               <a href={`/songs/${song.id}`}>
                 <Card.Img variant="top" src={song.imageUrl} />
               </a>
@@ -54,7 +58,6 @@ class Songs extends Component {
                   variant="secondary"
                   type="submit"
                   className="add-song"
-
                   onClick={() => this.handleClick(song.id)}
                   style={{
                     backgroundColor: '#A06CD5',
@@ -63,7 +66,6 @@ class Songs extends Component {
                     width: '50px',
                     borderRadius: '25px'
                   }}
-
                 >
                   <i className="fas fa-cart-plus" />
                 </Button>
@@ -89,8 +91,7 @@ const mapDispatch = dispatch => {
     loadSongs: () => dispatch(fetchSongs()),
     loadCart: () => dispatch(fetchCart()),
     addSongToCart: (songId, mixtapeId) =>
-      dispatch(addSongToCart(songId, mixtapeId)),
-    createOrder: () => dispatch(createNewOrder())
+      dispatch(addSongToCart(songId, mixtapeId))
   }
 }
 
